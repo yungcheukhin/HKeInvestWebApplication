@@ -15,12 +15,17 @@
         </div>
 
         <div class="form-horizontal">
-
+             <asp:Label runat="server" Text="Security Code: " AssociatedControlID="Scode" CssClass="control-label col-md-2"></asp:Label>
+            <div class="col-md-3">
+                <asp:TextBox ID="Scode" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Scode" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Security code is required." Display="Dynamic"></asp:RequiredFieldValidator>
+                <asp:CustomValidator ID="cvSecurityCode" runat="server" ControlToValidate="Scode" CssClass="text-danger" EnableClientScript="False" ErrorMessage="The security code is invalid." OnServerValidate="cvSecurityCode_ServerValidate" ValidateEmptyText="True" Display="Dynamic"></asp:CustomValidator>
+            </div>
 
         </div>
 
          <div class="form-horizontal">
-
+             <asp:Panel ID="Panel1" runat="server"></asp:Panel>
 
         </div>
 
