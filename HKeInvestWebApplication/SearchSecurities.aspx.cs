@@ -37,7 +37,7 @@ namespace HKeInvestWebApplication
                 }
                 else if (code == null && name != null)
                 {
-
+                    searchresult = myExternalFunctions.getSecuritiesByName(type, name)
                 }
                 else
                 {
