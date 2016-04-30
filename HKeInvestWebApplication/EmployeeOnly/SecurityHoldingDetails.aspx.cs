@@ -93,7 +93,8 @@ namespace HKeInvestWebApplication.EmployeeOnly
             //       whose values are not actually in the database, but are set to the constant 0.00 by the select statement. (HINT: see   *
             //       http://stackoverflow.com/questions/2504163/include-in-select-a-column-that-isnt-actually-in-the-database.)            *   
             // *****************************************************************************************************************************
-            sql = "SELECT distinct[code], [name], [shares], [base], '0.00' AS price, '0.00' AS value, '0.00' AS convertedValue FROM [SecurityHolding], [Client] WHERE SecurityHolding.accountNumber=Client.accountNumber AND SecurityHolding.type='"+securityType+"' AND SecurityHolding.shares=12000.00"; // Complete the SQL statement.
+            //bug fixed (double check please)
+            sql = "SELECT distinct[code], [name], [shares], [base], '0.00' AS price, '0.00' AS value, '0.00' AS convertedValue FROM [SecurityHolding], [Client] WHERE SecurityHolding.accountNumber=Client.accountNumber AND SecurityHolding.type='"+securityType+"' AND SecurityHolding.accountNumber = '"+accountNumber+"'　"; // Complete the SQL statement.
 
             DataTable dtSecurityHolding = myHKeInvestData.getData(sql);
             if (dtSecurityHolding == null) { return; } // If the DataSet is null, a SQL error occurred.
