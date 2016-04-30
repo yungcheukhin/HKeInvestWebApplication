@@ -78,7 +78,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Yu So Ying (20189682) YU ZOE</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Yu So Ying (20189682) </p>
             </footer>
         </div>
     </form>
