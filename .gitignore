@@ -185,7 +185,10 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8dd18b5655ec04d7b6274556fe5def825bef7ed8
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout
