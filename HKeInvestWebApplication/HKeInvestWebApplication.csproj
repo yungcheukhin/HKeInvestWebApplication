@@ -251,6 +251,7 @@
     <Content Include="ExternalSystems\BondOrder.aspx" />
     <Content Include="ExternalSystems\ControlCenter.aspx" />
     <Content Include="ExternalSystems\ManageBond.aspx" />
+    <Content Include="ExternalSystems\ManageCurrencies.aspx" />
     <Content Include="ExternalSystems\ManageCurrencyConversion.aspx" />
     <Content Include="ExternalSystems\ManageStock.aspx" />
     <Content Include="ExternalSystems\ManageUnitTrust.aspx" />
@@ -505,6 +506,13 @@
     </Compile>
     <Compile Include="ExternalSystems\ManageBond.aspx.designer.cs">
       <DependentUpon>ManageBond.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExternalSystems\ManageCurrencies.aspx.cs">
+      <DependentUpon>ManageCurrencies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExternalSystems\ManageCurrencies.aspx.designer.cs">
+      <DependentUpon>ManageCurrencies.aspx</DependentUpon>
     </Compile>
     <Compile Include="ExternalSystems\ManageCurrencyConversion.aspx.cs">
       <DependentUpon>ManageCurrencyConversion.aspx</DependentUpon>

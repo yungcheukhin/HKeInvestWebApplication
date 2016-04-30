@@ -7,90 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HKeInvestWebApplication {
+namespace HKeInvestWebApplication.ExternalSystems {
     
     
-    public partial class SearchSecurities {
+    public partial class ManageCurrencies {
         
         /// <summary>
-        /// Stype control.
+        /// gvCurrencyConversion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Stype;
+        protected global::System.Web.UI.WebControls.GridView gvCurrencyConversion;
         
         /// <summary>
-        /// Scode control.
+        /// btnNewCurrency control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Scode;
+        protected global::System.Web.UI.WebControls.Button btnNewCurrency;
         
         /// <summary>
-        /// Sname control.
+        /// lblInsertMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Sname;
+        protected global::System.Web.UI.WebControls.Label lblInsertMessage;
         
         /// <summary>
-        /// bondtable control.
+        /// dvCurrencyConversion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel bondtable;
+        protected global::System.Web.UI.WebControls.DetailsView dvCurrencyConversion;
         
         /// <summary>
-        /// gvBond control.
+        /// CurrencyConversionSqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvBond;
+        protected global::System.Web.UI.WebControls.SqlDataSource CurrencyConversionSqlDataSource1;
         
         /// <summary>
-        /// stocktable control.
+        /// CurrencyConversionSqlDataSource2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel stocktable;
-        
-        /// <summary>
-        /// gvStock control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvStock;
-        
-        /// <summary>
-        /// unittable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel unittable;
-        
-        /// <summary>
-        /// gvUnitTrust control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUnitTrust;
+        protected global::System.Web.UI.WebControls.SqlDataSource CurrencyConversionSqlDataSource2;
     }
 }
