@@ -242,6 +242,7 @@
       <DependentUpon>HKeInvestDB.mdf</DependentUpon>
     </Content>
     <Content Include="App_Themes\Theme1\bootstrap.min.css" />
+    <Content Include="buynsellsecurities.aspx" />
     <Content Include="ClientOnly\ClientSecurityHoldingDetails.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -445,6 +446,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="buynsellsecurities.aspx.cs">
+      <DependentUpon>buynsellsecurities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="buynsellsecurities.aspx.designer.cs">
+      <DependentUpon>buynsellsecurities.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ClientOnly\ClientSecurityHoldingDetails.aspx.cs">
       <DependentUpon>ClientSecurityHoldingDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
