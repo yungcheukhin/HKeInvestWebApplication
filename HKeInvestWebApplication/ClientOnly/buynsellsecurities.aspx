@@ -25,14 +25,17 @@
         </div>
 
          <div class="form-horizontal">
-             <asp:Panel ID="Panel1" runat="server"></asp:Panel>
               <asp:Label runat="server" Text="test: " AssociatedControlID="tesst" CssClass="control-label col-md-2"></asp:Label>
              <asp:TextBox ID="test" runat="server" CssClass="form-control"></asp:TextBox>
+                <div class="col-md-3"><asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
+                <asp:ListItem Value="">Stock Order Type</asp:ListItem>
+                <asp:ListItem Value="market">Market</asp:ListItem>
+                <asp:ListItem Value="limit">Limit</asp:ListItem>
+                <asp:ListItem Value="stop">Stop</asp:ListItem>
+                <asp:ListItem Value="stoplimit">Stop limit</asp:ListItem>
+            </asp:DropDownList></div>
+            <asp:Panel ID="Panel1" runat="server"></asp:Panel>
 
         </div>
-
-
-
-
 
 </asp:Content>
