@@ -253,6 +253,7 @@
     <Content Include="App_Themes\Theme1\bootstrap.min.css" />
     <Content Include="ClientOnly\buynsellsecurities.aspx" />
     <Content Include="ClientOnly\ClientSecurityHoldingDetails.aspx" />
+    <Content Include="ClientOnly\setAlert.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -471,6 +472,13 @@
     </Compile>
     <Compile Include="ClientOnly\ClientSecurityHoldingDetails.aspx.designer.cs">
       <DependentUpon>ClientSecurityHoldingDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientOnly\setAlert.aspx.cs">
+      <DependentUpon>setAlert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientOnly\setAlert.aspx.designer.cs">
+      <DependentUpon>setAlert.aspx</DependentUpon>
     </Compile>
     <Compile Include="Code_File\HKeInvestCode.cs" />
     <Compile Include="Code_File\HKeInvestData.cs" />
