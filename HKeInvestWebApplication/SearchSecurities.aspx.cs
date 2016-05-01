@@ -14,10 +14,10 @@ namespace HKeInvestWebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
-        protected void Stype_SelectedIndexChanged(object sender, EventArgs e)
+        /*protected void Stype_SelectedIndexChanged(object sender, EventArgs e)
         {
             string type = Stype.SelectedValue;
             string code = Scode.Text.Trim();
@@ -53,6 +53,94 @@ namespace HKeInvestWebApplication
             {
                 unittable.Visible = true;
             }
+        }*/
+        
+        protected void doSearch(object sender, EventArgs e)
+        {
+            string type = Stype.SelectedValue;
+            string code = Scode.Text.Trim();
+            string name = Sname.Text.Trim();
+            DataTable searchresult;
+            ExternalFunctions myExternalFunctions = new ExternalFunctions();
+            if (Stype.SelectedValue == "bond")
+            {
+                stocktable.Visible = false;
+                unittable.Visible = false;
+                if (code == "" && name == "")
+                {
+                    searchresult = myExternalFunctions.getSecuritiesData(type);
+                    gvBond.DataSource = searchresult;
+                    gvBond.DataBind();
+                    bondtable.Visible = true;
+                }
+                else if (name == "")
+                {
+                    searchresult = myExternalFunctions.getSecuritiesByCode(type, code);
+                    gvBond.DataSource = searchresult;
+                    gvBond.DataBind();
+                    bondtable.Visible = true;
+                }
+                else if (code == "")
+                {
+                    searchresult = myExternalFunctions.getSecuritiesByName(type, name);
+                    gvBond.DataSource = searchresult;
+                    gvBond.DataBind();
+                    bondtable.Visible = true;
+                }
+            }
+            else if (Stype.SelectedValue == "stock")
+            {
+                bondtable.Visible = false;
+                unittable.Visible = false;
+                if (code == "" && name == "")
+                {
+                    searchresult = myExternalFunctions.getSecuritiesData(type);
+                    gvStock.DataSource = searchresult;
+                    gvStock.DataBind();
+                    stocktable.Visible = true;
+                }
+                else if (name == "")
+                {
+                    searchresult = myExternalFunctions.getSecuritiesByCode(type, code);
+                    gvStock.DataSource = searchresult;
+                    gvStock.DataBind();
+                    stocktable.Visible = true;
+                }
+                else if (code == "")
+                {
+                    searchresult = myExternalFunctions.getSecuritiesByName(type, name);
+                    gvStock.DataSource = searchresult;
+                    gvStock.DataBind();
+                    stocktable.Visible = true;
+                }
+            }
+            else if (Stype.SelectedValue == "unit trust")
+            {
+                bondtable.Visible = false;
+                stocktable.Visible = false;
+                if (code == "" && name == "")
+                {
+                    searchresult = myExternalFunctions.getSecuritiesData(type);
+                    gvUnitTrust.DataSource = searchresult;
+                    gvUnitTrust.DataBind();
+                    unittable.Visible = true;
+                }
+                else if (name == "")
+                {
+                    searchresult = myExternalFunctions.getSecuritiesByCode(type, code);
+                    gvUnitTrust.DataSource = searchresult;
+                    gvUnitTrust.DataBind();
+                    unittable.Visible = true;
+                }
+                else if (code == "")
+                {
+                    searchresult = myExternalFunctions.getSecuritiesByName(type, name);
+                    gvUnitTrust.DataSource = searchresult;
+                    gvUnitTrust.DataBind();
+                    unittable.Visible = true;
+                }
+            }
+            //changed
         }
     }
 }

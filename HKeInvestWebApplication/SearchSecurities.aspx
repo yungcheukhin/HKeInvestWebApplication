@@ -4,10 +4,10 @@
     <h2><%: Title %>Securities Searching</h2>
 
     <div class="form-horizontal">
-
+        
         <div class="form-group">
             <asp:Label runat="server" Text="Security Type: " AssociatedControlID="Stype" CssClass="control-label col-md-2"></asp:Label>
-            <div class="col-md-3"><asp:DropDownList ID="Stype" runat="server" CssClass="form-control" OnSelectedIndexChanged="Stype_SelectedIndexChanged">
+            <div class="col-md-3"><asp:DropDownList ID="Stype" runat="server" CssClass="form-control">
                 <asp:ListItem Value="">Security Type</asp:ListItem>
                 <asp:ListItem Value="bond">Bond</asp:ListItem>
                 <asp:ListItem Value="stock">Stock</asp:ListItem>
@@ -29,6 +29,14 @@
             </div>
         </div>
 
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <asp:Button runat="server" Text="Search" CssClass="btn btn-default" OnClick="doSearch" />
+            </div>
+        </div>
+        
         <hr />
 
         <asp:Panel ID="bondtable" runat="server" Visible="False">
