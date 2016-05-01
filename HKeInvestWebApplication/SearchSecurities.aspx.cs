@@ -14,7 +14,10 @@ namespace HKeInvestWebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            bondtable.Visible = false;
+            stocktable.Visible = false;
+            unittable.Visible = false;
+            lblerror.Visible = false;
         }
 
         /*protected void Stype_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,23 +72,52 @@ namespace HKeInvestWebApplication
                 if (code == "" && name == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesData(type);
-                    gvBond.DataSource = searchresult;
-                    gvBond.DataBind();
-                    bondtable.Visible = true;
+                    if (searchresult == null)
+                    {
+                        lblerror.Text = "No machted security is found.";
+                        lblerror.Visible = true;
+                    }
+                    else
+                    {
+                        gvBond.DataSource = searchresult;
+                        gvBond.DataBind();
+                        bondtable.Visible = true;
+                    }
                 }
                 else if (name == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesByCode(type, code);
-                    gvBond.DataSource = searchresult;
-                    gvBond.DataBind();
-                    bondtable.Visible = true;
+                    if(searchresult == null)
+                    {
+                        lblerror.Text = "No machted security is found.";
+                        lblerror.Visible = true;
+                    }
+                    else
+                    {
+                        gvBond.DataSource = searchresult;
+                        gvBond.DataBind();
+                        bondtable.Visible = true;
+                    }
                 }
                 else if (code == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesByName(type, name);
-                    gvBond.DataSource = searchresult;
-                    gvBond.DataBind();
-                    bondtable.Visible = true;
+                    if (searchresult == null)
+                    {
+                        lblerror.Text = "No machted security is found.";
+                        lblerror.Visible = true;
+                    }
+                    else
+                    {
+                        gvBond.DataSource = searchresult;
+                        gvBond.DataBind();
+                        bondtable.Visible = true;
+                    }
+                }
+                else
+                {
+                    lblerror.Text = "Either one of security code or security name is allowed to input.";
+                    lblerror.Visible = true;
                 }
             }
             else if (Stype.SelectedValue == "stock")
@@ -95,23 +127,52 @@ namespace HKeInvestWebApplication
                 if (code == "" && name == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesData(type);
-                    gvStock.DataSource = searchresult;
-                    gvStock.DataBind();
-                    stocktable.Visible = true;
+                    if (searchresult == null)
+                    {
+                        lblerror.Text = "No machted security is found.";
+                        lblerror.Visible = true;
+                    }
+                    else
+                    {
+                        gvStock.DataSource = searchresult;
+                        gvStock.DataBind();
+                        stocktable.Visible = true;
+                    }
                 }
                 else if (name == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesByCode(type, code);
-                    gvStock.DataSource = searchresult;
-                    gvStock.DataBind();
-                    stocktable.Visible = true;
+                    if (searchresult == null)
+                    {
+                        lblerror.Text = "No machted security is found.";
+                        lblerror.Visible = true;
+                    }
+                    else
+                    {
+                        gvStock.DataSource = searchresult;
+                        gvStock.DataBind();
+                        stocktable.Visible = true;
+                    }
                 }
                 else if (code == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesByName(type, name);
-                    gvStock.DataSource = searchresult;
-                    gvStock.DataBind();
-                    stocktable.Visible = true;
+                    if (searchresult == null)
+                    {
+                        lblerror.Text = "No machted security is found.";
+                        lblerror.Visible = true;
+                    }
+                    else
+                    {
+                        gvStock.DataSource = searchresult;
+                        gvStock.DataBind();
+                        stocktable.Visible = true;
+                    }
+                }
+                else
+                {
+                    lblerror.Text = "Either one of security code or security name is allowed to input.";
+                    lblerror.Visible = true;
                 }
             }
             else if (Stype.SelectedValue == "unit trust")
@@ -121,26 +182,54 @@ namespace HKeInvestWebApplication
                 if (code == "" && name == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesData(type);
-                    gvUnitTrust.DataSource = searchresult;
-                    gvUnitTrust.DataBind();
-                    unittable.Visible = true;
+                    if (searchresult == null)
+                    {
+                        lblerror.Text = "No machted security is found.";
+                        lblerror.Visible = true;
+                    }
+                    else
+                    {
+                        gvUnitTrust.DataSource = searchresult;
+                        gvUnitTrust.DataBind();
+                        unittable.Visible = true;
+                    }
                 }
                 else if (name == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesByCode(type, code);
-                    gvUnitTrust.DataSource = searchresult;
-                    gvUnitTrust.DataBind();
-                    unittable.Visible = true;
+                    if (searchresult == null)
+                    {
+                        lblerror.Text = "No machted security is found.";
+                        lblerror.Visible = true;
+                    }
+                    else
+                    {
+                        gvUnitTrust.DataSource = searchresult;
+                        gvUnitTrust.DataBind();
+                        unittable.Visible = true;
+                    }
                 }
                 else if (code == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesByName(type, name);
-                    gvUnitTrust.DataSource = searchresult;
-                    gvUnitTrust.DataBind();
-                    unittable.Visible = true;
+                    if (searchresult == null)
+                    {
+                        lblerror.Text = "No machted security is found.";
+                        lblerror.Visible = true;
+                    }
+                    else
+                    {
+                        gvUnitTrust.DataSource = searchresult;
+                        gvUnitTrust.DataBind();
+                        unittable.Visible = true;
+                    }
+                }
+                else
+                {
+                    lblerror.Text = "Either one of security code or security name is allowed to input.";
+                    lblerror.Visible = true;
                 }
             }
-            //changed
         }
     }
 }
