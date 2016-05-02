@@ -18,8 +18,8 @@ namespace HKeInvestWebApplication.ClientOnly
             //alert table: accNum, security, high, low (primary key: accNum+security)
             //load the dropdown list with only the security the client holds
             Snamecode.Visible = false;
-            Snamecode.Items.Clear();
-            Snamecode.Items.Add("Name (Code)");
+            Label1.Visible = false;
+            //Snamecode.Items.Clear();
         }
 
         protected void setAlertValue(object sender, EventArgs e)
@@ -27,7 +27,9 @@ namespace HKeInvestWebApplication.ClientOnly
             if (Page.IsValid)
             {
                 HKeInvestData myHKeInvestData = new HKeInvestData();
-                //get user id and security data
+
+
+                //get user id
                 string loginuser = Context.User.Identity.GetUserName();
                 DataTable idsearch = myHKeInvestData.getData("SELECT accountNumber FROM Account WHERE userName = '" + loginuser + "'");
                 string loginuserid = "";
@@ -35,6 +37,8 @@ namespace HKeInvestWebApplication.ClientOnly
                 {
                     loginuserid = loginuserid + row["accountNumber"];
                 }
+                //************Now loginuserid stores the id**************
+
                 string choosencode = Snamecode.SelectedValue.Trim();
                 string choosentype = Stype.SelectedValue.Trim();
                 string high = null;
@@ -45,25 +49,35 @@ namespace HKeInvestWebApplication.ClientOnly
                 }
                 if (lowValue.Text.Trim() != "")
                 {
-                    low = highValue.Text.Trim();
+                    low = lowValue.Text.Trim();
                 }
-                //************Now loginuserid stores the id**************
+
                 //DataTable heldsecurity = myHKeInvestData.getData("SELECT * FROM SecurityHolding WHERE SecurityHolding.accountNumber = '" + loginuserid + "' AND ");
                 //verify if alert had been set
-                DataTable checkalert = myHKeInvestData.getData("SELECT * FROM Alert WHERE Alert.accountNumber = '" +loginuserid+ "' AND Alert.type = '" +choosentype+ "' AND Alert.code = '" +choosencode+ "'");
-                if (checkalert == null)
+
+                /*DataTable checkalert = myHKeInvestData.getData("SELECT * FROM Alert WHERE accountNumber = '" + loginuserid + "' AND type = '" + choosentype + "' AND code = '" + choosencode + "'");
+                if (checkalert.Rows.Count==0)
+                {
+                    Label2.Text = "fucking null";
+                }*/
+
+                DataTable checkalert = myHKeInvestData.getData("SELECT * FROM Alert WHERE accountNumber = '" +loginuserid+ "' AND type = '" +choosentype+ "' AND code = '" +choosencode+ "'");
+                if (checkalert.Rows.Count == 0)
                 {
                     //add new alert data if doesnt exist
                     SqlTransaction addalertdata = myHKeInvestData.beginTransaction();
-                    myHKeInvestData.setData("INSERT INTO Alert (accountNumber, type, code, NULL as highVaue, NULL as lowValue) VALUES ('" +loginuserid+ "', '" +choosentype+ "', '" +choosencode+" ', '" +high+ "', '" +low+ "')", addalertdata);
+                    myHKeInvestData.setData("INSERT INTO Alert (accountNumber, type, code, highValue, lowValue) VALUES ('" + loginuserid + "', '" + choosentype + "', '" + choosencode + "', " + high + ", " + low + ")", addalertdata);
                     myHKeInvestData.commitTransaction(addalertdata);
                 }
+                //hahaha
                 else
                 {
                     //update alert info  (cover old value)
                     SqlTransaction modifyalertdata = myHKeInvestData.beginTransaction();
-                    myHKeInvestData.setData("UPDATE Alert SET highValue = '" +high+ "', lowValue = '" + low + "' WHERE accountNumbre = ' AND Alert.type = '" + choosentype + "' AND Alert.code = '" + choosencode + "'" + loginuserid+ "'", modifyalertdata);
+                    myHKeInvestData.setData("UPDATE Alert SET highValue = '" +high+ "', lowValue = '" + low + "' WHERE accountNumber = '" +loginuserid+ "' AND Alert.type = '" + choosentype + "' AND Alert.code = '" + choosencode + "'", modifyalertdata);
                     myHKeInvestData.commitTransaction(modifyalertdata);
+                    Label1.Text = "Your alert value had been updated.";
+                    Label1.Visible = true;
                 }
             }
         }
@@ -82,6 +96,8 @@ namespace HKeInvestWebApplication.ClientOnly
                     loginuserid = loginuserid + row["accountNumber"];
                 }
                 //get data to be input in dropdown list
+                Snamecode.Items.Clear();
+                Snamecode.Items.Add(new ListItem("Name (Code)", "0"));
                 DataTable heldsecurity = myHKeInvestData.getData("SELECT code, name FROM SecurityHolding WHERE SecurityHolding.accountNumber = '" + loginuserid + "' AND  SecurityHolding.type = '" +Stype.SelectedValue+ "'");
                 foreach (DataRow row in heldsecurity.Rows)
                 {

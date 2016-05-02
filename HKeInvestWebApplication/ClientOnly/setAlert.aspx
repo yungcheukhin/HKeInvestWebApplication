@@ -5,6 +5,9 @@
 
     <div class="form-horizontal">
 
+        <asp:Label ID="Label1" runat="server"></asp:Label>
+        <asp:Label ID="Label2" runat="server"></asp:Label>
+
         <div class="form-group">
             <asp:Label runat="server" Text="Choose the Security you want to set alert on: " CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-3"><asp:DropDownList ID="Stype" runat="server" CssClass="form-control" OnSelectedIndexChanged="Stype_SelectedIndexChanged" AutoPostBack="True">
