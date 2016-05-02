@@ -13,6 +13,15 @@ namespace HKeInvestWebApplication {
     public partial class buynsellsecurities {
         
         /// <summary>
+        /// opdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList opdd;
+        
+        /// <summary>
         /// Stype control.
         /// </summary>
         /// <remarks>
@@ -38,15 +47,6 @@ namespace HKeInvestWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Scode;
-        
-        /// <summary>
-        /// opdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList opdd;
         
         /// <summary>
         /// stocktypePanel control.
@@ -92,6 +92,15 @@ namespace HKeInvestWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox stopPrice;
+        
+        /// <summary>
+        /// allornonecheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList allornonecheck;
         
         /// <summary>
         /// expdatePanel control.
@@ -218,6 +227,15 @@ namespace HKeInvestWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox sellstopPrice;
+        
+        /// <summary>
+        /// sellallornonecheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList sellallornonecheck;
         
         /// <summary>
         /// sellunitTrust control.
