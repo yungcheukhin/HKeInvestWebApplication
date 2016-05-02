@@ -31,6 +31,15 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.CustomValidator cvstocktype;
         
         /// <summary>
+        /// Scode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Scode;
+        
+        /// <summary>
         /// opdd control.
         /// </summary>
         /// <remarks>
@@ -58,13 +67,67 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.DropDownList stockorderdd;
         
         /// <summary>
-        /// Scode control.
+        /// stockbuyPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Scode;
+        protected global::System.Web.UI.WebControls.Panel stockbuyPanel;
+        
+        /// <summary>
+        /// highPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox highPrice;
+        
+        /// <summary>
+        /// stopPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox stopPrice;
+        
+        /// <summary>
+        /// expdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel expdatePanel;
+        
+        /// <summary>
+        /// expdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList expdate;
+        
+        /// <summary>
+        /// utbuyPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel utbuyPanel;
+        
+        /// <summary>
+        /// amtofut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox amtofut;
         
         /// <summary>
         /// bondamountPanel control.
@@ -103,13 +166,76 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.TextBox qofshares;
         
         /// <summary>
-        /// expdate control.
+        /// sellbondPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList expdate;
+        protected global::System.Web.UI.WebControls.Panel sellbondPanel;
+        
+        /// <summary>
+        /// numofshares control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox numofshares;
+        
+        /// <summary>
+        /// sellstockPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel sellstockPanel;
+        
+        /// <summary>
+        /// numofsellshares control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox numofsellshares;
+        
+        /// <summary>
+        /// lowPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lowPrice;
+        
+        /// <summary>
+        /// sellstopPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox sellstopPrice;
+        
+        /// <summary>
+        /// sellunitTrust control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel sellunitTrust;
+        
+        /// <summary>
+        /// numofutshares control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox numofutshares;
         
         /// <summary>
         /// proceed control.
