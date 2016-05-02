@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using Microsoft.AspNet.Identity;
+using HKeInvestWebApplication.Code_File;
+using HKeInvestWebApplication.ExternalSystems.Code_File;
+using System.Data.SqlClient;
 
 namespace HKeInvestWebApplication
 {
@@ -16,10 +21,22 @@ namespace HKeInvestWebApplication
 
         protected void cvAccountNumber_ServerValidate(object source, ServerValidateEventArgs args)
         {
+
+
             if (AccountNumber.Text!=null && LastName.Text!=null) {
                 string accountnumber = AccountNumber.Text;
                 string lastname = LastName.Text.ToUpper();
                 Int32 test;
+                string sql = "SELECT userName FROM Account WHERE accountNumber = '" + accountnumber + "'";
+                HKeInvestData myHKeInvestData = new HKeInvestData();
+                DataTable dtClient = myHKeInvestData.getData(sql);
+
+                if (dtClient!=null)
+                {
+                    args.IsValid = false;
+                    cvAccountNumber.ErrorMessage = "This account number has already been used to create an account.";
+                }
+
                 if (accountnumber.Length == 10)
                 {
                     if ((!Int32.TryParse(accountnumber.Substring(2), out test)))
@@ -30,6 +47,8 @@ namespace HKeInvestWebApplication
                 }
                 else
                     args.IsValid = false;
+
+
                 if (lastname.Length == 1) {
                     if (accountnumber[0] != lastname[0])
                     {
@@ -59,11 +78,15 @@ namespace HKeInvestWebApplication
                         cvAccountNumber.ErrorMessage = "The account number does not match the client's last name.";
                     }
                 }
+
+
             }
+
         }
 
         protected void Register_Click(object sender, EventArgs e)
         {
+
 
         }
     }
