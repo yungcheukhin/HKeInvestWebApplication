@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI.WebControls;
+using HKeInvestWebApplication.Code_File;
+using HKeInvestWebApplication.ExternalSystems.Code_File;
 
 namespace HKeInvestWebApplication
 {
@@ -19,34 +23,36 @@ namespace HKeInvestWebApplication
             string stocktype = Stype.SelectedValue; 
             
             if (string.Compare(stocktype, "Stock", true)==0){
-                stockt.Visible = true;
+                stocktypePanel.Visible = true;
             }
             else{
-                stockt.Visible = false;
+                stocktypePanel.Visible = false;
             }
         }
 
         protected void stockorder(object sender, EventArgs e)
         {
             string stockorder = stockorderdd.SelectedValue;
+
             
         }
 
-        protected void buysellcheck(object sender, EventArgs e)
-        {
+        protected void buysellcheck(object sender, EventArgs e){
             string operation = opdd.SelectedValue;
-            if(string.Compare(operation, "Buy", true) == 0)
-            {
+            if(string.Compare(operation, "Buy", true) == 0){
                 if(string.Compare(Stype.SelectedValue, "Stock", true) == 0)
                 {
                     //qofshares_panel.Visible = true;
                 }
-                qofshares_panel.Visible = true;
+                qofsharesPanel.Visible = true;
             }
-            else
-            {
-                qofshares_panel.Visible = false;
+            else{
+                qofsharesPanel.Visible = false;
             }
+        }
+
+        protected void totalcheck(object sender, EventArgs s){
+
         }
     }
 }

@@ -8,6 +8,8 @@ using System.Data;
 using Microsoft.AspNet.Identity;
 using HKeInvestWebApplication.Code_File;
 using HKeInvestWebApplication.ExternalSystems.Code_File;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace HKeInvestWebApplication
 {
@@ -42,6 +44,8 @@ namespace HKeInvestWebApplication
                 }
                 else
                     args.IsValid = false;
+
+
                 if (lastname.Length == 1) {
                     if (accountnumber[0] != lastname[0])
                     {
@@ -72,6 +76,18 @@ namespace HKeInvestWebApplication
                     }
                 }
             }
+
+            HKeInvestData myHKeInvestData = new HKeInvestData();
+            string sql = "select userName from [Account] where accountNumber = " + AccountNumber.Text;
+            DataTable existUser = myHKeInvestData.getData(sql);
+            if(existUser != null)
+            {
+                args.IsValid = false;
+                cvExistUser.ErrorMessage = "User login account has already been created, please login.";
+            }
+
+
+
         }
 
         protected void Register_Click(object sender, EventArgs e)
