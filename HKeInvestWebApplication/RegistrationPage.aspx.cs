@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
 using System.Data;
+using Microsoft.AspNet.Identity;
 using HKeInvestWebApplication.Code_File;
+using HKeInvestWebApplication.ExternalSystems.Code_File;
+using System.Data.SqlClient;
 
 namespace HKeInvestWebApplication
 {
@@ -19,10 +21,21 @@ namespace HKeInvestWebApplication
 
         protected void cvAccountNumber_ServerValidate(object source, ServerValidateEventArgs args)
         {
+
+
             if (AccountNumber.Text!=null && LastName.Text!=null) {
                 string accountnumber = AccountNumber.Text;
                 string lastname = LastName.Text.ToUpper();
                 Int32 test;
+                string sql = "SELECT userName FROM Account WHERE accountNumber = '" + accountnumber + "'";
+                HKeInvestData myHKeInvestData = new HKeInvestData();
+                DataTable dtClient = myHKeInvestData.getData(sql);
+
+                if (dtClient!=null)
+                {
+                    args.IsValid = false;
+                    cvAccountNumber.ErrorMessage = "This account number has already been used to create an account.";
+                }
 
                 if (accountnumber.Length == 10)
                 {
@@ -65,23 +78,15 @@ namespace HKeInvestWebApplication
                         cvAccountNumber.ErrorMessage = "The account number does not match the client's last name.";
                     }
                 }
+
+
             }
-
-            HKeInvestData myHKeInvestData = new HKeInvestData();
-            string sql = "select userName from [Account] where accountNumber = " + AccountNumber.Text;
-            DataTable existUser = myHKeInvestData.getData(sql);
-            if(existUser != null)
-            {
-                args.IsValid = false;
-                cvExistUser.ErrorMessage = "User login account has already been created, please login.";
-            }
-
-
 
         }
 
         protected void Register_Click(object sender, EventArgs e)
         {
+
 
         }
     }

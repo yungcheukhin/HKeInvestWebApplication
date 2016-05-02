@@ -38,7 +38,7 @@ namespace HKeInvestWebApplication.ClientOnly
         {
             // Reset visbility of controls and initialize values.
             lblResultMessage.Visible = false;
-            gvSecurityHolding.Visible = false;
+            gvProfitLossTracking.Visible = false;
 
             //find logged in user id
             string sql = "";
@@ -81,10 +81,39 @@ namespace HKeInvestWebApplication.ClientOnly
             lblClientName.Text = clientName;
             lblClientName.Visible = true;
 
+            string code = txtStockCode.Text.Trim();
+            DataTable dtRecord = null;
+
+            if (code!=null && securityType!="all")
+            {
+                string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE Record.accountNumber = '" + accountNumber + "',Record.code = '" + code + "',Record.type = '" + securityType + "'";
+                dtRecord = myHKeInvestData.getData(sql);
+            }
+            if (code == null && securityType == "all")
+            {
+                string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE Record.accountNumber = '" + accountNumber + "'";
+                dtRecord = myHKeInvestData.getData(sql);
+            }
+            if (code == null && securityType != "all")
+            {
+                string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE Record.accountNumber = '" + accountNumber + "',Record.type = '" + securityType + "'";
+                dtRecord = myHKeInvestData.getData(sql);
+            }
+
+            gvProfitLossTracking.DataSource = dtRecord;
+            gvProfitLossTracking.DataBind();
+            
         }
         protected void gvProfitLossTracking_Sorting(object sender, GridViewSortEventArgs e)
         {
+            DataTable dtProfitLossTracking = myHKeInvestCode.unloadGridView(gvProfitLossTracking);
+            string sortExpression = e.SortExpression.ToLower();
+            ViewState["SortExpression"] = sortExpression;
+            dtProfitLossTracking.DefaultView.Sort = sortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
+            dtProfitLossTracking.AcceptChanges();
 
+            gvProfitLossTracking.DataSource = dtProfitLossTracking.DefaultView;
+            gvProfitLossTracking.DataBind();
         }
     }
 }
