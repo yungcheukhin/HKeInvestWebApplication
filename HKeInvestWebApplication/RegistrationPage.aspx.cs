@@ -9,7 +9,6 @@ using Microsoft.AspNet.Identity;
 using HKeInvestWebApplication.Code_File;
 using HKeInvestWebApplication.ExternalSystems.Code_File;
 using System.Data.SqlClient;
-using System.Data;
 
 namespace HKeInvestWebApplication
 {
@@ -28,7 +27,7 @@ namespace HKeInvestWebApplication
                 string accountnumber = AccountNumber.Text;
                 string lastname = LastName.Text.ToUpper();
                 Int32 test;
-                string sql = "SELECT userNmae FROM Account WHERE accountNumber = '" + accountnumber + "'";
+                string sql = "SELECT userName FROM Account WHERE accountNumber = '" + accountnumber + "'";
                 HKeInvestData myHKeInvestData = new HKeInvestData();
                 DataTable dtClient = myHKeInvestData.getData(sql);
                 if (dtClient!=null)
@@ -79,16 +78,6 @@ namespace HKeInvestWebApplication
                 }
 
 
-            }
-
-            if (AccountNumber.Text != null)
-            {
-                HKeInvestData myHKeInvestData = new HKeInvestData();
-                string sql = "SELECT userName FROM Account WHERE accountNumber = " + AccountNumber.Text;
-                DataTable existUser = myHKeInvestData.getData(sql);
-
-                    args.IsValid = false;
-                    cvAccountNumber.ErrorMessage = "User login account has already been created, please login.";
             }
 
         }
