@@ -19,6 +19,8 @@ namespace HKeInvestWebApplication
 
         protected void cvAccountNumber_ServerValidate(object source, ServerValidateEventArgs args)
         {
+
+
             if (AccountNumber.Text!=null && LastName.Text!=null) {
                 string accountnumber = AccountNumber.Text;
                 string lastname = LastName.Text.ToUpper();
@@ -65,18 +67,19 @@ namespace HKeInvestWebApplication
                         cvAccountNumber.ErrorMessage = "The account number does not match the client's last name.";
                     }
                 }
+
+
             }
 
-            HKeInvestData myHKeInvestData = new HKeInvestData();
-            string sql = "select userName from [Account] where accountNumber = " + AccountNumber.Text;
-            DataTable existUser = myHKeInvestData.getData(sql);
-            if(existUser != null)
+            if (AccountNumber.Text != null)
             {
-                args.IsValid = false;
-                cvExistUser.ErrorMessage = "User login account has already been created, please login.";
+                HKeInvestData myHKeInvestData = new HKeInvestData();
+                string sql = "SELECT userName FROM Account WHERE accountNumber = " + AccountNumber.Text;
+                DataTable existUser = myHKeInvestData.getData(sql);
+
+                    args.IsValid = false;
+                    cvAccountNumber.ErrorMessage = "User login account has already been created, please login.";
             }
-
-
 
         }
 
