@@ -5,7 +5,9 @@
 
     <div class="form-horizontal">
 
-        <asp:Label ID="Label1" runat="server"></asp:Label>
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="text-danger" />
+
+        <asp:Label ID="Label1" runat="server" CssClass="text-danger"></asp:Label>
         <asp:Label ID="Label2" runat="server"></asp:Label>
 
         <div class="form-group">
@@ -22,8 +24,9 @@
 
         <div class="form-group">
             <asp:Label runat="server" Text="" CssClass="control-label col-md-2"></asp:Label>
-            <div class="col-md-3"><asp:DropDownList ID="Snamecode" runat="server" CssClass="form-control">
+            <div class="col-md-3"><asp:DropDownList ID="Snamecode" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="Snamecode_SelectedIndexChanged">
             </asp:DropDownList>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Snamecode" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Security name and code is required." Display="Dynamic" Text="*">*</asp:RequiredFieldValidator>
             </div>
         </div>
 
@@ -31,24 +34,30 @@
             <asp:Label runat="server" Text="High Value: " AssociatedControlID="highValue" CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-3">
             <asp:TextBox ID="highValue" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <asp:Label runat="server" Text="Low Value: " AssociatedControlID="lowValue" CssClass="control-label col-md-2"></asp:Label>
-            <div class="col-md-3">
-                <asp:TextBox ID="lowValue" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:CustomValidator ID="cvhigh" runat="server" ErrorMessage="At least one value should be inputed." OnServerValidate="cvhigh_ServerValidate" CssClass="text-danger">*</asp:CustomValidator>
+                <asp:CustomValidator ID="cv1" runat="server" ErrorMessage="The high value must not lower or equal to the low value." OnServerValidate="cv1_ServerValidate" CssClass="text-danger">*</asp:CustomValidator>
+                <asp:CustomValidator ID="cv2" runat="server" ErrorMessage="The high value must not higher or equal to the current price." OnServerValidate="cv2_ServerValidate" CssClass="text-danger">*</asp:CustomValidator>
             </div>
             <asp:Label runat="server" Text="Current Value: " CssClass="control-label col-md-2"></asp:Label>
             <asp:Label ID="curhigh" runat="server" CssClass="control-label col-md-1"></asp:Label>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <asp:Button runat="server" Text="Set" CssClass="btn btn-default" OnClick="setAlertValue" />
+            <asp:Label runat="server" Text="Low Value: " AssociatedControlID="lowValue" CssClass="control-label col-md-2"></asp:Label>
+            <div class="col-md-3">
+                <asp:TextBox ID="lowValue" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:CustomValidator ID="cv3" runat="server" ErrorMessage="The low value must not lower or equal to the current price." OnServerValidate="cv3_ServerValidate" CssClass="text-danger">*</asp:CustomValidator>
             </div>
             <asp:Label runat="server" Text="Current Value: " CssClass="control-label col-md-2"></asp:Label>
             <asp:Label ID="curlow" runat="server" CssClass="control-label col-md-1"></asp:Label>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <asp:Button runat="server" Text="Set" CssClass="btn btn-default" OnClick="setAlertValue" />
+            </div>
         </div>
 
     </div>
