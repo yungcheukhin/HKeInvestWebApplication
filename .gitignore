@@ -210,7 +210,3 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
-
-# SQL Server files
-*.mdf
-*.ldf
