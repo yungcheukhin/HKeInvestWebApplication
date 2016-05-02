@@ -17,6 +17,7 @@
                 </asp:DropDownList>
             </div>
             <div>
+                <asp:Label ID="lblAccountNumber" runat="server" Visible="False"></asp:Label
                 <asp:Label ID="lblClientName" runat="server" Visible="False"></asp:Label>
                 <asp:Label ID="lblResultMessage" runat="server" Visible="False"></asp:Label>
             </div>

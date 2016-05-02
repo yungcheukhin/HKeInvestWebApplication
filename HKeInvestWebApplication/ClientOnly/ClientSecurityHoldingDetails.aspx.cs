@@ -199,7 +199,7 @@ namespace HKeInvestWebApplication.ClientOnly
             // TODO: For each row in the DataTable, get the base currency of the security, convert the current value to  *
             //       the selected currency and assign the converted value to the convertedValue column in the DataTable. *
             // ***********************************************************************************************************
-            int dtRow = 0;
+            //int dtRow = 0;
             foreach (DataRow row in dtSecurityHolding.Rows)
             {
                 //HKeInvestCode myHKeInvestCode = new HKeInvestCode;
@@ -209,6 +209,7 @@ namespace HKeInvestWebApplication.ClientOnly
                 }*/
                 //table = call function = table
                 // Add your code here!
+                int dtRow = 0;
                 decimal value = Convert.ToDecimal(row["value"]);
                 //decimal currency_rate = myExternalFunctions.getCurrencyRate(toCurrency); //retrieve value from table
                 decimal currency_rate = Convert.ToDecimal(Session[toCurrency].ToString().Trim());
