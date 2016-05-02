@@ -19,13 +19,10 @@ namespace HKeInvestWebApplication.Code_File
         HKeInvestCode myHKeInvestCode = new HKeInvestCode();
         ExternalFunctions myExternalFunctions = new ExternalFunctions();
         public string userName, accountNumber, accountType, firstName, lastName, dateOfBirth,
-            emailAddress, building, street, district, homePhone, homeFax, businessPhone,
+            building, street, district, homePhone, homeFax, businessPhone,
             mobile, citizenship, legalResidence, HKIDPassportNumber, passportCountryOfIssue,
-            email, title, status, specificOccupation, yearsWithEmployer, employerName,
-            employerPhone, businessNature, objective, knowledge, experience, annualIncome,
-            liquidNetWorth, balance;
-        public DataTable Account, Client, Employment, Invesment, RegulatoryDisclosures, SecurityHolding,
-            Bond, CurrencyRate, Order, Stock, Transaction, UnitTrust;
+            email, title, balance;
+        public DataTable Account, Client;
 
         public AccountInfro(string loginName)
         {
@@ -45,7 +42,6 @@ namespace HKeInvestWebApplication.Code_File
             Client = myHKeInvestData.getData("SELECT * FROM Client WHERE accountNumber = '" + accountNumber + "'");
             foreach (DataRow row in Client.Rows)
             {
-                accountType = row["accountType"].ToString();
                 firstName = row["firstName"].ToString();
                 lastName = row["lastName"].ToString();
                 dateOfBirth = row["dateOfBirth"].ToString();
