@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using HKeInvestWebApplication.Code_File;
+using Microsoft.AspNet.Identity;
+using HKeInvestWebApplication.ExternalSystems.Code_File;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Threading;
+using System.Net.Mail;
 
 namespace HKeInvestWebApplication
 {
@@ -28,6 +36,62 @@ namespace HKeInvestWebApplication
                 // Place the method call for the periodic task here.
                 //if price in external table reach the value set in alert table, send email
                 //add a attribute "lastsent" to indicate if today had sent
+                //alert high, low save in table
+                //foreach compare wilth external
+                HKeInvestData myHKeInvestData = new HKeInvestData();
+                ExternalFunctions myExternalFunctions = new ExternalFunctions();
+                DataTable alerts = myHKeInvestData.getData("SELECT * FROM Alert");
+                foreach (DataRow row in alerts.Rows)
+                {
+                    string id = "" + row["accountNumber"];
+                    string type = "" + row["type"].ToString().Trim();
+                    string code = "" + row["code"].ToString().Trim();
+                    //string high = "" + row["high"];
+                    decimal high = System.Convert.ToDecimal(row["highValue"]);
+                    decimal low = System.Convert.ToDecimal(row["lowValue"]);
+                    decimal current = myExternalFunctions.getSecuritiesPrice(type, code);
+
+                    string email = "";
+                    DataTable searchemail = myHKeInvestData.getData("SELECT email FROM Client WHERE accountNumber='" +id+ "'");
+                    foreach(DataRow rows in searchemail.Rows)
+                    {
+                        email = email + rows["email"];
+                    }
+                    
+                    if (high<=myExternalFunctions.getSecuritiesPrice(type, code)||low>= myExternalFunctions.getSecuritiesPrice(type, code))
+                    {
+                        /*System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                        mail.To.Add(email);
+                        mail.From = new MailAddress("comp3111_team120@cse.ust.hk", "HKeInvest", System.Text.Encoding.UTF8);
+                        mail.Subject = "Alert";
+                        mail.SubjectEncoding = System.Text.Encoding.UTF8;
+                        mail.Body = "Alert testing, high"+high+"low"+low+"current"+ myExternalFunctions.getSecuritiesPrice(type, code)+code+type+current;
+                        mail.BodyEncoding = System.Text.Encoding.UTF8;
+                        mail.IsBodyHtml = true;
+                        mail.Priority = MailPriority.High;
+                        SmtpClient client = new SmtpClient();
+                        client.Credentials = new System.Net.NetworkCredential("comp3111_team120", "team120#");
+                        client.Port = 587;
+                        client.Host = "smtp.cse.ust.hk";
+                        client.EnableSsl = true;
+                        try
+                        {
+                            client.Send(mail);
+                            //Page.RegisterStartupScript("UserMsg", "<script>alert('Successfully Send...');if(alert){ window.location='SendMail.aspx';}</script>");
+                        }
+                        catch (Exception ex)
+                        {
+                            Exception ex2 = ex;
+                            string errorMessage = string.Empty;
+                            while (ex2 != null)
+                            {
+                                errorMessage += ex2.ToString();
+                                ex2 = ex2.InnerException;
+                            }
+                            //Page.RegisterStartupScript("UserMsg", "<script>alert('Sending Failed...');if(alert){ window.location='SendMail.aspx';}</script>");
+                        }*/
+                    }
+                }
                 Thread.Sleep(10000);
             } while (true);
         }
