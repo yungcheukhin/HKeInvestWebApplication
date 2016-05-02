@@ -5,6 +5,17 @@
 
      <div class="form-horizontal">
 
+        <%--Buy Sell operation dropdown list--%>
+        <div class="form-group">
+            <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-3"></asp:Label>
+            <div class="col-md-4"><asp:DropDownList ID="opdd" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="buysellcheck">
+                <asp:ListItem Value="">Operation Type</asp:ListItem>
+                <asp:ListItem Value="buy">BUY</asp:ListItem>
+                <asp:ListItem Value="sell">SELL</asp:ListItem>
+            </asp:DropDownList>
+            </div>
+        </div>
+
 
         <div class="form-group">
           <%--try for pdf--%>
@@ -31,22 +42,13 @@
         </div>
 
 
-        <%--Buy Sell operation dropdown list--%>
-        <div class="form-group">
-            <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-3"></asp:Label>
-            <div class="col-md-4"><asp:DropDownList ID="opdd" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="buysellcheck">
-                <asp:ListItem Value="">Operation Type</asp:ListItem>
-                <asp:ListItem Value="buy">BUY</asp:ListItem>
-                <asp:ListItem Value="sell">SELL</asp:ListItem>
-            </asp:DropDownList>
-            </div>
-        </div>
+
 
          <%--Stock Order Type Panel: dropdownlist--%>
             <asp:Panel ID="stocktypePanel" runat="server" Visible="False">
             <div class="form-group">
                 <asp:Label runat="server" Text="Stock Order Type:" AssociatedControlID="stockorderdd" CssClass="control-label col-md-3"></asp:Label>
-                <div class="col-md-4"><asp:DropDownList ID="stockorderdd" runat="server" CssClass="form-control" OnSelectedIndexChanged="stockorder">
+                <div class="col-md-4"><asp:DropDownList ID="stockorderdd" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="stockorder">
                 <asp:ListItem Value="">Stock Order Type</asp:ListItem>
                 <asp:ListItem Value="market">Market</asp:ListItem>
                 <asp:ListItem Value="limit">Limit</asp:ListItem>
@@ -72,6 +74,16 @@
                 <asp:TextBox ID="stopPrice" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
             </div>
+            <div class="form-group">
+                <asp:Label runat="server" Text="All or none:" AssociatedControlID="allornonecheck" CssClass="control-label col-md-3"></asp:Label>
+                <div class="col-md-4"><asp:DropDownList ID="allornonecheck" runat="server" CssClass="form-control" AutoPostBack="true">
+                    <asp:ListItem Value="">All or none</asp:ListItem>
+                    <asp:ListItem Value="Y">Yes</asp:ListItem>
+                    <asp:ListItem Value="N">No</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+
         </asp:Panel>
 
         <%--Expiry Date dropdownlist--%>
@@ -150,6 +162,15 @@
             <div class="col-md-4">
                 <asp:TextBox ID="sellstopPrice" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
+            </div>
+            <div class="form-group">
+                <asp:Label runat="server" Text="All or none:" AssociatedControlID="sellallornonecheck" CssClass="control-label col-md-3"></asp:Label>
+                <div class="col-md-4"><asp:DropDownList ID="sellallornonecheck" runat="server" CssClass="form-control" AutoPostBack="true">
+                    <asp:ListItem Value="">All or none</asp:ListItem>
+                    <asp:ListItem Value="Y">Yes</asp:ListItem>
+                    <asp:ListItem Value="N">No</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
             </div>
          </asp:Panel>
 
