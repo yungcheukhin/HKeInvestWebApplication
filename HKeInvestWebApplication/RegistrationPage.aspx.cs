@@ -4,9 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using Microsoft.AspNet.Identity;
+using HKeInvestWebApplication.Code_File;
+using HKeInvestWebApplication.ExternalSystems.Code_File;
 using System.Data.SqlClient;
 using System.Data;
-using HKeInvestWebApplication.Code_File;
 
 namespace HKeInvestWebApplication
 {
@@ -25,7 +28,14 @@ namespace HKeInvestWebApplication
                 string accountnumber = AccountNumber.Text;
                 string lastname = LastName.Text.ToUpper();
                 Int32 test;
-
+                string sql = "SELECT userNmae FROM Account WHERE accountNumber = '" + accountnumber + "'";
+                HKeInvestData myHKeInvestData = new HKeInvestData();
+                DataTable dtClient = myHKeInvestData.getData(sql);
+                if (dtClient!=null)
+                {
+                    args.IsValid = false;
+                    cvAccountNumber.ErrorMessage = "This account number has already been used to create an account.";
+                }
                 if (accountnumber.Length == 10)
                 {
                     if ((!Int32.TryParse(accountnumber.Substring(2), out test)))
