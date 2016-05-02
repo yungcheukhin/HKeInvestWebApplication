@@ -97,10 +97,10 @@
             <asp:Label runat="server" Text="Home Phone" AssociatedControlID="HomePhone" MaxLength="8" CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-4"><asp:TextBox ID="HomePhone" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="HomePhone" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Home phone number is required." Display="Dynamic">*</asp:RequiredFieldValidator>
+                <asp:CustomValidator ID="cvHomePhone" runat="server" ControlToValidate="HomePhone" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Not a valid phone number." ValidateEmptyText="True">*</asp:CustomValidator>
             </div>
             <asp:Label runat="server" Text="Home Fax" AssociatedControlID="HomeFax" MaxLength="8" CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-4"><asp:TextBox ID="HomeFax" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="HomeFax" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Home fax number is required." Display="Dynamic">*</asp:RequiredFieldValidator>
             </div>
         </div>
 
@@ -343,30 +343,35 @@
                     <asp:ListItem Value="Ms">Ms.</asp:ListItem>
                     <asp:ListItem Value="Dr">Dr.</asp:ListItem>
                   </asp:DropDownList>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlTitle2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Title is required.">*</asp:RequiredFieldValidator>
                 </div>
             </div>
 
             <div class="form-group">
                <asp:Label runat="server" Text="Last Name" CssClass="control-label col-md-2" AssociatedControlID="LastName2"></asp:Label>
                  <div class="col-md-4"><asp:TextBox runat="server" CssClass="form-control" MaxLength="35" ID="LastName2"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="LastName2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Last Name is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                  </div>
 
                 <asp:Label runat="server" Text="First Name" CssClass="control-label col-md-2" AssociatedControlID="FirstName2"></asp:Label>
                <div class="col-md-4"><asp:TextBox runat="server" CssClass="form-control" MaxLength="35" CausesValidation="False" ID="FirstName2"></asp:TextBox>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="FirstName2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="First Name is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                </div>
             </div>
 
             <hr />
 
             <div class="form-group">
-                <asp:Label runat="server" Text="Date Of Birth" AssociatedControlID="DateOfBirth" CssClass="control-label col-md-2"></asp:Label>
+                <asp:Label runat="server" Text="Date Of Birth" AssociatedControlID="DOB2" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="DOB2" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="DOB2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Date of birth is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator runat="server" ControlToValidate="DOB2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Date of birth is not valid." ValidationExpression="^([0]?[0-9]|[12][0-9]|[3][01])[./-]([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})$" Display="Dynamic">*</asp:RegularExpressionValidator>
                </div>
 
-                <asp:Label runat="server" Text="Email" AssociatedControlID="Email" CssClass="control-label col-md-2"></asp:Label>
-                <div class="col-md-4"><asp:TextBox ID="TextBox4" runat="server" TextMode="Email" CssClass="form-control" MaxLength="30"></asp:TextBox>
-               </div>
+                <asp:Label runat="server" Text="Email" AssociatedControlID="Email2" CssClass="control-label col-md-2"></asp:Label>
+                <div class="col-md-4"><asp:TextBox ID="Email2" runat="server" TextMode="Email" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Email2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Email address is required." Display="Dynamic">*</asp:RequiredFieldValidator>
+                </div>
             </div>
 
             <hr />
@@ -376,13 +381,15 @@
                 <div class="col-md-4"><asp:TextBox ID="Building2" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox></div>
                 <asp:Label runat="server" Text="Street" AssociatedControlID="Street2" MaxLength="35" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="Street2" runat="server" CssClass="form-control" MaxLength="35"></asp:TextBox>
+                  <asp:RequiredFieldValidator runat="server" ControlToValidate="Street2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Address street is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
             </div>
 
             <div class="form-group">
                 <asp:Label runat="server" Text="District2" AssociatedControlID="District" MaxLength="19" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="District2" runat="server" CssClass="form-control" MaxLength="19"></asp:TextBox>
-                 </div>
+                  <asp:RequiredFieldValidator runat="server" ControlToValidate="District2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Address district is required." Display="Dynamic">*</asp:RequiredFieldValidator>
+                </div>
             </div>
 
             <hr />
@@ -390,6 +397,7 @@
             <div class="form-group">
                 <asp:Label runat="server" Text="Home Phone" AssociatedControlID="HomePhone2" MaxLength="8" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="HomePhone2" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
+                 <asp:RequiredFieldValidator runat="server" ControlToValidate="HomePhone2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Home phone is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
                 <asp:Label runat="server" Text="Home Fax" AssociatedControlID="HomeFax2" MaxLength="8" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="HomeFax2" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
@@ -399,9 +407,11 @@
             <div class="form-group">
                 <asp:Label runat="server" Text="Business Phone" AssociatedControlID="BusinessPhone2" MaxLength="8" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="BusinessPhone2" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
+                  <asp:RequiredFieldValidator runat="server" ControlToValidate="BusinessPhone2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Business phone is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
                 <asp:Label runat="server" Text="Mobile Phone" AssociatedControlID="MobilePhone2" MaxLength="8" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="MobilePhone2" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
+                   <asp:RequiredFieldValidator runat="server" ControlToValidate="MobilePhone2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Mobile phone is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
             </div>
 
@@ -410,21 +420,25 @@
             <div class="form-group">
                 <asp:Label runat="server" Text="Country of Citizenship" AssociatedControlID="Citizenship2" MaxLength="70" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="Citizenship2" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
+                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Citizenship2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Country of citizen is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
                 <asp:Label runat="server" Text="Country of legal residence" AssociatedControlID="Residence2" MaxLength="70" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="Residence2" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
+                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Residence2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Country of legal residence is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
             </div>
 
              <div class="form-group">
                 <asp:Label runat="server" Text="HKID/Passport#" AssociatedControlID="HKID2" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="HKID2" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
+                 <asp:RequiredFieldValidator runat="server" ControlToValidate="HKID2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="HKID/passport number is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
             </div>
 
             <div class="form-group">
                 <asp:Label runat="server" Text="Passport country of issue" AssociatedControlID="PassportCountry2" MaxLength="70" CssClass="control-label col-md-2"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="PassportCountry2" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
+                  <asp:RequiredFieldValidator runat="server" ControlToValidate="PassportCountry2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Passport country of issue is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
             </div>
 
@@ -444,6 +458,7 @@
                         <asp:ListItem Value="notEmployed">Not Employed</asp:ListItem>
                         <asp:ListItem Value="homemaker">Homemaker</asp:ListItem>
                     </asp:DropDownList>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlemploy2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Employment status is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
             </div>
             <div class="form-group">
@@ -479,6 +494,7 @@
                     <asp:ListItem Value="no">No</asp:ListItem>
                     <asp:ListItem Value="yes">Yes</asp:ListItem>
                   </asp:DropDownList>
+                   <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlFI2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Financial employment status is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                  </div>
             </div>
             <div class="form-group">
@@ -488,6 +504,7 @@
                     <asp:ListItem Value="no">No</asp:ListItem>
                     <asp:ListItem Value="yes">Yes</asp:ListItem>
                   </asp:DropDownList>
+                     <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlPT2" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Company officer status is required." Display="Dynamic">*</asp:RequiredFieldValidator>
                 </div>
             </div>
             <div class="form-group">
