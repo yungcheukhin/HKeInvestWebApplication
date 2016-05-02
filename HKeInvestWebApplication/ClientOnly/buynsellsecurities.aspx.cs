@@ -23,10 +23,10 @@ namespace HKeInvestWebApplication
             string stocktype = Stype.SelectedValue; 
             
             if (string.Compare(stocktype, "Stock", true)==0){
-                stockt.Visible = true;
+                stocktypePanel.Visible = true;
             }
             else{
-                stockt.Visible = false;
+                stocktypePanel.Visible = false;
             }
         }
 

@@ -62,10 +62,17 @@
         </div>
 
        
+        <%-- Panel for bond amount--%>
+        <div class ="form-group">
+            <asp:Panel ID="bondamountPanel" runat="server" Visible="False">
+             <asp:Label runat="server" Text="Amount to buy (HKD): " AssociatedControlID="amtofBond" CssClass="control-label col-md-3"></asp:Label>
+             <asp:TextBox ID="amtofbond" runat="server" CssClass="form-control"></asp:TextBox>
+            </asp:Panel>
+        </div>
 
-        <%--Quantity of Shares to buy textbox--%>
+        <%--Quantity of Shares to buy stock shares Panel: textbox--%>
         <div class="form-group">
-            <asp:Panel ID="qofshares_panel" runat="server" Visible="False">
+            <asp:Panel ID="qofsharesPanel" runat="server" Visible="False">
             <asp:Label runat="server" Text="Quantity of Shares to buy: " AssociatedControlID="qofshares" CssClass="control-label col-md-3"></asp:Label>
             <div class="col-md-4"><asp:TextBox ID="qofshares" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
@@ -86,7 +93,6 @@
                 <asp:ListItem Value="7">7</asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator runat="server" ControlToValidate="expdate" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Expiry date is required." Display="Dynamic"></asp:RequiredFieldValidator>
-
             </div>
         </div>
 

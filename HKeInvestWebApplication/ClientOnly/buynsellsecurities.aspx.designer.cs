@@ -67,13 +67,31 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.TextBox Scode;
         
         /// <summary>
-        /// qofshares_panel control.
+        /// bondamountPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel qofshares_panel;
+        protected global::System.Web.UI.WebControls.Panel bondamountPanel;
+        
+        /// <summary>
+        /// amtofbond control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox amtofbond;
+        
+        /// <summary>
+        /// qofsharesPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel qofsharesPanel;
         
         /// <summary>
         /// qofshares control.
