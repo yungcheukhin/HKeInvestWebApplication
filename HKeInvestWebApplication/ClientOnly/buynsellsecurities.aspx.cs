@@ -29,5 +29,11 @@ namespace HKeInvestWebApplication
             }
         }
 
+        protected void stockorder(object sender, EventArgs e)
+        {
+            string stockorder = stockorderdd.SelectedValue;
+            
+        }
+
     }
 }
