@@ -39,12 +39,16 @@
             <div class="col-md-3">
                 <asp:TextBox ID="lowValue" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
+            <asp:Label runat="server" Text="Current Value: " CssClass="control-label col-md-2"></asp:Label>
+            <asp:Label ID="curhigh" runat="server" CssClass="control-label col-md-1"></asp:Label>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <asp:Button runat="server" Text="Set" CssClass="btn btn-default" OnClick="setAlertValue" />
             </div>
+            <asp:Label runat="server" Text="Current Value: " CssClass="control-label col-md-2"></asp:Label>
+            <asp:Label ID="curlow" runat="server" CssClass="control-label col-md-1"></asp:Label>
         </div>
 
     </div>

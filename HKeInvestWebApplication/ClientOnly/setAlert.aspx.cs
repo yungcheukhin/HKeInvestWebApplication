@@ -41,8 +41,8 @@ namespace HKeInvestWebApplication.ClientOnly
 
                 string choosencode = Snamecode.SelectedValue.Trim();
                 string choosentype = Stype.SelectedValue.Trim();
-                string high = null;
-                string low = null;
+                string high = "NULL";
+                string low = "NULL";
                 if (highValue.Text.Trim() != "")
                 {
                     high = highValue.Text.Trim();
@@ -69,7 +69,6 @@ namespace HKeInvestWebApplication.ClientOnly
                     myHKeInvestData.setData("INSERT INTO Alert (accountNumber, type, code, highValue, lowValue) VALUES ('" + loginuserid + "', '" + choosentype + "', '" + choosencode + "', " + high + ", " + low + ")", addalertdata);
                     myHKeInvestData.commitTransaction(addalertdata);
                 }
-                //hahaha
                 else
                 {
                     //update alert info  (cover old value)
@@ -79,6 +78,10 @@ namespace HKeInvestWebApplication.ClientOnly
                     Label1.Text = "Your alert value had been updated.";
                     Label1.Visible = true;
                 }
+
+                DataTable curalert = myHKeInvestData.getData("SELECT * FROM Alert WHERE accountNumber = '" + loginuserid + "' AND Alert.type = '" + choosentype + "' AND Alert.code = '" + choosencode + "'");
+                //gfdhdrhrtd
+                DataTable haha = null;
             }
         }
 
