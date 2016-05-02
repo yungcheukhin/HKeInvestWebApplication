@@ -29,9 +29,9 @@
                         <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
                         <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
                         <asp:BoundField DataField="shares" DataFormatString="{0:n2} " HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
-                        <asp:BoundField DataField="buy" DataFormatString="{0:n2} " HeaderText="Dollar Amount (Buy)" ReadOnly="True" SortExpression="buy" />
-                        <asp:BoundField DataField="sell" DataFormatString="{0:n2} " HeaderText="Dollar Amount (Sell)" ReadOnly="True" SortExpression="sell" />
-                        <asp:BoundField DataField="fee" DataFormatString="{0:n2} " HeaderText="Fees" ReadOnly="True" SortExpression="fee" />
+                        <asp:BoundField DataField="dollarAmountBuy" DataFormatString="{0:n2} " HeaderText="Dollar Amount (Buy)" ReadOnly="True" SortExpression="dollarAmountBuy" />
+                        <asp:BoundField DataField="dollarAmountSell" DataFormatString="{0:n2} " HeaderText="Dollar Amount (Sell)" ReadOnly="True" SortExpression="dollarAmountSell" />
+                        <asp:BoundField DataField="fees" DataFormatString="{0:n2} " HeaderText="Fees" ReadOnly="True" SortExpression="fees" />
                         <asp:BoundField DataField="profitloss" HeaderText="Profit/Loss" ReadOnly="True" SortExpression="profitloss" />
                     </Columns>
                 </asp:GridView>

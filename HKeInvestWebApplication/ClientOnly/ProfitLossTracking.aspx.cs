@@ -112,7 +112,7 @@ namespace HKeInvestWebApplication.ClientOnly
             dtProfitLossTracking.DefaultView.Sort = sortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
             dtProfitLossTracking.AcceptChanges();
 
-            gvProfitLossTracking.DataSource = dtSecurityHolding.DefaultView;
+            gvProfitLossTracking.DataSource = dtProfitLossTracking.DefaultView;
             gvProfitLossTracking.DataBind();
         }
     }
