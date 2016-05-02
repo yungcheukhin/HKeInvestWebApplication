@@ -11,10 +11,23 @@ namespace HKeInvestWebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            stockt.Visible = false;
         }
 
+        protected void cvStocktype_Validate(object sender, EventArgs e)
+        {
+            string stocktype = Stype.SelectedValue; 
+            
+            if (string.Compare(stocktype, "Stock", true)==0)
+            {
+                stockt.Visible = true;
 
+            }
+            else
+            {
+                stockt.Visible = false;
+            }
+        }
 
     }
 }

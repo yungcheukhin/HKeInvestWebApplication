@@ -6,28 +6,31 @@
      <div class="form-horizontal">
         <div class="form-group">
             <asp:Label runat="server" Text="Security Type: " AssociatedControlID="Stype" CssClass="control-label col-md-2"></asp:Label>
-            <div class="col-md-3"><asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" AutoPostBack="True">
+            <div class="col-md-3"><asp:DropDownList ID="Stype" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="cvStocktype_Validate" OnTextChanged="cvStocktype_Validate">
                 <asp:ListItem Value="">Security Type</asp:ListItem>
                 <asp:ListItem Value="bond">Bond</asp:ListItem>
                 <asp:ListItem Value="stock">Stock</asp:ListItem>
                 <asp:ListItem Value="unitTrust">Unit Trust</asp:ListItem>
             </asp:DropDownList></div>
-             <asp:Panel ID="Panel1" runat="server">
-                <div class="col-md-3"><asp:DropDownList ID="DropDownList2" runat="server" CssClass="form-control">
+            <asp:CustomValidator ID="cvstocktype" runat="server" ErrorMessage="Please choose one security type." ControlToValidate="Stype" CssClass="text-danger" OnServerValidate="cvStocktype_Validate"></asp:CustomValidator>
+
+                <asp:Panel ID="stockt" runat="server" Visible="False">
+
+                <div class="col-md-3"><asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
                 <asp:ListItem Value="">Stock Order Type</asp:ListItem>
                 <asp:ListItem Value="market">Market</asp:ListItem>
                 <asp:ListItem Value="limit">Limit</asp:ListItem>
                 <asp:ListItem Value="stop">Stop</asp:ListItem>
                 <asp:ListItem Value="stoplimit">Stop limit</asp:ListItem>
-            </asp:DropDownList></div>
-
+            </asp:DropDownList>
+                </div>
 
              </asp:Panel>
-
-
         </div>
 
+
         <div class="form-horizontal">
+            <div class="form-group">
              <asp:Label runat="server" Text="Security Code: " AssociatedControlID="Scode" CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-3">
                 <asp:TextBox ID="Scode" runat="server" CssClass="form-control"></asp:TextBox>
@@ -36,22 +39,22 @@
             </div>
 
         </div>
+        </div>
 
          <div class="form-horizontal">
-            
-            <div class="col-md-3"><asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control" AutoPostBack="True">
-                <asp:ListItem Value="">Stock Order Type</asp:ListItem>
-                <asp:ListItem Value="market">Market</asp:ListItem>
-                <asp:ListItem Value="limit">Limit</asp:ListItem>
-                <asp:ListItem Value="stop">Stop</asp:ListItem>
-                <asp:ListItem Value="stoplimit">Stop limit</asp:ListItem>
-            </asp:DropDownList></div>
+
 
         </div>
 
         <div class ="form-horizontal">
+            <div class="form-group">
+            <div class="col-md-3">
             <asp:Button ID="Button1" runat="server" Text="Buy" />
             <asp:Button ID="Button2" runat="server" Text="Sell" />
+            </div>
         </div>
+        </div>
+
+    </div>
 
 </asp:Content>
