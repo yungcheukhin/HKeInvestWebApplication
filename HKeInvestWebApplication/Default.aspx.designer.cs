@@ -11,5 +11,23 @@ namespace HKeInvestWebApplication {
     
     
     public partial class _Default {
+        
+        /// <summary>
+        /// PDF_download control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PDF_download;
+        
+        /// <summary>
+        /// failLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label failLabel;
     }
 }

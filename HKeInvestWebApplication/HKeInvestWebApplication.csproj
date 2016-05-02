@@ -258,7 +258,7 @@
     <Content Include="App_Data\HKeInvestDB_log.ldf">
       <DependentUpon>HKeInvestDB.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Themes\Theme1\bootstrap.min.css" />
+    <Content Include="bin\App_Themes\Theme1\bootstrap.min.css" />
     <Content Include="ClientOnly\buynsellsecurities.aspx" />
     <Content Include="ClientOnly\ClientSecurityHoldingDetails.aspx" />
     <Content Include="ClientOnly\ProfitLossTracking.aspx" />
@@ -290,6 +290,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="application_form.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="RegistrationPage.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
@@ -645,7 +648,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Themes\ExternalSystemsTheme\" />
+    <Folder Include="bin\App_Themes\ExternalSystemsTheme\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

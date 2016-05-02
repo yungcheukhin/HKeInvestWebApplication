@@ -13,31 +13,40 @@ namespace HKeInvestWebApplication {
     public partial class buynsellsecurities {
         
         /// <summary>
-        /// DropDownList1 control.
+        /// Stype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList Stype;
         
         /// <summary>
-        /// Panel1 control.
+        /// cvstocktype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.CustomValidator cvstocktype;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// stockt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.Panel stockt;
+        
+        /// <summary>
+        /// stockorderdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList stockorderdd;
         
         /// <summary>
         /// Scode control.
@@ -49,30 +58,48 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.TextBox Scode;
         
         /// <summary>
-        /// DropDownList3 control.
+        /// opdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
+        protected global::System.Web.UI.WebControls.DropDownList opdd;
         
         /// <summary>
-        /// Button1 control.
+        /// qofshares_panel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Panel qofshares_panel;
         
         /// <summary>
-        /// Button2 control.
+        /// qofshares control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.TextBox qofshares;
+        
+        /// <summary>
+        /// expdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox expdate;
+        
+        /// <summary>
+        /// proceed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button proceed;
     }
 }

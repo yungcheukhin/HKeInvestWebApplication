@@ -77,7 +77,7 @@
         <hr />
 
         <div class="col-md-offset-2 col-md-10">
-            <asp:Button ID="Register" runat="server" Text="Register" CssClass="btn button-default" />
+            <asp:Button ID="Register" runat="server" Text="Register" CssClass="btn button-default" OnClick="Register_Click" />
         </div>
 
     </div>

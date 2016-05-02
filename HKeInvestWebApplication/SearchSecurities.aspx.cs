@@ -69,6 +69,7 @@ namespace HKeInvestWebApplication
             {
                 stocktable.Visible = false;
                 unittable.Visible = false;
+                //jhbjhb
                 if (code == "" && name == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesData(type);

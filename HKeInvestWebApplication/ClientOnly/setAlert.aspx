@@ -6,6 +6,25 @@
     <div class="form-horizontal">
 
         <div class="form-group">
+            <asp:Label runat="server" Text="Choose the Security you want to set alert on: " CssClass="control-label col-md-2"></asp:Label>
+            <div class="col-md-3"><asp:DropDownList ID="Stype" runat="server" CssClass="form-control" OnSelectedIndexChanged="Stype_SelectedIndexChanged" AutoPostBack="True">
+                <asp:ListItem Value="">Security Type</asp:ListItem>
+                <asp:ListItem Value="bond">Bond</asp:ListItem>
+                <asp:ListItem Value="stock">Stock</asp:ListItem>
+                <asp:ListItem Value="unit trust">Unit Trust</asp:ListItem>
+            </asp:DropDownList>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Stype" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Security type is required." Display="Dynamic" Text="*">*</asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <asp:Label runat="server" Text="" CssClass="control-label col-md-2"></asp:Label>
+            <div class="col-md-3"><asp:DropDownList ID="Snamecode" runat="server" CssClass="form-control">
+            </asp:DropDownList>
+            </div>
+        </div>
+
+        <div class="form-group">
             <asp:Label runat="server" Text="High Value: " AssociatedControlID="highValue" CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-3">
             <asp:TextBox ID="highValue" runat="server" CssClass="form-control"></asp:TextBox>
