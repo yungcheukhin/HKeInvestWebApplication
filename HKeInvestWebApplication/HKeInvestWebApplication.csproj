@@ -648,6 +648,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Themes\" />
     <Folder Include="bin\App_Themes\ExternalSystemsTheme\" />
   </ItemGroup>
   <ItemGroup>
