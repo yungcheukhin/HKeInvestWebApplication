@@ -8,15 +8,16 @@
         <div class="form-group">
             
             <div class="col-md-4">   
+                <asp:Label runat="server" Text="Account Type"  CssClass="control-label col-md-2"></asp:Label>
+                <asp:Label ID="AccountType" runat="server" Text="" CssClass="control-label col-md-2"></asp:Label>
+
                 <asp:Label runat="server" Text="Account Number"  CssClass="control-label col-md-2"></asp:Label>
-                <asp:Label ID="AccountNumber" runat="server" Text="" CssClass="control-label col-md-2"></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text="" CssClass="control-label col-md-2"></asp:Label>
                 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-           
            
              </div>
 
             <div class="col-md-4">
-            
                 <asp:Label runat="server" Text="Account #" AssociatedControlID="AccountNumber" CssClass="control-label col-md-2"></asp:Label>
 
               </div>

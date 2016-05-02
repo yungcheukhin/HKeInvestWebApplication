@@ -500,6 +500,7 @@
     <Compile Include="ClientOnly\setAlert.aspx.designer.cs">
       <DependentUpon>setAlert.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Code_File\accountInfro.cs" />
     <Compile Include="Code_File\HKeInvestCode.cs" />
     <Compile Include="Code_File\HKeInvestData.cs" />
     <Compile Include="ConfirmationEmail.aspx.cs">
