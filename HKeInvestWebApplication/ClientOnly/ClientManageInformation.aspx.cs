@@ -11,7 +11,12 @@ namespace HKeInvestWebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            viewInfro.Click += new EventHandler(this.viewInfro_Click);
+        }
+
+        protected void viewInfro_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

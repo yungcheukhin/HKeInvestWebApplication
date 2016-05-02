@@ -263,6 +263,7 @@
     <Content Include="bin\App_Themes\Theme1\bootstrap.min.css" />
     <Content Include="ClientOnly\buynsellsecurities.aspx" />
     <Content Include="ClientOnly\ClientSecurityHoldingDetails.aspx" />
+    <Content Include="ClientOnly\ProfitLossTracking.aspx" />
     <Content Include="ClientOnly\setAlert.aspx" />
     <Content Include="ConfirmationEmail.aspx" />
     <Content Include="Contact.aspx" />
@@ -295,7 +296,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="ClientOnly\ManageInformation.aspx" />
+    <Content Include="ClientOnly\ClientManageInformation.aspx" />
     <Content Include="RegistrationPage.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -488,6 +489,13 @@
     <Compile Include="ClientOnly\ClientSecurityHoldingDetails.aspx.designer.cs">
       <DependentUpon>ClientSecurityHoldingDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ClientOnly\ProfitLossTracking.aspx.cs">
+      <DependentUpon>ProfitLossTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientOnly\ProfitLossTracking.aspx.designer.cs">
+      <DependentUpon>ProfitLossTracking.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ClientOnly\setAlert.aspx.cs">
       <DependentUpon>setAlert.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -593,12 +601,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ClientOnly\ManageInformation.aspx.cs">
-      <DependentUpon>ManageInformation.aspx</DependentUpon>
+    <Compile Include="ClientOnly\ClientManageInformation.aspx.cs">
+      <DependentUpon>ClientManageInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ClientOnly\ManageInformation.aspx.designer.cs">
-      <DependentUpon>ManageInformation.aspx</DependentUpon>
+    <Compile Include="ClientOnly\ClientManageInformation.aspx.designer.cs">
+      <DependentUpon>ClientManageInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
