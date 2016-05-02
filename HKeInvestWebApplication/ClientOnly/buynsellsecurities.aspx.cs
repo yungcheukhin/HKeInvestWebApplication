@@ -16,6 +16,8 @@ namespace HKeInvestWebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             //stockt.Visible = false;
+            stocktypePanel.Visible = false;
+            bondamountPanel.Visible = false;
         }
 
         protected void cvStocktype_Validate(object sender, EventArgs e)
@@ -39,15 +41,80 @@ namespace HKeInvestWebApplication
 
         protected void buysellcheck(object sender, EventArgs e){
             string operation = opdd.SelectedValue;
-            if(string.Compare(operation, "Buy", true) == 0){
-                if(string.Compare(Stype.SelectedValue, "Stock", true) == 0)
-                {
-                    //qofshares_panel.Visible = true;
+            //string type = Stype.SelectedValue;
+            if(string.Compare(opdd.SelectedValue, "Buy", true) == 0){
+                if(string.Compare(Stype.SelectedValue, "stock", true) == 0){
+                    qofsharesPanel.Visible = true;
+                    stockbuyPanel.Visible = true;
+                    expdatePanel.Visible = true;
+                    bondamountPanel.Visible = false;
+                    utbuyPanel.Visible = false;
+                    sellstockPanel.Visible = false;
+                    sellbondPanel.Visible = false;
+                    sellunitTrust.Visible = false;
+
                 }
-                qofsharesPanel.Visible = true;
+                if (string.Compare(Stype.SelectedValue, "bond", true) == 0){
+                    expdatePanel.Visible = false;
+                    stockbuyPanel.Visible = false;
+                    bondamountPanel.Visible = true;
+                    utbuyPanel.Visible = false;
+                    sellstockPanel.Visible = false;
+                    sellbondPanel.Visible = false;
+                    sellunitTrust.Visible = false;
+                    qofsharesPanel.Visible = false;
+
+                }
+                if (string.Compare(Stype.SelectedValue, "unitTrust", true) == 0){
+                    expdatePanel.Visible = false;
+                    utbuyPanel.Visible = true;
+                    qofsharesPanel.Visible = false;
+                    stockbuyPanel.Visible = false;
+                    bondamountPanel.Visible = false;
+                    sellstockPanel.Visible = false;
+                    sellbondPanel.Visible = false;
+                    sellunitTrust.Visible = false;
+
+                }
+                //qofsharesPanel.Visible = true;
+
             }
-            else{
-                qofsharesPanel.Visible = false;
+           if (string.Compare(opdd.SelectedValue, "Sell", true)==0){
+                if(string.Compare(Stype.SelectedValue, "stock", true) == 0){
+                    expdatePanel.Visible = true;
+                    sellstockPanel.Visible = true; 
+
+                    sellbondPanel.Visible = false;
+                    utbuyPanel.Visible = false;
+                    qofsharesPanel.Visible = false;
+                    stockbuyPanel.Visible = false;
+                    bondamountPanel.Visible = false;
+                    sellunitTrust.Visible = false;
+                }
+                if (string.Compare(Stype.SelectedValue, "bond", true) == 0){
+                    sellbondPanel.Visible = true;
+
+                    sellstockPanel.Visible = false;
+                    expdatePanel.Visible = false;
+                    utbuyPanel.Visible = false;
+                    qofsharesPanel.Visible = false;
+                    stockbuyPanel.Visible = false;
+                    bondamountPanel.Visible = false;
+                    sellunitTrust.Visible = false;
+
+                }
+                if (string.Compare(Stype.SelectedValue, "unitTrust", true) == 0){
+                    sellunitTrust.Visible = true;
+                    utbuyPanel.Visible = true;
+
+                    sellbondPanel.Visible = false;
+                    sellstockPanel.Visible = false;
+                    expdatePanel.Visible = false;
+                    qofsharesPanel.Visible = false;
+                    stockbuyPanel.Visible = false;
+                    bondamountPanel.Visible = false;
+
+                }
             }
         }
 
