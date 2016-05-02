@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+using HKeInvestWebApplication.Code_File;
 
 namespace HKeInvestWebApplication
 {
@@ -20,6 +23,7 @@ namespace HKeInvestWebApplication
                 string accountnumber = AccountNumber.Text;
                 string lastname = LastName.Text.ToUpper();
                 Int32 test;
+
                 if (accountnumber.Length == 10)
                 {
                     if ((!Int32.TryParse(accountnumber.Substring(2), out test)))
@@ -30,6 +34,8 @@ namespace HKeInvestWebApplication
                 }
                 else
                     args.IsValid = false;
+
+
                 if (lastname.Length == 1) {
                     if (accountnumber[0] != lastname[0])
                     {
@@ -60,6 +66,18 @@ namespace HKeInvestWebApplication
                     }
                 }
             }
+
+            HKeInvestData myHKeInvestData = new HKeInvestData();
+            string sql = "select userName from [Account] where accountNumber = " + AccountNumber.Text;
+            DataTable existUser = myHKeInvestData.getData(sql);
+            if(existUser != null)
+            {
+                args.IsValid = false;
+                cvExistUser.ErrorMessage = "User login account has already been created, please login.";
+            }
+
+
+
         }
 
         protected void Register_Click(object sender, EventArgs e)
