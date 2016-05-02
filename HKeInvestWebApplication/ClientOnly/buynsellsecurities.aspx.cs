@@ -18,13 +18,10 @@ namespace HKeInvestWebApplication
         {
             string stocktype = Stype.SelectedValue; 
             
-            if (string.Compare(stocktype, "Stock", true)==0)
-            {
+            if (string.Compare(stocktype, "Stock", true)==0){
                 stockt.Visible = true;
-
             }
-            else
-            {
+            else{
                 stockt.Visible = false;
             }
         }

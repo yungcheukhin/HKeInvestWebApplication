@@ -67,7 +67,7 @@
         <div class ="form-horizontal">
             <div class="form-group">
             <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-2"></asp:Label>
-            <div class="col-md-3"><asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged>
+            <div class="col-md-3"><asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="buysellcheck">
                 <asp:ListItem Value="">Operation Type</asp:ListItem>
                 <asp:ListItem Value="buy">Buy</asp:ListItem>
                 <asp:ListItem Value="sell">Sell</asp:ListItem>
