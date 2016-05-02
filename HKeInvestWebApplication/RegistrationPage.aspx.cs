@@ -61,5 +61,10 @@ namespace HKeInvestWebApplication
                 }
             }
         }
+
+        protected void Register_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
