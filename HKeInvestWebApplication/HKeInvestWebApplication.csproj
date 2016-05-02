@@ -242,6 +242,14 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="App_Data\aspnet-HKeInvestWebApplication-20160216101707.mdf" />
+    <Content Include="App_Data\aspnet-HKeInvestWebApplication-20160216101707_log.ldf">
+      <DependentUpon>aspnet-HKeInvestWebApplication-20160216101707.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\aspnet-HKeInvestWebApplication-20160229095107.mdf" />
+    <Content Include="App_Data\aspnet-HKeInvestWebApplication-20160229095107_log.ldf">
+      <DependentUpon>aspnet-HKeInvestWebApplication-20160229095107.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\ExternalDatabases.mdf" />
     <Content Include="App_Data\ExternalDatabases_log.ldf">
       <DependentUpon>ExternalDatabases.mdf</DependentUpon>
@@ -253,7 +261,9 @@
     <Content Include="App_Themes\Theme1\bootstrap.min.css" />
     <Content Include="ClientOnly\buynsellsecurities.aspx" />
     <Content Include="ClientOnly\ClientSecurityHoldingDetails.aspx" />
+    <Content Include="ClientOnly\ProfitLossTracking.aspx" />
     <Content Include="ClientOnly\setAlert.aspx" />
+    <Content Include="ConfirmationEmail.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -473,6 +483,13 @@
     <Compile Include="ClientOnly\ClientSecurityHoldingDetails.aspx.designer.cs">
       <DependentUpon>ClientSecurityHoldingDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ClientOnly\ProfitLossTracking.aspx.cs">
+      <DependentUpon>ProfitLossTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientOnly\ProfitLossTracking.aspx.designer.cs">
+      <DependentUpon>ProfitLossTracking.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ClientOnly\setAlert.aspx.cs">
       <DependentUpon>setAlert.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -482,6 +499,13 @@
     </Compile>
     <Compile Include="Code_File\HKeInvestCode.cs" />
     <Compile Include="Code_File\HKeInvestData.cs" />
+    <Compile Include="ConfirmationEmail.aspx.cs">
+      <DependentUpon>ConfirmationEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmationEmail.aspx.designer.cs">
+      <DependentUpon>ConfirmationEmail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -572,6 +596,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationPage.aspx.cs">
       <DependentUpon>RegistrationPage.aspx</DependentUpon>

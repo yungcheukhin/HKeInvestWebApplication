@@ -194,9 +194,21 @@ namespace HKeInvestWebApplication
             }
         }
 
+        protected void cvHomePhone_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string homephone = ddlEmployed.SelectedValue.Trim();
+            if(homephone.Length < 8)
+            {
+                args.IsValid = false;
+                cvHomePhone.ErrorMessage = "Not a valid phone number.";
+            }
+            
+        }
+
         protected void ifCoAc_CheckedChanged(object sender, EventArgs e)
         {
             ifCoAcc.Visible = ifCoAc.Checked;
         }
+
     }
 }

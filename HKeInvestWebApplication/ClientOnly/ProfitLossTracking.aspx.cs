@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using HKeInvestWebApplication.Code_File;
+using HKeInvestWebApplication.ExternalSystems.Code_File;
+using Microsoft.AspNet.Identity;
 
 namespace HKeInvestWebApplication.ClientOnly
 {
@@ -34,7 +38,7 @@ namespace HKeInvestWebApplication.ClientOnly
         {
             // Reset visbility of controls and initialize values.
             lblResultMessage.Visible = false;
-            gvSecurityHolding.Visible = false;
+            gvProfitLossTracking.Visible = false;
 
             //find logged in user id
             string sql = "";
@@ -76,6 +80,7 @@ namespace HKeInvestWebApplication.ClientOnly
             }
             lblClientName.Text = clientName;
             lblClientName.Visible = true;
+
 
         }
         protected void gvProfitLossTracking_Sorting(object sender, GridViewSortEventArgs e)
