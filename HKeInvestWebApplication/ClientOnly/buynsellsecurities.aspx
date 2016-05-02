@@ -43,7 +43,7 @@
                 <asp:ListItem Value="limit">Limit</asp:ListItem>
                 <asp:ListItem Value="stop">Stop</asp:ListItem>
                 <asp:ListItem Value="stoplimit">Stop limit</asp:ListItem>
-            </asp:DropDownList>
+                </asp:DropDownList>
                 </div>
              </asp:Panel>
             </div>

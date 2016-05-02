@@ -44,10 +44,10 @@ namespace HKeInvestWebApplication
                 {
                     //qofshares_panel.Visible = true;
                 }
-                qofshares_panel.Visible = true;
+                qofsharesPanel.Visible = true;
             }
             else{
-                qofshares_panel.Visible = false;
+                qofsharesPanel.Visible = false;
             }
         }
 
