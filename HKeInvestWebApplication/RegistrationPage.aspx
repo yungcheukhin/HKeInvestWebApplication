@@ -11,7 +11,6 @@
             <div class="col-md-4"><asp:TextBox ID="AccountNumber" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox>
                 <asp:CustomValidator ID="cvAccountNumber" runat="server" ControlToValidate="AccountNumber" CssClass="text-danger" EnableClientScript="False" ErrorMessage="The account number does not match the client's last name." OnServerValidate="cvAccountNumber_ServerValidate" ValidateEmptyText="True" Display="Dynamic">*</asp:CustomValidator>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="AccountNumber" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Account # is required." Display="Dynamic">*</asp:RequiredFieldValidator>
-                <asp:CustomValidator ID="cvExistUser" runat="server" ControlToValidate="AccountNumber" CssClass="text-danger" EnableClientScript="False" ErrorMessage="User Exist!" OnServerValidate="cvAccountNumber_ServerValidate" ValidateEmptyText="True" Display="Dynamic">*</asp:CustomValidator>
             </div>
             
             <asp:Label runat="server" Text="HKID/Passport#" AssociatedControlID="HKID" CssClass="control-label col-md-2"></asp:Label>
