@@ -7,10 +7,10 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace HKeInvestWebApplication {
+namespace HKeInvestWebApplication.ClientOnly {
     
     
-    public partial class buynsellsecurities {
+    public partial class ProfitLossTracking {
         
         /// <summary>
         /// txtStockCode 控制項。

@@ -244,6 +244,7 @@
     <Content Include="App_Themes\Theme1\bootstrap.min.css" />
     <Content Include="ClientOnly\buynsellsecurities.aspx" />
     <Content Include="ClientOnly\ClientSecurityHoldingDetails.aspx" />
+    <Content Include="ClientOnly\ProfitLossTracking.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -460,6 +461,13 @@
     </Compile>
     <Compile Include="ClientOnly\ClientSecurityHoldingDetails.aspx.designer.cs">
       <DependentUpon>ClientSecurityHoldingDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientOnly\ProfitLossTracking.aspx.cs">
+      <DependentUpon>ProfitLossTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientOnly\ProfitLossTracking.aspx.designer.cs">
+      <DependentUpon>ProfitLossTracking.aspx</DependentUpon>
     </Compile>
     <Compile Include="Code_File\HKeInvestCode.cs" />
     <Compile Include="Code_File\HKeInvestData.cs" />
