@@ -5,16 +5,20 @@
 
     <div class="form-horizontal">
         
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="text-danger" EnableClientScript="False" />
+        
         <div class="form-group">
             <asp:Label runat="server" Text="Security Type: " AssociatedControlID="Stype" CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-3"><asp:DropDownList ID="Stype" runat="server" CssClass="form-control">
                 <asp:ListItem Value="">Security Type</asp:ListItem>
                 <asp:ListItem Value="bond">Bond</asp:ListItem>
                 <asp:ListItem Value="stock">Stock</asp:ListItem>
-                <asp:ListItem Value="unitTrust">Unit Trust</asp:ListItem>
-            </asp:DropDownList></div>
+                <asp:ListItem Value="unit trust">Unit Trust</asp:ListItem>
+            </asp:DropDownList>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Stype" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Security type is required." Display="Dynamic" Text="*">*</asp:RequiredFieldValidator>
+            </div>
         </div>
-
+        
         <div class="form-group">
             <asp:Label runat="server" Text="Security Code: " AssociatedControlID="Scode" CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-3">
@@ -28,6 +32,8 @@
                 <asp:TextBox ID="Sname" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
+
+        <asp:Label ID="lblerror" runat="server" CssClass="text-danger"></asp:Label>
 
         <hr />
 
