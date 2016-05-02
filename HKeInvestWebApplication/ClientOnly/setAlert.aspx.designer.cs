@@ -13,6 +13,24 @@ namespace HKeInvestWebApplication.ClientOnly {
     public partial class setAlert {
         
         /// <summary>
+        /// Stype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Stype;
+        
+        /// <summary>
+        /// Snamecode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Snamecode;
+        
+        /// <summary>
         /// highValue control.
         /// </summary>
         /// <remarks>

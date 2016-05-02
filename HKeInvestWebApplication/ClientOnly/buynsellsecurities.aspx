@@ -4,7 +4,24 @@
     <h2>Buy and Sell Securities</h2>
 
      <div class="form-horizontal">
+
+         <div class="form-group">
+            <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-2"></asp:Label>
+            <div class="col-md-3"><asp:DropDownList ID="buynselldd" runat="server" CssClass="form-control" AutoPostBack="true">
+
+                </asp:DropDownList>
+            </div>
+
+
+         </div>
+
+
+
+
+
         <div class="form-group">
+          <%--try for pdf--%>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="..\..\01Introduction.pdf">PDF</asp:HyperLink>
             <asp:Label runat="server" Text="Security Type: " AssociatedControlID="Stype" CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-3"><asp:DropDownList ID="Stype" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="cvStocktype_Validate" OnTextChanged="cvStocktype_Validate">
                 <asp:ListItem Value="">Security Type</asp:ListItem>
@@ -15,14 +32,15 @@
             <asp:CustomValidator ID="cvstocktype" runat="server" ErrorMessage="Please choose one security type." ControlToValidate="Stype" CssClass="text-danger" OnServerValidate="cvStocktype_Validate"></asp:CustomValidator>
 
                 <asp:Panel ID="stockt" runat="server" Visible="False">
-
-                <div class="col-md-3"><asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
+                <div class="form-group">
+                <div class="col-md-3"><asp:DropDownList ID="stockorderdd" runat="server" CssClass="form-control" OnSelectedIndexChanged="stockorder">
                 <asp:ListItem Value="">Stock Order Type</asp:ListItem>
                 <asp:ListItem Value="market">Market</asp:ListItem>
                 <asp:ListItem Value="limit">Limit</asp:ListItem>
                 <asp:ListItem Value="stop">Stop</asp:ListItem>
                 <asp:ListItem Value="stoplimit">Stop limit</asp:ListItem>
             </asp:DropDownList>
+                </div>
                 </div>
 
              </asp:Panel>
@@ -48,9 +66,13 @@
 
         <div class ="form-horizontal">
             <div class="form-group">
-            <div class="col-md-3">
-            <asp:Button ID="Button1" runat="server" Text="Buy" />
-            <asp:Button ID="Button2" runat="server" Text="Sell" />
+            <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-2"></asp:Label>
+            <div class="col-md-3"><asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="buysellcheck">
+                <asp:ListItem Value="">Operation Type</asp:ListItem>
+                <asp:ListItem Value="buy">Buy</asp:ListItem>
+                <asp:ListItem Value="sell">Sell</asp:ListItem>
+
+            </asp:DropDownList>
             </div>
         </div>
         </div>
