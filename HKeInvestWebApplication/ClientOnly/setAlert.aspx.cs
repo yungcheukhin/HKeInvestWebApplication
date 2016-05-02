@@ -20,6 +20,9 @@ namespace HKeInvestWebApplication.ClientOnly
             //load the dropdown list with only the security the client holds
             Label1.Visible = false;
             //Snamecode.Items.Clear();
+            /*ExternalFunctions hi = new ExternalFunctions();
+            Label2.Text = hi.getSecuritiesPrice("stock", "22").ToString();
+            Label2.Visible = true;*/
         }
 
         protected void setAlertValue(object sender, EventArgs e)
