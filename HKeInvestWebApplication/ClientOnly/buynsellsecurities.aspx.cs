@@ -15,6 +15,7 @@ namespace HKeInvestWebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            error.Visible = false;
             //stockt.Visible = false;
             //stocktypePanel.Visible = false;
             //bondamountPanel.Visible = false;
@@ -145,11 +146,13 @@ namespace HKeInvestWebApplication
                         decimal cost = numshares * curprice;
                         //Context.User.Identity.GetUserName();
                         string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-                        if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'")){
-                           // s.IsValid = false;
-                           //show error msg
+                        if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'"))){
+                            error.Text = "Account balance smaller then total amount to buy. Not enough balance.";
+                            error.Visible = true;
+                            return;
                         }
                         string result = myExternalFunctions.submitStockBuyOrder(stockcode, numofshares, ordertype ,expday, allornone, highp, stopp);
+
                         
                     }
                     //Buy bond

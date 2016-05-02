@@ -5,6 +5,9 @@
 
      <div class="form-horizontal">
 
+         <asp:Label ID="error" runat="server" CssClass="text-danger"></asp:Label>
+         <hr />
+
         <%--Buy Sell operation dropdown list--%>
         <div class="form-group">
             <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-3"></asp:Label>
