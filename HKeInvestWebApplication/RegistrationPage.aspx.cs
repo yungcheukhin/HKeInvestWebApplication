@@ -26,9 +26,9 @@ namespace HKeInvestWebApplication
                 string accountnumber = AccountNumber.Text;
                 string lastname = LastName.Text.ToUpper();
                 Int32 test;
-                string sql = "SELECT userNmae FROM Account WHERE accountNumber = '" + accountnumber + "'";
-                HKeInvestData myHKeInvestData = new HKeInvestData();
-                DataTable dtClient = myHKeInvestData.getData(sql);
+                string sql2 = "SELECT userName FROM Account WHERE accountNumber = '" + accountnumber + "'";
+                HKeInvestData myHKeInvestData2 = new HKeInvestData();
+                DataTable dtClient = myHKeInvestData2.getData(sql2);
                 if (dtClient!=null)
                 {
                     args.IsValid = false;
@@ -77,14 +77,14 @@ namespace HKeInvestWebApplication
                 }
             }
 
-            HKeInvestData myHKeInvestData = new HKeInvestData();
+           /* HKeInvestData myHKeInvestData = new HKeInvestData();
             string sql = "select userName from [Account] where accountNumber = " + AccountNumber.Text;
             DataTable existUser = myHKeInvestData.getData(sql);
             if(existUser != null)
             {
                 args.IsValid = false;
                 cvExistUser.ErrorMessage = "User login account has already been created, please login.";
-            }
+            } */
 
 
 
