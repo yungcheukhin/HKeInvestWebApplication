@@ -20,9 +20,21 @@
 
         </div>
 
-         <%--Stock Order Type dropdown list--%>
+        <%--Buy Sell operation dropdown list--%>
+        <div class="form-group">
+            <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-3"></asp:Label>
+            <div class="col-md-4"><asp:DropDownList ID="opdd" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="buysellcheck">
+                <asp:ListItem Value="">Operation Type</asp:ListItem>
+                <asp:ListItem Value="buy">BUY</asp:ListItem>
+                <asp:ListItem Value="sell">SELL</asp:ListItem>
+
+            </asp:DropDownList>
+            </div>
+        </div>
+
+         <%--Stock Order Type Panel: dropdownlist--%>
             <div class="form-group">
-            <asp:Panel ID="stockt" runat="server" Visible="False">
+            <asp:Panel ID="stocktypePanel" runat="server" Visible="False">
                 <asp:Label runat="server" Text="Stock Order Type: " AssociatedControlID="stockorderdd" CssClass="control-label col-md-3"></asp:Label>
 
                 <div class="col-md-4"><asp:DropDownList ID="stockorderdd" runat="server" CssClass="form-control" OnSelectedIndexChanged="stockorder">
@@ -50,17 +62,6 @@
         </div>
 
        
-        <%--Buy Sell operation dropdown list--%>
-        <div class="form-group">
-            <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-3"></asp:Label>
-            <div class="col-md-4"><asp:DropDownList ID="opdd" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="buysellcheck">
-                <asp:ListItem Value="">Operation Type</asp:ListItem>
-                <asp:ListItem Value="buy">BUY</asp:ListItem>
-                <asp:ListItem Value="sell">SELL</asp:ListItem>
-
-            </asp:DropDownList>
-            </div>
-        </div>
 
         <%--Quantity of Shares to buy textbox--%>
         <div class="form-group">
@@ -91,10 +92,7 @@
 
 
         <div class="col-md-offset-2 col-md-4">
-            <asp:Button ID="proceed" runat="server" CssClass="form-control" Text="Proceed" OnClick="toalcheck" />
-           
-
-
+            <asp:Button ID="proceed" runat="server" CssClass="form-control" Text="Proceed" OnClick="totalcheck" />
         </div>
 
     </div>

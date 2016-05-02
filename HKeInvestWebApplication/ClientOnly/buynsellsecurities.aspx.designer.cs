@@ -31,13 +31,22 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.CustomValidator cvstocktype;
         
         /// <summary>
-        /// stockt control.
+        /// opdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel stockt;
+        protected global::System.Web.UI.WebControls.DropDownList opdd;
+        
+        /// <summary>
+        /// stocktypePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel stocktypePanel;
         
         /// <summary>
         /// stockorderdd control.
@@ -56,15 +65,6 @@ namespace HKeInvestWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Scode;
-        
-        /// <summary>
-        /// opdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList opdd;
         
         /// <summary>
         /// qofshares_panel control.
