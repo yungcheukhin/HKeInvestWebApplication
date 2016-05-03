@@ -230,6 +230,8 @@ private string submitOrder(string sql)
                         string ordertype = stockorderdd.SelectedValue;
                         string allornone = allornonecheck.SelectedValue;
                         decimal cost = numshares * curprice;
+                        string c = Convert.ToString(cost);
+                        string p = Convert.ToString(curprice);
                         string sqll="";
                         string sql2 = "";
                         //INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
@@ -253,7 +255,7 @@ private string submitOrder(string sql)
                             myHKeInvestData.setData(sqll, trans);
                             myHKeInvestData.setData(sql2, trans);
                             myHKeInvestData.commitTransaction(trans);
-                            sendemail(string user, string orderrefnum, string order, string date, string amt, string cost, string price);
+                            sendemail(username, result, "stock", "5/3/2016", qofshares.Text.Trim(), c, p);
                         }
                        
                         return;
