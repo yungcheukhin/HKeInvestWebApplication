@@ -12,6 +12,8 @@ namespace HKeInvestWebApplication
 {
     public partial class SearchSecurities : System.Web.UI.Page
     {
+        HKeInvestCode myHKeInvestCode = new HKeInvestCode();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             bondtable.Visible = false;
@@ -80,6 +82,8 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        ViewState["SortExpression"] = "name";
+                        ViewState["SortDirection"] = "ASC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
                         bondtable.Visible = true;
@@ -95,6 +99,8 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        ViewState["SortExpression"] = "name";
+                        ViewState["SortDirection"] = "ASC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
                         bondtable.Visible = true;
@@ -110,6 +116,8 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        ViewState["SortExpression"] = "name";
+                        ViewState["SortDirection"] = "ASC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
                         bondtable.Visible = true;
@@ -231,6 +239,51 @@ namespace HKeInvestWebApplication
                     lblerror.Visible = true;
                 }
             }
+        }
+
+        /*protected void gvSecurityHolding_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            // Since a GridView cannot be sorted directly, it is first loaded into a DataTable using the helper method 'unloadGridView'.
+            // Create a DataTable from the GridView.
+            DataTable dtSecurityHolding = myHKeInvestCode.unloadGridView(gvSecurityHolding);
+
+            // Set the sort expression in ViewState for correct toggling of sort direction,
+            // Sort the DataTable and bind it to the GridView.
+            string sortExpression = e.SortExpression.ToLower();
+            ViewState["SortExpression"] = sortExpression;
+            dtSecurityHolding.DefaultView.Sort = sortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
+            dtSecurityHolding.AcceptChanges();
+
+            // Bind the DataTable to the GridView.
+            gvSecurityHolding.DataSource = dtSecurityHolding.DefaultView;
+            gvSecurityHolding.DataBind();
+        }*/
+
+        protected void gvBond_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            DataTable dtBond = myHKeInvestCode.unloadGridView(gvBond);
+            string sortExpression = e.SortExpression.ToLower();
+            ViewState["SortExpression"] = sortExpression;
+            dtBond.DefaultView.Sort = sortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
+            dtBond.AcceptChanges();
+            gvBond.DataSource = dtBond.DefaultView;
+            gvBond.DataBind();
+        }
+
+        protected void gvStock_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            DataTable dtStock = myHKeInvestCode.unloadGridView(gvStock);
+            string sortExpression = e.SortExpression.ToLower();
+            ViewState["SortExpression"] = sortExpression;
+            dtStock.DefaultView.Sort = sortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
+            dtStock.AcceptChanges();
+            gvStock.DataSource = dtStock.DefaultView;
+            gvStock.DataBind();
+        }
+
+        protected void gvUnitTrust_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
         }
     }
 }

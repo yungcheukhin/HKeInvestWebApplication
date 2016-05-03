@@ -294,7 +294,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="application_form.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="ManageInformation.aspx" />
     <Content Include="RegistrationPage.aspx" />
     <Content Include="Report.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
@@ -600,13 +599,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="ManageInformation.aspx.cs">
-      <DependentUpon>ManageInformation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManageInformation.aspx.designer.cs">
-      <DependentUpon>ManageInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
