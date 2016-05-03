@@ -15,13 +15,15 @@ namespace HKeInvestWebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            error.Visible = false;
             //stockt.Visible = false;
-            stocktypePanel.Visible = false;
-            bondamountPanel.Visible = false;
+            //stocktypePanel.Visible = false;
+            //bondamountPanel.Visible = false;
         }
 
         protected void cvStocktype_Validate(object sender, EventArgs e)
         {
+            /*
             string stocktype = Stype.SelectedValue; 
             
             if (string.Compare(stocktype, "Stock", true)==0){
@@ -30,6 +32,7 @@ namespace HKeInvestWebApplication
             else{
                 stocktypePanel.Visible = false;
             }
+            */
         }
 
         protected void stockorder(object sender, EventArgs e)
@@ -105,7 +108,7 @@ namespace HKeInvestWebApplication
                 }
                 if (string.Compare(Stype.SelectedValue, "unitTrust", true) == 0){
                     sellunitTrust.Visible = true;
-                    utbuyPanel.Visible = true;
+                    utbuyPanel.Visible = false;
 
                     sellbondPanel.Visible = false;
                     sellstockPanel.Visible = false;
@@ -118,8 +121,90 @@ namespace HKeInvestWebApplication
             }
         }
 
-        protected void totalcheck(object sender, EventArgs s){
 
+        protected void totalcheck(object sender, EventArgs s){
+            if (Page.IsValid) {
+                ExternalFunctions myExternalFunctions = new ExternalFunctions();
+                HKeInvestData myHKeInvestData = new HKeInvestData();
+                //Buy order
+                if(string.Compare(opdd.SelectedValue, "Buy", true) == 0)
+                {
+                    //Buy Stock
+                    if(string.Compare(Stype.SelectedValue, "stock", true) == 0)
+                    {
+                        //Get data from text boxes
+                        //anInteger = Convert.ToInt32(textBox1.Text);
+                        string stockcode = Scode.Text.Trim();
+                        string numofshares = qofshares.Text.Trim();
+                        int numshares = Convert.ToInt32(qofshares.Text.Trim());
+                        decimal curprice = myExternalFunctions.getSecuritiesPrice("stock", stockcode);
+                        string expday = expdate.SelectedValue;
+                        string highp = highPrice.Text.Trim();
+                        string stopp = stopPrice.Text.Trim();
+                        string ordertype = stockorderdd.SelectedValue;
+                        string allornone = allornonecheck.SelectedValue;
+                        decimal cost = numshares * curprice;
+                        //Context.User.Identity.GetUserName();
+                        string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                        if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'"))){
+                            error.Text = "Account balance smaller then total amount to buy. Not enough balance.";
+                            error.Visible = true;
+                            return;
+                        }
+                        string result = myExternalFunctions.submitStockBuyOrder(stockcode, numofshares, ordertype ,expday, allornone, highp, stopp);
+
+                        
+                    }
+                    //Buy bond
+                    if(string.Compare(Stype.SelectedValue, "bond", true) == 0)
+                    {
+                        //Bond code and amount
+                        string result = myExternalFunctions.submitBondBuyOrder(Scode.Text.Trim(), amtofbond.Text.Trim());
+                        //Save in own record
+                        //minus balance
+                        //
+                    }
+                    //Buy unitTrust
+                    if(string.Compare(Stype.SelectedValue, "unitTrust", true) == 0)
+                    {
+                        //unit trust's code and amount
+                        string result = myExternalFunctions.submitUnitTrustBuyOrder(Scode.Text.Trim(), amtofut.Text.Trim());
+                        //save record and minus balance
+                        //
+                        //
+                    }
+
+                }
+                //Sell order
+                if(String.Compare(opdd.SelectedValue, "Sell", true) == 0)
+                {
+                    if(string.Compare(Stype.SelectedValue, "bond", true) == 0)
+                    {
+                        //bond's code and amount
+                        string result = myExternalFunctions.submitBondSellOrder(Scode.Text.Trim(), numofshares.Text.Trim());
+                        //
+                        //
+                    }
+                    if(string.Compare(Stype.SelectedValue, "stock", true) == 0)
+                    {
+                        //stock's code, shares, orderType, expiryday, allornone, lowprice, stopPrice
+                        string code = Scode.Text.Trim();
+                        string shares = numofsellshares.Text.Trim();
+                        string orderType = stockorderdd.SelectedValue;
+                        string expday = expdate.SelectedValue;
+                        string allornone = sellallornonecheck.SelectedValue;
+                        string lowprice = lowPrice.Text.Trim();
+                        string stopPrice = sellstopPrice.Text.Trim();
+                        string result = myExternalFunctions.submitStockSellOrder(code, shares, orderType, expday, allornone, lowprice, stopPrice);
+                    }
+                    if (string.Compare(Stype.SelectedValue, "unitTrust", true) == 0)
+                    {
+                        //unit trust's code, shares
+                        string result = myExternalFunctions.submitUnitTrustSellOrder(Scode.Text.Trim(), numofutshares.Text.Trim());
+                    }
+
+                }
+            }
         }
     }
 }

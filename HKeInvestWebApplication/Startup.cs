@@ -14,7 +14,6 @@ namespace HKeInvestWebApplication
 {
     public partial class Startup
     {
-
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
@@ -35,6 +34,7 @@ namespace HKeInvestWebApplication
                  });
              });
         }
+
     }
 
         public class ApplicationUserStore : UserStore<ApplicationUser>
