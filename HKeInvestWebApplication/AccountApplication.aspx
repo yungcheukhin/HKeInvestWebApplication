@@ -22,7 +22,7 @@
                 <asp:ListItem Value="survivorship">Survivorship</asp:ListItem>
                 <asp:ListItem Value="common">Common</asp:ListItem>
               </asp:DropDownList>
-              <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlAccType" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Account type is required." Display="Dynamic">*</asp:RequiredFieldValidator>
+              <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlAccType" CssClass="text-danger" EnableClientScript="False" ErrorMessage="User Account does not exist." Display="Dynamic">*</asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="form-group">

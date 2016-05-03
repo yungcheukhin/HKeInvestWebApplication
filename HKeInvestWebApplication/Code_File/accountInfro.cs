@@ -23,7 +23,7 @@ namespace HKeInvestWebApplication.Code_File
             mobile, citizenship, legalResidence, HKIDPassportNumber, passportCountryOfIssue,
             email, title, balance;
         public DataTable Account, Client;
-
+        public Boolean accountExist;
         public AccountInfro(string loginName)
         {
             userName = loginName;
@@ -38,6 +38,7 @@ namespace HKeInvestWebApplication.Code_File
                 accountNumber = row["accountNumber"].ToString();
                 accountType = row["accountType"].ToString();
                 balance = row["balance"].ToString();
+
 
             }
 
@@ -62,9 +63,6 @@ namespace HKeInvestWebApplication.Code_File
                 passportCountryOfIssue = row["passportCountryOfIssue"].ToString();
 
             }
-
-
-
         }
 
         public void changeData(string toChange,string value)
@@ -80,7 +78,15 @@ namespace HKeInvestWebApplication.Code_File
 
             DataBinder.Eval(toChange, value);
         }
-    }
+
+        public Boolean checkNameExist()
+        {
+            if (myHKeInvestData.getData("SELECT * FROM Account WHERE userName = '" + userName + "'") == null) accountExist = false;
+            else accountExist = true;
+
+            return accountExist;
+        }
+}
 
     class accessDataBase //for single access for all table
     {

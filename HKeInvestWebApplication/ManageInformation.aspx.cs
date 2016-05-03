@@ -42,8 +42,30 @@ namespace HKeInvestWebApplication
                 legalResidenceBtn.Visible = false;
                 passportCountryOfIssueBox.Visible = false;
                 passportCountryOfIssueBtn.Visible = false;
+                updatePage();
+
             }
-            updatePage();
+            else if (String.Compare(userName, "employee") == 0)
+            {
+                userNameBox.Visible = true;
+                userNameBtn.Visible = true;
+            }
+
+            titleBtn.Click += new EventHandler(this.titleBtn_Click);
+
+        }
+
+        protected void userNameBtn_Click(object sender, EventArgs e)
+        {
+            clientAccount.userName = userNameLabel.Text;
+            if (clientAccount.checkNameExist()) {
+                updatePage();
+                nameIsExist.Visible = false;
+            }
+            else
+            {
+                nameIsExist.Visible = true; 
+            }
 
         }
 
@@ -150,5 +172,6 @@ namespace HKeInvestWebApplication
                 var result = manager.ResetPassword(user.Id, code, passwordBox.Text);
             }
         }
+
     }
 }

@@ -445,6 +445,33 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.Label userNameLabel;
         
         /// <summary>
+        /// userNameBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox userNameBox;
+        
+        /// <summary>
+        /// userNameBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button userNameBtn;
+        
+        /// <summary>
+        /// nameIsExist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator nameIsExist;
+        
+        /// <summary>
         /// empty1 control.
         /// </summary>
         /// <remarks>
