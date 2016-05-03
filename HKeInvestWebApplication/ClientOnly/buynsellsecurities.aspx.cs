@@ -162,25 +162,37 @@ private string submitOrder(string sql)
 
         }
 
-        protected void sendemail(string user, string orderrefnum, string order, string date, string amt, string cost, string price)
+        //Generate Invoice Msg
+        protected string generateInvoiceMsg(string user, string orderrefnum, string order, string date, string amt, string cost, string price)
+        {
+            string body = " ";
+            string head = " ";
+            string message = body + head;
+            return message;
+        }
+
+
+        //Send email
+        protected void sendemail(string user, string msg)
         {
             accessDataBase myData = new accessDataBase();
             //string username = Context.User.Identity.GetUserName();
-            string actnum = myData.getOneData("accountNumber", "Account", user );
-            string email = "";
-            
+            string actnum = myData.getOneData("accountNumber", "Account", user);
+            string email = myData.getOneData("email", "Client", actnum);
+            /*
             DataTable searchemail = myHKeInvestData.getData("SELECT email FROM Client WHERE accountNumber='" + actnum + "'");
             foreach (DataRow rows in searchemail.Rows)
             {
                 email = email + rows["email"];
             }
+            */
             string name = "";
             System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
             mail.To.Add(email);
             mail.From = new MailAddress("comp3111_team120@cse.ust.hk", "HKeInvest", System.Text.Encoding.UTF8);
             mail.Subject = "Invoice";
             mail.SubjectEncoding = System.Text.Encoding.UTF8;
-            mail.Body = "The order reference number: " + orderrefnum + " order: " + order + " ,execute date: " + date + " ,amount bought is: " + amt + ". The price per share is " + price + ".";
+            mail.Body = msg;
             mail.BodyEncoding = System.Text.Encoding.UTF8;
             mail.IsBodyHtml = true;
             mail.Priority = MailPriority.High;
@@ -208,6 +220,7 @@ private string submitOrder(string sql)
         }
 
 
+        //The proceed button
         protected void totalcheck(object sender, EventArgs s){
             if (Page.IsValid) {
                 //ExternalFunctions myExternalFunctions = new ExternalFunctions();
@@ -255,7 +268,7 @@ private string submitOrder(string sql)
                             myHKeInvestData.setData(sqll, trans);
                             myHKeInvestData.setData(sql2, trans);
                             myHKeInvestData.commitTransaction(trans);
-                            sendemail(username, result, "stock", "5/3/2016", qofshares.Text.Trim(), c, p);
+                            generateInvoiceMsg(username, result, "stock", "5/3/2016", qofshares.Text.Trim(), c, p);
                         }
                        
                         return;
