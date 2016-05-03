@@ -13,12 +13,21 @@ namespace HKeInvestWebApplication
 {
     public partial class buynsellsecurities : System.Web.UI.Page
     {
+        ExternalFunctions myExternalFunctions = new ExternalFunctions();
+        HKeInvestCode myHKeInvestCode = new HKeInvestCode();
+        HKeInvestData myHKeInvestData = new HKeInvestData();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             error.Visible = false;
-            //stockt.Visible = false;
-            //stocktypePanel.Visible = false;
-            //bondamountPanel.Visible = false;
+            qofsharesPanel.Visible = false;
+            stockbuyPanel.Visible = false;
+            expdatePanel.Visible = false;
+            bondamountPanel.Visible = false;
+            utbuyPanel.Visible = false;
+            sellstockPanel.Visible = false;
+            sellbondPanel.Visible = false;
+            sellunitTrust.Visible = false;
         }
 
         protected void cvStocktype_Validate(object sender, EventArgs e)
@@ -121,11 +130,42 @@ namespace HKeInvestWebApplication
             }
         }
 
+        protected void buy(string sql)
+        {
+            SqlTransaction trans = myHKeInvestData.beginTransaction();
+            myHKeInvestData.setData(sql, trans);
+            myHKeInvestData.commitTransaction(trans);
+
+        }
+
+            /*
+private string submitOrder(string sql)
+{
+    SqlTransaction trans = myExternalData.beginTransaction();
+    myExternalData.setData(sql, trans);
+    string referenceNumber = myExternalData.getOrderReferenceNumber("select max([referenceNumber]) from [Order]", trans);
+    myExternalData.commitTransaction(trans);
+    return referenceNumber;
+}
+
+            */
+
+        protected void waitexecutebuy(string sql, decimal cost , string result){
+
+            if (string.Compare("pending", myExternalFunctions.getOrderStatus(result), false) == 0)
+            {
+                string sql1 = "update";
+                           }
+
+
+        }
+
+
 
         protected void totalcheck(object sender, EventArgs s){
             if (Page.IsValid) {
-                ExternalFunctions myExternalFunctions = new ExternalFunctions();
-                HKeInvestData myHKeInvestData = new HKeInvestData();
+                //ExternalFunctions myExternalFunctions = new ExternalFunctions();
+                //HKeInvestData myHKeInvestData = new HKeInvestData();
                 //Buy order
                 if(string.Compare(opdd.SelectedValue, "Buy", true) == 0)
                 {
@@ -144,6 +184,10 @@ namespace HKeInvestWebApplication
                         string ordertype = stockorderdd.SelectedValue;
                         string allornone = allornonecheck.SelectedValue;
                         decimal cost = numshares * curprice;
+                        string sqll="";
+                        string sql2 = "";
+                        //INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+                        //VALUES('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
                         //Context.User.Identity.GetUserName();
                         string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
                         if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'"))){
@@ -152,14 +196,32 @@ namespace HKeInvestWebApplication
                             return;
                         }
                         string result = myExternalFunctions.submitStockBuyOrder(stockcode, numofshares, ordertype ,expday, allornone, highp, stopp);
+                        //minus account balance
+                        //update balance, update transactionrecord
+                        sqll = "update [Account] set [balance] = [balance] - '" + cost + "' WHERE [userName] = '" + username + "'";
+                        sql2 = "update [TransactionRecord] set ";
+                        waitexecutebuy(sqll, cost, result);
 
+                        return;
                         
                     }
                     //Buy bond
                     if(string.Compare(Stype.SelectedValue, "bond", true) == 0)
                     {
                         //Bond code and amount
+                        decimal amt = Convert.ToDecimal(amtofbond.Text.Trim());
+                        string code = Scode.Text.Trim();
+                        decimal curprice = myExternalFunctions.getSecuritiesPrice("bond", code);
                         string result = myExternalFunctions.submitBondBuyOrder(Scode.Text.Trim(), amtofbond.Text.Trim());
+                        decimal cost = amt * curprice;
+                        string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                        if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'")))
+                        {
+                            error.Text = "Account balance smaller then total amount to buy. Not enough balance.";
+                            error.Visible = true;
+                            return;
+                        }
+
                         //Save in own record
                         //minus balance
                         //
@@ -168,7 +230,18 @@ namespace HKeInvestWebApplication
                     if(string.Compare(Stype.SelectedValue, "unitTrust", true) == 0)
                     {
                         //unit trust's code and amount
+                        decimal amt = Convert.ToDecimal(amtofut.Text.Trim());
+                        string code = Scode.Text.Trim();
+                        decimal curprice = myExternalFunctions.getSecuritiesPrice("unitTrust", code);
                         string result = myExternalFunctions.submitUnitTrustBuyOrder(Scode.Text.Trim(), amtofut.Text.Trim());
+                        decimal cost = amt * curprice;
+                        string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                        if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'")))
+                        {
+                            error.Text = "Account balance smaller then total amount to buy. Not enough balance.";
+                            error.Visible = true;
+                            return;
+                        }
                         //save record and minus balance
                         //
                         //
