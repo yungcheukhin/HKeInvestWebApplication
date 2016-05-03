@@ -301,6 +301,7 @@ private string submitOrder(string sql)
                             myHKeInvestData.setData(sqll, trans);
                             myHKeInvestData.setData(updatetranssql, trans);
                             myHKeInvestData.commitTransaction(trans);
+                            //sendemail(user, result, "stock", "5/3/2016", amtofbond.Text.Trim(), c, p);
 
                         }
                         return;
