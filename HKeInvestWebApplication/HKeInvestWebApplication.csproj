@@ -226,7 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="AccountApplication.aspx" />
+    <Content Include="EmployeeOnly\AccountApplication.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -344,7 +344,7 @@
     <Content Include="ClientOnly\ClientSecurityHoldingDetails.aspx" />
     <Content Include="ClientOnly\ProfitLossTracking.aspx" />
     <Content Include="ClientOnly\setAlert.aspx" />
-    <Content Include="ConfirmationEmail.aspx" />
+    <Content Include="System _service\ConfirmationEmail.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -378,8 +378,8 @@
     <Content Include="bin\ApplicationInsights.config" />
     <Content Include="bin\HKeInvestWebApplication.dll.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="ManageInformation.aspx" />
-    <Content Include="RegistrationPage.aspx" />
+    <Content Include="System _service\ManageInformation.aspx" />
+    <Content Include="Cover_page\RegistrationPage.aspx" />
     <Content Include="Report.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -412,11 +412,11 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Default.aspx" />
+    <Content Include="Cover_page\Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="EmployeeOnly\SecurityHoldingDetails.aspx" />
-    <Content Include="SearchSecurities.aspx" />
+    <Content Include="System _service\SearchSecurities.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
@@ -435,11 +435,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountApplication.aspx.cs">
+    <Compile Include="EmployeeOnly\AccountApplication.aspx.cs">
       <DependentUpon>AccountApplication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccountApplication.aspx.designer.cs">
+    <Compile Include="EmployeeOnly\AccountApplication.aspx.designer.cs">
       <DependentUpon>AccountApplication.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
@@ -589,11 +589,11 @@
     <Compile Include="Code_File\accountInfro.cs" />
     <Compile Include="Code_File\HKeInvestCode.cs" />
     <Compile Include="Code_File\HKeInvestData.cs" />
-    <Compile Include="ConfirmationEmail.aspx.cs">
+    <Compile Include="System _service\ConfirmationEmail.aspx.cs">
       <DependentUpon>ConfirmationEmail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ConfirmationEmail.aspx.designer.cs">
+    <Compile Include="System _service\ConfirmationEmail.aspx.designer.cs">
       <DependentUpon>ConfirmationEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
@@ -603,11 +603,11 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
+    <Compile Include="Cover_page\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
+    <Compile Include="Cover_page\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="ExternalSystems\BondOrder.aspx.cs">
@@ -685,11 +685,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ManageInformation.aspx.cs">
+    <Compile Include="System _service\ManageInformation.aspx.cs">
       <DependentUpon>ManageInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ManageInformation.aspx.designer.cs">
+    <Compile Include="System _service\ManageInformation.aspx.designer.cs">
       <DependentUpon>ManageInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -697,11 +697,11 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrationPage.aspx.cs">
+    <Compile Include="Cover_page\RegistrationPage.aspx.cs">
       <DependentUpon>RegistrationPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RegistrationPage.aspx.designer.cs">
+    <Compile Include="Cover_page\RegistrationPage.aspx.designer.cs">
       <DependentUpon>RegistrationPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeOnly\SecurityHoldingDetails.aspx.cs">
@@ -718,11 +718,11 @@
     <Compile Include="Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SearchSecurities.aspx.cs">
+    <Compile Include="System _service\SearchSecurities.aspx.cs">
       <DependentUpon>SearchSecurities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SearchSecurities.aspx.designer.cs">
+    <Compile Include="System _service\SearchSecurities.aspx.designer.cs">
       <DependentUpon>SearchSecurities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">

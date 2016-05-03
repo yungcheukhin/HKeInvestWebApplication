@@ -50,13 +50,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/ClientOnly/buynsellsecurities.aspx">Trade</a></li>
-                        <li><a runat="server" href="~/ClientOnly/ClientSecurityHoldingDetails">Security Holding</a></li>
-                        <li><a runat="server" href="~/ClientOnly/ProfitLossTracking">Profit&Loss</a></li>
-                        <li><a runat="server" href="~/ClientOnly/setAlert">Alert</a></li>
-                        <li><a runat="server" href="~/AccountApplication">Account Application</a></li>
-                        <li><a runat="server" href="~/ManageInformation.aspx">Manage Information</a></li>
                         <li><a runat="server" href="~/SearchSecurities.aspx">Search Securities</a></li>
+                        <li><a runat="server" href="~/ManageInformation.aspx" id="ManageInformation" visible="False">Manage Information</a></li>
+
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
