@@ -38,7 +38,6 @@ namespace HKeInvestWebApplication
                 //add a attribute "lastsent" to indicate if today had sent
                 //alert high, low save in table
                 //foreach compare wilth external
-                /*
                 HKeInvestData myHKeInvestData = new HKeInvestData();
                 ExternalFunctions myExternalFunctions = new ExternalFunctions();
                 DataTable alerts = myHKeInvestData.getData("SELECT * FROM Alert");
@@ -52,69 +51,107 @@ namespace HKeInvestWebApplication
                     decimal low = System.Convert.ToDecimal(row["lowValue"]);
                     decimal current = myExternalFunctions.getSecuritiesPrice(type, code);
 
-                    string email = "";
                     string date = "";
-                    DataTable searchemail = myHKeInvestData.getData("SELECT email FROM Client WHERE accountNumber='" +id+ "'");
-                    foreach(DataRow rows in searchemail.Rows)
+                    DataTable searchdate = myHKeInvestData.getData("SELECT lastsent FROM Alert WHERE accountNumber='" + id + "' AND code='" + code + "' AND type = '" + type + "'");
+                    foreach (DataRow rows in searchdate.Rows)
                     {
-                        email = email + rows["email"];
+                        date = date + rows["lastsent"];
                     }
-                    
-                    if (high<=myExternalFunctions.getSecuritiesPrice(type, code)||low>= myExternalFunctions.getSecuritiesPrice(type, code))
+                    if (date == DateTime.Now.ToString("yyyy-MM-dd"))
+                    { }
+                    else
                     {
-                        /*if (date == null)
+                        string email = "";
+                        DataTable searchemail = myHKeInvestData.getData("SELECT email FROM Client WHERE accountNumber='" + id + "'");
+                        foreach (DataRow rows in searchemail.Rows)
                         {
-                            SqlTransaction adddate = myHKeInvestData.beginTransaction();
-                            myHKeInvestData.setData("INSERT INTO alert (lastsent) VALUE ('" + DateTime.Now.ToString("yyyy-MM-dd") + "')", adddate);
-                            myHKeInvestData.commitTransaction(adddate);
+                            email = email + rows["email"];
                         }
-                        else
+                        string name = "";
+                        DataTable security = myExternalFunctions.getSecuritiesByCode(type, code);
+                        foreach (DataRow rows in security.Rows)
+                        {
+                            name = name + rows["name"];
+                        }
+
+                        if (high <= myExternalFunctions.getSecuritiesPrice(type, code))
                         {
                             SqlTransaction updatedate = myHKeInvestData.beginTransaction();
-                            myHKeInvestData.setData("UPDATE alert SET lastsent='" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE accountNumber='" +id+ "' AND code='" +code+ "' AND type = '" +type+ "'", updatedate);
-                            my*/
+                            myHKeInvestData.setData("UPDATE alert SET lastsent='" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE accountNumber='" + id + "' AND code='" + code + "' AND type = '" + type + "'", updatedate);
+                            myHKeInvestData.commitTransaction(updatedate);
 
-                /*
-                        SqlTransaction updatedate = myHKeInvestData.beginTransaction();
-                        myHKeInvestData.setData("UPDATE alert SET lastsent='" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE accountNumber='" + id + "' AND code='" + code + "' AND type = '" + type + "'", updatedate);
-                        myHKeInvestData.commitTransaction(updatedate);
-
-                        System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-                        mail.To.Add(email);
-                        mail.From = new MailAddress("comp3111_team120@cse.ust.hk", "HKeInvest", System.Text.Encoding.UTF8);
-                        mail.Subject = "Alert";
-                        mail.SubjectEncoding = System.Text.Encoding.UTF8;
-                        mail.Body = "Alert testing, high"+high+"low"+low+"current"+ myExternalFunctions.getSecuritiesPrice(type, code)+code+type+current;
-                        mail.BodyEncoding = System.Text.Encoding.UTF8;
-                        mail.IsBodyHtml = true;
-                        mail.Priority = MailPriority.High;
-                        SmtpClient client = new SmtpClient();
-                        client.Credentials = new System.Net.NetworkCredential("comp3111_team120", "team120#");
-                        client.Port = 587;
-                        client.Host = "smtp.cse.ust.hk";
-                        client.EnableSsl = true;
-                        try
-                        {
-                            client.Send(mail);
-                            //Page.RegisterStartupScript("UserMsg", "<script>alert('Successfully Send...');if(alert){ window.location='SendMail.aspx';}</script>");
-                        }
-                        catch (Exception ex)
-                        {
-                            Exception ex2 = ex;
-                            string errorMessage = string.Empty;
-                            while (ex2 != null)
+                            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                            mail.To.Add(email);
+                            mail.From = new MailAddress("comp3111_team120@cse.ust.hk", "HKeInvest", System.Text.Encoding.UTF8);
+                            mail.Subject = "Alert Triggered!";
+                            mail.SubjectEncoding = System.Text.Encoding.UTF8;
+                            mail.Body = "The high value alert for your " + type + " security, code: " + code + " name: " + name + " had been triggered. The current price of the security is " + current + ". The high alert value you set is " + high + ".";
+                            mail.BodyEncoding = System.Text.Encoding.UTF8;
+                            mail.IsBodyHtml = true;
+                            mail.Priority = MailPriority.High;
+                            SmtpClient client = new SmtpClient();
+                            client.Credentials = new System.Net.NetworkCredential("comp3111_team120", "team120#");
+                            client.Port = 587;
+                            client.Host = "smtp.cse.ust.hk";
+                            client.EnableSsl = true;
+                            try
                             {
-                                errorMessage += ex2.ToString();
-                                ex2 = ex2.InnerException;
+                                client.Send(mail);
+                                //Page.RegisterStartupScript("UserMsg", "<script>alert('Successfully Send...');if(alert){ window.location='SendMail.aspx';}</script>");
                             }
-                            //Page.RegisterStartupScript("UserMsg", "<script>alert('Sending Failed...');if(alert){ window.location='SendMail.aspx';}</script>");
+                            catch (Exception ex)
+                            {
+                                Exception ex2 = ex;
+                                string errorMessage = string.Empty;
+                                while (ex2 != null)
+                                {
+                                    errorMessage += ex2.ToString();
+                                    ex2 = ex2.InnerException;
+                                }
+                                //Page.RegisterStartupScript("UserMsg", "<script>alert('Sending Failed...');if(alert){ window.location='SendMail.aspx';}</script>");
+                            }
+                        }
+                        else if (low >= myExternalFunctions.getSecuritiesPrice(type, code))
+                        {
+                            SqlTransaction updatedate = myHKeInvestData.beginTransaction();
+                            myHKeInvestData.setData("UPDATE alert SET lastsent='" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE accountNumber='" + id + "' AND code='" + code + "' AND type = '" + type + "'", updatedate);
+                            myHKeInvestData.commitTransaction(updatedate);
+
+                            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                            mail.To.Add(email);
+                            mail.From = new MailAddress("comp3111_team120@cse.ust.hk", "HKeInvest", System.Text.Encoding.UTF8);
+                            mail.Subject = "Alert Triggered!";
+                            mail.SubjectEncoding = System.Text.Encoding.UTF8;
+                            mail.Body = "The low value alert for your " + type + " security, code: " + code + " name: " + name + " had been triggered. The current price of the security is " + current + ". The low alert value you set is " + low + ".";
+                            mail.BodyEncoding = System.Text.Encoding.UTF8;
+                            mail.IsBodyHtml = true;
+                            mail.Priority = MailPriority.High;
+                            SmtpClient client = new SmtpClient();
+                            client.Credentials = new System.Net.NetworkCredential("comp3111_team120", "team120#");
+                            client.Port = 587;
+                            client.Host = "smtp.cse.ust.hk";
+                            client.EnableSsl = true;
+                            try
+                            {
+                                client.Send(mail);
+                                //Page.RegisterStartupScript("UserMsg", "<script>alert('Successfully Send...');if(alert){ window.location='SendMail.aspx';}</script>");
+                            }
+                            catch (Exception ex)
+                            {
+                                Exception ex2 = ex;
+                                string errorMessage = string.Empty;
+                                while (ex2 != null)
+                                {
+                                    errorMessage += ex2.ToString();
+                                    ex2 = ex2.InnerException;
+                                }
+                                //Page.RegisterStartupScript("UserMsg", "<script>alert('Sending Failed...');if(alert){ window.location='SendMail.aspx';}</script>");
+                            }
                         }
                     }
                 }
                 Thread.Sleep(10000);
-                */
             } while (true);
-    
         }
     }
 }
