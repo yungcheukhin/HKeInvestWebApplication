@@ -69,6 +69,11 @@ namespace HKeInvestWebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (HttpContext.Current.Session["LoggedIn"] != null)
+            {
+                ManageInformation.Visible = true;
+            }
+
 
         }
 
@@ -76,6 +81,9 @@ namespace HKeInvestWebApplication
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
+
+
+
     }
 
 }
