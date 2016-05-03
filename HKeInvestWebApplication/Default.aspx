@@ -14,7 +14,7 @@
             login account.
         </h4>
         <p> &nbsp;&nbsp;</p>
-        <asp:Button ID="PDF_download" runat="server" OnClick="Button1_Click" Text="Download Application Form" BackColor="#336699" BorderColor="#669999" Font-Bold="True" Font-Size="Large" ForeColor="Black" />
+        <asp:Button ID="PDF_download" runat="server" OnClick="Button1_Click" Text="Download Application Form" class="btn-default " Font-Bold="True" Font-Size="Large"  />
         <asp:Label ID="failLabel" runat="server" Visible="false" Text="Download Fail, Please Try Again!" />
     </div>
 

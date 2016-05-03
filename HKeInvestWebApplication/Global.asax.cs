@@ -38,6 +38,7 @@ namespace HKeInvestWebApplication
                 //add a attribute "lastsent" to indicate if today had sent
                 //alert high, low save in table
                 //foreach compare wilth external
+                /*
                 HKeInvestData myHKeInvestData = new HKeInvestData();
                 ExternalFunctions myExternalFunctions = new ExternalFunctions();
                 DataTable alerts = myHKeInvestData.getData("SELECT * FROM Alert");
@@ -52,6 +53,7 @@ namespace HKeInvestWebApplication
                     decimal current = myExternalFunctions.getSecuritiesPrice(type, code);
 
                     string email = "";
+                    string date = "";
                     DataTable searchemail = myHKeInvestData.getData("SELECT email FROM Client WHERE accountNumber='" +id+ "'");
                     foreach(DataRow rows in searchemail.Rows)
                     {
@@ -60,7 +62,24 @@ namespace HKeInvestWebApplication
                     
                     if (high<=myExternalFunctions.getSecuritiesPrice(type, code)||low>= myExternalFunctions.getSecuritiesPrice(type, code))
                     {
-                        /*System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                        /*if (date == null)
+                        {
+                            SqlTransaction adddate = myHKeInvestData.beginTransaction();
+                            myHKeInvestData.setData("INSERT INTO alert (lastsent) VALUE ('" + DateTime.Now.ToString("yyyy-MM-dd") + "')", adddate);
+                            myHKeInvestData.commitTransaction(adddate);
+                        }
+                        else
+                        {
+                            SqlTransaction updatedate = myHKeInvestData.beginTransaction();
+                            myHKeInvestData.setData("UPDATE alert SET lastsent='" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE accountNumber='" +id+ "' AND code='" +code+ "' AND type = '" +type+ "'", updatedate);
+                            my*/
+
+                /*
+                        SqlTransaction updatedate = myHKeInvestData.beginTransaction();
+                        myHKeInvestData.setData("UPDATE alert SET lastsent='" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE accountNumber='" + id + "' AND code='" + code + "' AND type = '" + type + "'", updatedate);
+                        myHKeInvestData.commitTransaction(updatedate);
+
+                        System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
                         mail.To.Add(email);
                         mail.From = new MailAddress("comp3111_team120@cse.ust.hk", "HKeInvest", System.Text.Encoding.UTF8);
                         mail.Subject = "Alert";
@@ -89,11 +108,13 @@ namespace HKeInvestWebApplication
                                 ex2 = ex2.InnerException;
                             }
                             //Page.RegisterStartupScript("UserMsg", "<script>alert('Sending Failed...');if(alert){ window.location='SendMail.aspx';}</script>");
-                        }*/
+                        }
                     }
                 }
                 Thread.Sleep(10000);
+                */
             } while (true);
+    
         }
     }
 }
