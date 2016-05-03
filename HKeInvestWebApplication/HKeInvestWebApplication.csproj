@@ -295,6 +295,7 @@
     <Content Include="application_form.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="RegistrationPage.aspx" />
+    <Content Include="Report.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -617,6 +618,13 @@
     </Compile>
     <Compile Include="EmployeeOnly\SecurityHoldingDetails.aspx.designer.cs">
       <DependentUpon>SecurityHoldingDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SearchSecurities.aspx.cs">
       <DependentUpon>SearchSecurities.aspx</DependentUpon>
