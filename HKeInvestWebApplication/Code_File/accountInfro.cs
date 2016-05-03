@@ -31,6 +31,7 @@ namespace HKeInvestWebApplication.Code_File
         }
 
         public void updateTable() {
+
             Account = myHKeInvestData.getData("SELECT * FROM Account WHERE userName = '" + userName + "'");
             foreach (DataRow row in Account.Rows)
             {
@@ -39,6 +40,7 @@ namespace HKeInvestWebApplication.Code_File
                 balance = row["balance"].ToString();
 
             }
+
             Client = myHKeInvestData.getData("SELECT * FROM Client WHERE accountNumber = '" + accountNumber + "'");
             foreach (DataRow row in Client.Rows)
             {
