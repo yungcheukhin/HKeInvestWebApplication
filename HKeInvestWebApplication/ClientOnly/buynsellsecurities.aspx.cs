@@ -15,6 +15,7 @@ namespace HKeInvestWebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            error.Visible = false;
             //stockt.Visible = false;
             //stocktypePanel.Visible = false;
             //bondamountPanel.Visible = false;
@@ -124,6 +125,7 @@ namespace HKeInvestWebApplication
         protected void totalcheck(object sender, EventArgs s){
             if (Page.IsValid) {
                 ExternalFunctions myExternalFunctions = new ExternalFunctions();
+                HKeInvestData myHKeInvestData = new HKeInvestData();
                 //Buy order
                 if(string.Compare(opdd.SelectedValue, "Buy", true) == 0)
                 {
@@ -134,12 +136,23 @@ namespace HKeInvestWebApplication
                         //anInteger = Convert.ToInt32(textBox1.Text);
                         string stockcode = Scode.Text.Trim();
                         string numofshares = qofshares.Text.Trim();
+                        int numshares = Convert.ToInt32(qofshares.Text.Trim());
+                        decimal curprice = myExternalFunctions.getSecuritiesPrice("stock", stockcode);
                         string expday = expdate.SelectedValue;
                         string highp = highPrice.Text.Trim();
                         string stopp = stopPrice.Text.Trim();
                         string ordertype = stockorderdd.SelectedValue;
                         string allornone = allornonecheck.SelectedValue;
+                        decimal cost = numshares * curprice;
+                        //Context.User.Identity.GetUserName();
+                        string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                        if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'"))){
+                            error.Text = "Account balance smaller then total amount to buy. Not enough balance.";
+                            error.Visible = true;
+                            return;
+                        }
                         string result = myExternalFunctions.submitStockBuyOrder(stockcode, numofshares, ordertype ,expday, allornone, highp, stopp);
+
                         
                     }
                     //Buy bond
@@ -148,7 +161,7 @@ namespace HKeInvestWebApplication
                         //Bond code and amount
                         string result = myExternalFunctions.submitBondBuyOrder(Scode.Text.Trim(), amtofbond.Text.Trim());
                         //Save in own record
-                        //
+                        //minus balance
                         //
                     }
                     //Buy unitTrust
@@ -156,7 +169,7 @@ namespace HKeInvestWebApplication
                     {
                         //unit trust's code and amount
                         string result = myExternalFunctions.submitUnitTrustBuyOrder(Scode.Text.Trim(), amtofut.Text.Trim());
-                        //
+                        //save record and minus balance
                         //
                         //
                     }
