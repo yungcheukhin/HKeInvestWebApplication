@@ -69,6 +69,22 @@ namespace HKeInvestWebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string userName = Context.User.Identity.GetUserName();
+            if (HttpContext.Current.Session["LoggedIn"] != null)
+            {
+                ManageInformation.Visible = true;
+                securityHolding.Visible = true;
+
+                if (String.Compare(userName, "employee") == 0)
+                {
+                    securityHolding.HRef = "~/EmployeeOnly/SecurityHoldingDetails.aspx";
+                }
+                else
+                {
+                    securityHolding.HRef = "~/ClientOnly/ClientSecurityHoldingDetails.aspx";
+                }
+
+            }
 
         }
 
@@ -76,6 +92,9 @@ namespace HKeInvestWebApplication
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
+
+
+
     }
 
 }

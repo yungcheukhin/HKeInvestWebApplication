@@ -5,19 +5,9 @@
 
      <div class="form-horizontal">
 
+         <hr />
          <asp:Label ID="error" runat="server" CssClass="text-danger"></asp:Label>
          <hr />
-
-        <%--Buy Sell operation dropdown list--%>
-        <div class="form-group">
-            <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-3"></asp:Label>
-            <div class="col-md-4"><asp:DropDownList ID="opdd" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="buysellcheck">
-                <asp:ListItem Value="">Operation Type</asp:ListItem>
-                <asp:ListItem Value="buy">BUY</asp:ListItem>
-                <asp:ListItem Value="sell">SELL</asp:ListItem>
-            </asp:DropDownList>
-            </div>
-        </div>
 
 
         <div class="form-group">
@@ -45,6 +35,16 @@
         </div>
 
 
+        <%--Buy Sell operation dropdown list--%>
+        <div class="form-group">
+            <asp:Label runat="server" Text="Operation: " AssociatedControlID="Stype" CssClass="control-label col-md-3"></asp:Label>
+            <div class="col-md-4"><asp:DropDownList ID="opdd" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="buysellcheck">
+                <asp:ListItem Value="">Operation Type</asp:ListItem>
+                <asp:ListItem Value="buy">BUY</asp:ListItem>
+                <asp:ListItem Value="sell">SELL</asp:ListItem>
+            </asp:DropDownList>
+            </div>
+        </div>
 
 
          <%--Stock Order Type Panel: dropdownlist--%>
@@ -65,12 +65,12 @@
                 
         <%--Stock buy Panel--%>
         <asp:Panel ID="stockbuyPanel" runat="server" Visible="False">
-                 <div class="form-group">
-                  <asp:Label runat="server" Text="High Price:" AssociatedControlID="highPrice" CssClass="control-label col-md-3"></asp:Label>
-                  <div class="col-md-4">
-                      <asp:TextBox ID="highPrice" runat="server" CssClass="form-control"></asp:TextBox>
-                  </div>
-                  </div>
+            <div class="form-group">
+            <asp:Label runat="server" Text="High Price:" AssociatedControlID="highPrice" CssClass="control-label col-md-3"></asp:Label>
+            <div class="col-md-4">
+                <asp:TextBox ID="highPrice" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            </div>
             <div class="form-group">
             <asp:Label runat="server" Text="Stop Price:" AssociatedControlID="stopPrice" CssClass="control-label col-md-3"></asp:Label>
             <div class="col-md-4">
@@ -78,13 +78,13 @@
             </div>
             </div>
             <div class="form-group">
-                <asp:Label runat="server" Text="All or none:" AssociatedControlID="allornonecheck" CssClass="control-label col-md-3"></asp:Label>
-                <div class="col-md-4"><asp:DropDownList ID="allornonecheck" runat="server" CssClass="form-control" AutoPostBack="true">
-                    <asp:ListItem Value="">All or none</asp:ListItem>
-                    <asp:ListItem Value="Y">Yes</asp:ListItem>
-                    <asp:ListItem Value="N">No</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
+            <asp:Label runat="server" Text="All or none:" AssociatedControlID="allornonecheck" CssClass="control-label col-md-3"></asp:Label>
+            <div class="col-md-4"><asp:DropDownList ID="allornonecheck" runat="server" CssClass="form-control" AutoPostBack="true">
+                <asp:ListItem Value="">All or none</asp:ListItem>
+                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                <asp:ListItem Value="N">No</asp:ListItem>
+                </asp:DropDownList>
+            </div>
             </div>
 
         </asp:Panel>
@@ -92,7 +92,7 @@
         <%--Expiry Date dropdownlist--%>
         <asp:Panel ID="expdatePanel" runat="server" Visible="False">
             <div class="form-group">
-                    <asp:Label runat="server" Text="Expiry Date (days after)" AssociatedControlID="expdate" CssClass="control-label col-md-3"></asp:Label>
+                <asp:Label runat="server" Text="Expiry Date (days after)" AssociatedControlID="expdate" CssClass="control-label col-md-3"></asp:Label>
                     <div class="col-md-4"><asp:DropDownList ID="expdate" runat="server" CssClass="form-control" AutoPostBack="true">
                     <asp:ListItem Value="">Expiry Date</asp:ListItem>
                     <asp:ListItem Value="1">1</asp:ListItem>
@@ -110,9 +110,9 @@
         </asp:Panel>
 
         <%--Panel for unit trust buy--%>
-         <asp:Panel ID="utbuyPanel" runat="server">
+         <asp:Panel ID="utbuyPanel" runat="server" Visible="False">
             <div class="form-group">
-            <asp:Label runat="server" Text="Amount to buy (HKD): " AssociatedControlID="amtofut" CssClass="control-label col-md-3"></asp:Label>
+            <asp:Label runat="server" Text="Number of Shares : " AssociatedControlID="amtofut" CssClass="control-label col-md-3"></asp:Label>
             <div class="col-md-4"><asp:TextBox ID="amtofut" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
@@ -122,33 +122,32 @@
         <%-- Panel for bond buy amount--%>
        <asp:Panel ID="bondamountPanel" runat="server" Visible="False">
             <div class ="form-group">
-             <asp:Label runat="server" Text="Amount to buy (HKD): " AssociatedControlID="amtofBond" CssClass="control-label col-md-3"></asp:Label>
+             <asp:Label runat="server" Text="Number of Shares : " AssociatedControlID="amtofBond" CssClass="control-label col-md-3"></asp:Label>
              <div class="col-md-4"><asp:TextBox ID="amtofbond" runat="server" CssClass="form-control"></asp:TextBox>
              </div>
             </div>
        </asp:Panel>
 
         <%--Quantity of Shares to buy stock shares Panel: textbox--%>
-        <div class="form-group">
             <asp:Panel ID="qofsharesPanel" runat="server" Visible="False">
-            <asp:Label runat="server" Text="Quantity of Shares to buy: " AssociatedControlID="qofshares" CssClass="control-label col-md-3"></asp:Label>
+             <div class="form-group">
+            <asp:Label runat="server" Text="Number of Shares : " AssociatedControlID="qofshares" CssClass="control-label col-md-3"></asp:Label>
             <div class="col-md-4"><asp:TextBox ID="qofshares" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
+            </div>
             </asp:Panel>
-        </div>
 
          <%--Panel for sell bond--%>
          <div class="form-group">
-             <asp:Panel ID="sellbondPanel" runat="server" Visible="false">
+             <asp:Panel ID="sellbondPanel" runat="server" Visible="False">
                  <asp:Label runat="server" Text="Number of Shares to sell: " AssociatedControlID="numofshares" CssClass="control-label col-md-3"></asp:Label>
                  <div class="col-md-4"><asp:TextBox ID="numofshares" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
              </asp:Panel>
-
          </div>
 
          <%--Panel for sell stock--%>
-         <asp:Panel ID="sellstockPanel" runat="server" Visible="false">
+         <asp:Panel ID="sellstockPanel" runat="server" Visible="False">
              <div class="form-group">
                 <asp:Label runat="server" Text="Number of Shares to sell: " AssociatedControlID="numofsellshares" CssClass="control-label col-md-3"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="numofsellshares" runat="server" CssClass="form-control"></asp:TextBox>
@@ -179,7 +178,7 @@
 
 
          <%--Panel for sell unitTrust--%>
-         <asp:Panel ID="sellunitTrust" runat="server" Visible="false">
+         <asp:Panel ID="sellunitTrust" runat="server" Visible="False">
              <div class="form-group">
              <asp:Label runat="server" Text="Number of shares to sell:" AssociatedControlID="numofutshares" CssClass="control-label col-md-3"></asp:Label>
             <div class="col-md-4">

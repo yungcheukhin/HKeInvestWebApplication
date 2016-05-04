@@ -13,6 +13,24 @@ namespace HKeInvestWebApplication {
     public partial class SiteMaster {
         
         /// <summary>
+        /// securityHolding control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor securityHolding;
+        
+        /// <summary>
+        /// ManageInformation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ManageInformation;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>
