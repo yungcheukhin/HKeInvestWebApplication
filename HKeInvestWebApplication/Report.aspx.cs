@@ -87,7 +87,17 @@ namespace HKeInvestWebApplication
 
             DataTable dtReport = null;
 
+            if (reportType == "summary")
+            {
+                string sql3 = "SELECT A1.firstName,A1.lastName,A1.accountNumber,A2.monetaryTotal,A2.balance,A2.monetaryBond,A2.monetaryTrust,A2.monetaryStock,A2.date,A2.monetaryLast FROM Client A1,Record A2 WHERE A1.accountNumber = '" + accountNumber + "' AND  A1.accountNumber = A2.accountNumber";
 
+                dtReport = myHKeInvestData.getData(sql3);
+
+                gvSummary.DataSource = dtReport;
+                gvSummary.DataBind();
+
+                gvSummary.Visible = true;
+            }
         }
     }
 }
