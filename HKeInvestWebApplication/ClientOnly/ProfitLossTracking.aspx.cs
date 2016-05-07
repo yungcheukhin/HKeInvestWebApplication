@@ -106,7 +106,8 @@ namespace HKeInvestWebApplication.ClientOnly
             gvProfitLossTracking.Visible = true;
 
         }
-        protected void gvProfitLossTracking_Sorting(object sender, GridViewSortEventArgs e)
+
+        protected void gvProfitLossTracking_Sorting1(object sender, GridViewSortEventArgs e)
         {
             DataTable dtProfitLossTracking = myHKeInvestCode.unloadGridView(gvProfitLossTracking);
             string sortExpression = e.SortExpression.ToLower();
@@ -116,6 +117,11 @@ namespace HKeInvestWebApplication.ClientOnly
 
             gvProfitLossTracking.DataSource = dtProfitLossTracking.DefaultView;
             gvProfitLossTracking.DataBind();
+        }
+
+        protected void gvProfitLossTracking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

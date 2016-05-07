@@ -23,7 +23,7 @@
                 <asp:Label ID="lblResultMessage" runat="server" Visible="False"></asp:Label>
             </div>
             <div>
-                <asp:GridView ID="gvProfitLossTracking" runat="server" Visible="False" AutoGenerateColumns="False" >
+                <asp:GridView ID="gvProfitLossTracking" runat="server" Visible="False" AutoGenerateColumns="False" OnSelectedIndexChanged="gvProfitLossTracking_SelectedIndexChanged" OnSorting="gvProfitLossTracking_Sorting1" >
                     <Columns>
                         <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="True" SortExpression="type" />
                         <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
