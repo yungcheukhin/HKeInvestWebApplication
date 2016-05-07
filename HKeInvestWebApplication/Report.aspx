@@ -6,11 +6,18 @@
     <div>
         <asp:Label ID="lblAccountNumber" runat="server" Visible="False"></asp:Label>
         <asp:Label ID="lblClientName" runat="server" Visible="False"></asp:Label>
+        &nbsp;<asp:DropDownList ID="ddlReportType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlReportType_SelectedIndexChanged">
+            <asp:ListItem Value="0">Report Type</asp:ListItem>
+            <asp:ListItem Value="summary">Summary</asp:ListItem>
+            <asp:ListItem Value="detail">Detail List</asp:ListItem>
+            <asp:ListItem Value="status">Status List</asp:ListItem>
+            <asp:ListItem Value="history">History List</asp:ListItem>
+        </asp:DropDownList>
     </div>
     <div>
 
         <h4>Summary of Overall Security Holdings </h4>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="gvSummary" runat="server" AutoGenerateColumns="False" Visible="False">
             <Columns>
                 <asp:BoundField DataField="accountNumber" HeaderText="Account Number" ReadOnly="True" SortExpression="accountNumber" />
                 <asp:BoundField DataField="firstName" HeaderText="First Name" ReadOnly="True" SortExpression="firstName" />
@@ -31,7 +38,7 @@
 
         <br />
         <h4>Details of Stocks </h4>
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="gvDetailStock" runat="server" AutoGenerateColumns="False" Visible="False">
             <Columns>
                 <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
                 <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
@@ -49,7 +56,7 @@
 
         <br />
         <h4>Details of Bonds </h4>
-        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="gvDetailBond" runat="server" AutoGenerateColumns="False" Visible="False">
             <Columns>
                 <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
                 <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
@@ -67,7 +74,7 @@
 
         <br />
         <h4>Details of Unit Trust </h4>
-        <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="gvDetailTrust" runat="server" AutoGenerateColumns="False" Visible="False">
             <Columns>
                 <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
                 <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
@@ -86,7 +93,7 @@
         <br />
         <h4>Status of Active Order(s) (Bond/Unit Trust)</h4>
         <p>
-            <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False">
+            <asp:GridView ID="gvStatusBond" runat="server" AutoGenerateColumns="False" Visible="False">
                 <Columns>
                     <asp:BoundField DataField="reference" HeaderText="Reference Number" ReadOnly="True" SortExpression="reference" />
                     <asp:BoundField DataField="order" HeaderText="Order" ReadOnly="True" SortExpression="order" />
@@ -108,7 +115,7 @@
         <br />
         <h4>Status of Active Order(s) (Stocks)</h4>
         <p>
-            <asp:GridView ID="GridView6" runat="server" AutoGenerateColumns="False">
+            <asp:GridView ID="gvStatusStock" runat="server" AutoGenerateColumns="False" Visible="False">
                 <Columns>
                     <asp:BoundField DataField="reference" HeaderText="Reference Number" ReadOnly="True" SortExpression="reference" />
                     <asp:BoundField DataField="order" HeaderText="Order" ReadOnly="True" SortExpression="order" />
@@ -133,7 +140,7 @@
         <br />
         <h4>Order History</h4>
          <p>
-             <asp:GridView ID="GridView7" runat="server" AutoGenerateColumns="False">
+             <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="False" Visible="False">
                  <Columns>
                      <asp:BoundField DataField="reference" HeaderText="Reference Number" ReadOnly="True" SortExpression="reference" />
                      <asp:BoundField DataField="order" HeaderText="Order" ReadOnly="True" SortExpression="order" />

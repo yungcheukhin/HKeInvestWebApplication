@@ -9,7 +9,7 @@
          <asp:Label ID="error" runat="server" CssClass="text-danger"></asp:Label>
          <hr />
 
-
+         <%--Dropdownlist to choose security type--%>
         <div class="form-group">
           <%--try for pdf--%>
 <%--            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="..\..\01Introduction.pdf">PDF</asp:HyperLink>--%>
@@ -20,7 +20,7 @@
                 <asp:ListItem Value="stock">Stock</asp:ListItem>
                 <asp:ListItem Value="unitTrust">Unit Trust</asp:ListItem>
             </asp:DropDownList></div>
-            <asp:CustomValidator ID="cvstocktype" runat="server" ErrorMessage="Please choose one security type." ControlToValidate="Stype" CssClass="text-danger" OnServerValidate="cvStocktype_Validate"></asp:CustomValidator>
+            <asp:RequiredFieldValidator ID="securitytypereq" runat="server" ErrorMessage="Please choose one security type." ControlToValidate="Stype" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
 
         </div>
 
@@ -189,7 +189,7 @@
 
         
 
-
+        <%--Proceed and run total check--%>
         <div class="col-md-offset-2 col-md-4">
             <asp:Button ID="proceed" runat="server" CssClass="form-control" Text="Proceed" OnClick="totalcheck" />
         </div>

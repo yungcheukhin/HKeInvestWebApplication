@@ -81,30 +81,33 @@ namespace HKeInvestWebApplication.ClientOnly
             lblClientName.Text = clientName;
             lblClientName.Visible = true;
 
-            string code = txtStockCode.Text.Trim();
-            DataTable dtRecord = null;
+            string code = txtSecurityCode.Text.Trim();
+            DataTable dtRecord =null;
 
-            if (code!=null && securityType!="all")
+            if (code != null && securityType != "all")
             {
-                string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE Record.accountNumber = '" + accountNumber + "',Record.code = '" + code + "',Record.type = '" + securityType + "'";
+                string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE accountNumber = '" + accountNumber + "' AND code = '" + code + "' AND type = '" + securityType + "'";
                 dtRecord = myHKeInvestData.getData(sql3);
             }
             if (code == null && securityType == "all")
             {
-                string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE Record.accountNumber = '" + accountNumber + "'";
+                string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE accountNumber = '" + accountNumber + "'";
                 dtRecord = myHKeInvestData.getData(sql3);
             }
             if (code == null && securityType != "all")
             {
-                string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE Record.accountNumber = '" + accountNumber + "',Record.type = '" + securityType + "'";
+                string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE accountNumber = '" + accountNumber + "' AND type = '" + securityType + "'";
                 dtRecord = myHKeInvestData.getData(sql3);
             }
 
             gvProfitLossTracking.DataSource = dtRecord;
             gvProfitLossTracking.DataBind();
-            
+
+            gvProfitLossTracking.Visible = true;
+
         }
-        protected void gvProfitLossTracking_Sorting(object sender, GridViewSortEventArgs e)
+
+        protected void gvProfitLossTracking_Sorting1(object sender, GridViewSortEventArgs e)
         {
             DataTable dtProfitLossTracking = myHKeInvestCode.unloadGridView(gvProfitLossTracking);
             string sortExpression = e.SortExpression.ToLower();
@@ -114,6 +117,11 @@ namespace HKeInvestWebApplication.ClientOnly
 
             gvProfitLossTracking.DataSource = dtProfitLossTracking.DefaultView;
             gvProfitLossTracking.DataBind();
+        }
+
+        protected void gvProfitLossTracking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
