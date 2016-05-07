@@ -87,17 +87,17 @@ namespace HKeInvestWebApplication.ClientOnly
             if (code!=null && securityType!="all")
             {
                 string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE Record.accountNumber = '" + accountNumber + "',Record.code = '" + code + "',Record.type = '" + securityType + "'";
-                dtRecord = myHKeInvestData.getData(sql);
+                dtRecord = myHKeInvestData.getData(sql3);
             }
             if (code == null && securityType == "all")
             {
                 string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE Record.accountNumber = '" + accountNumber + "'";
-                dtRecord = myHKeInvestData.getData(sql);
+                dtRecord = myHKeInvestData.getData(sql3);
             }
             if (code == null && securityType != "all")
             {
                 string sql3 = "SELECT type,code,name,shares,dollarAmountBuy,dollarAmountSell,fees,profitloss FROM Record WHERE Record.accountNumber = '" + accountNumber + "',Record.type = '" + securityType + "'";
-                dtRecord = myHKeInvestData.getData(sql);
+                dtRecord = myHKeInvestData.getData(sql3);
             }
 
             gvProfitLossTracking.DataSource = dtRecord;

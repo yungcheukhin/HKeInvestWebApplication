@@ -81,8 +81,18 @@ namespace HKeInvestWebApplication.Code_File
 
         public Boolean checkNameExist()
         {
-            if (myHKeInvestData.getData("SELECT * FROM Account WHERE userName = '" + userName + "'") == null) accountExist = false;
-            else accountExist = true;
+            DataTable temp = myHKeInvestData.getData("SELECT accountNumber FROM Account WHERE userName = '" + userName + "'");
+            foreach (DataRow row in temp.Rows)
+            {
+                if (row == null)
+                {
+                    accountExist = false;
+                }
+                else {
+                    accountExist = true;
+                }
+            }
+
 
             return accountExist;
         }

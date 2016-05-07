@@ -70,7 +70,7 @@ namespace HKeInvestWebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             string userName = Context.User.Identity.GetUserName();
-            if (HttpContext.Current.Session["LoggedIn"] != null)
+            if (userName != "")
             {
                 ManageInformation.Visible = true;
                 securityHolding.Visible = true;
