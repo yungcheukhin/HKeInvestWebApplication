@@ -49,6 +49,15 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.TextBox Scode;
         
         /// <summary>
+        /// securitycodevalidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator securitycodevalidate;
+        
+        /// <summary>
         /// opdd control.
         /// </summary>
         /// <remarks>
@@ -218,6 +227,15 @@ namespace HKeInvestWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox numofsellshares;
+        
+        /// <summary>
+        /// sellstockamt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox sellstockamt;
         
         /// <summary>
         /// lowPrice control.
