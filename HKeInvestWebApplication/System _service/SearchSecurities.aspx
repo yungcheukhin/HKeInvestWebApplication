@@ -46,7 +46,7 @@
         <hr />
 
         <asp:Panel ID="bondtable" runat="server" Visible="False">
-            <asp:GridView ID="gvBond" runat="server" AutoGenerateColumns="false" OnSorting="gvBond_Sorting" AllowSorting="true">
+            <asp:GridView ID="gvBond" runat="server" AutoGenerateColumns="false" OnSorting="gvBond_Sorting" AllowSorting="true" EnableViewState="true">
                 <Columns>
                     <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="true" SortExpression="code" />
                     <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="true" SortExpression="name" />
@@ -63,7 +63,7 @@
         </asp:Panel>
 
         <asp:Panel ID="stocktable" runat="server" Visible="False">
-            <asp:GridView ID="gvStock" runat="server" AutoGenerateColumns="false" OnSorting="gvStock_Sorting">
+            <asp:GridView ID="gvStock" runat="server" AutoGenerateColumns="false" OnSorting="gvStock_Sorting" AllowSorting="true" EnableViewState="true">
                 <Columns>
                     <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="true" SortExpression="code" />
                     <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="true" SortExpression="name" />
@@ -80,7 +80,7 @@
         </asp:Panel>
 
         <asp:Panel ID="unittable" runat="server" Visible="False">
-            <asp:GridView ID="gvUnitTrust" runat="server" AutoGenerateColumns="false" OnSorting="gvUnitTrust_Sorting">
+            <asp:GridView ID="gvUnitTrust" runat="server" AutoGenerateColumns="false" OnSorting="gvUnitTrust_Sorting" AllowSorting="true" EnableViewState="true">
                 <Columns>
                     <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="true" SortExpression="code" />
                     <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="true" SortExpression="name" />
