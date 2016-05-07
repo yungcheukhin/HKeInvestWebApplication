@@ -13,7 +13,8 @@
                     <asp:TextBox ID="userNameSearchBox" runat="server" ></asp:TextBox>
 
                 </div>
-                <div class="form-group"><asp:Button ID="userNameSearchBtn" runat="server" Text="Search User Name" class="btn-default col-md-4" OnClick="userNameBtn_Click"  />
+                <div class="col-md-offset-2 col-md-6">
+                    <asp:Button ID="userNameSearchBtn" runat="server" Text="Search User Name" class="btn-default col-md-6" OnClick="userNameBtn_Click"  />
                     <asp:Label ID="nameExist" runat="server" CssClass="text-danger" Text="No account exist with this user name" ForeColor="Red" Visible="False"></asp:Label>
                 </div>
         </div>

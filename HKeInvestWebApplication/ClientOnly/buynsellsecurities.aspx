@@ -198,7 +198,7 @@
 
         <%--Proceed and run total check--%>
         <div class="col-md-offset-2 col-md-4">
-            <asp:Button ID="proceed" runat="server" CssClass="form-control" Text="Proceed" OnClick="totalcheck" />
+            <asp:Button ID="proceed" runat="server" CssClass="btn-default form-control" Text="Proceed" OnClick="totalcheck" />
         </div>
 
     </div>

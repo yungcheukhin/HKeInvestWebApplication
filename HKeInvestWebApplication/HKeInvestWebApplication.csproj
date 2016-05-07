@@ -227,7 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cover_page\About.aspx" />
-    <Content Include="ClientOnly\ClientSupportingTool.aspx" />
+    <Content Include="ClientOnly\supportingToolList.aspx" />
     <Content Include="EmployeeOnly\AccountApplication.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -346,6 +346,7 @@
     <Content Include="ClientOnly\ClientSecurityHoldingDetails.aspx" />
     <Content Include="ClientOnly\ProfitLossTracking.aspx" />
     <Content Include="ClientOnly\setAlert.aspx" />
+    <Content Include="EmployeeOnly\ClientBaseTool.aspx" />
     <Content Include="System_service\ConfirmationEmail.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -380,9 +381,10 @@
     <Content Include="bin\ApplicationInsights.config" />
     <Content Include="bin\HKeInvestWebApplication.dll.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="System_service\Graph.aspx" />
     <Content Include="System_service\ManageInformation.aspx" />
     <Content Include="Cover_page\RegistrationPage.aspx" />
-    <Content Include="Report.aspx" />
+    <Content Include="System_service\Report.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -437,12 +439,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientOnly\ClientSupportingTool.aspx.cs">
-      <DependentUpon>ClientSupportingTool.aspx</DependentUpon>
+    <Compile Include="ClientOnly\supportingToolList.aspx.cs">
+      <DependentUpon>supportingToolList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ClientOnly\ClientSupportingTool.aspx.designer.cs">
-      <DependentUpon>ClientSupportingTool.aspx</DependentUpon>
+    <Compile Include="ClientOnly\supportingToolList.aspx.designer.cs">
+      <DependentUpon>supportingToolList.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeOnly\AccountApplication.aspx.cs">
       <DependentUpon>AccountApplication.aspx</DependentUpon>
@@ -598,6 +600,13 @@
     <Compile Include="Code_File\accountInfro.cs" />
     <Compile Include="Code_File\HKeInvestCode.cs" />
     <Compile Include="Code_File\HKeInvestData.cs" />
+    <Compile Include="EmployeeOnly\ClientBaseTool.aspx.cs">
+      <DependentUpon>ClientBaseTool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeeOnly\ClientBaseTool.aspx.designer.cs">
+      <DependentUpon>ClientBaseTool.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -699,6 +708,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="System_service\Graph.aspx.cs">
+      <DependentUpon>Graph.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="System_service\Graph.aspx.designer.cs">
+      <DependentUpon>Graph.aspx</DependentUpon>
+    </Compile>
     <Compile Include="System_service\ManageInformation.aspx.cs">
       <DependentUpon>ManageInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -725,11 +741,11 @@
     <Compile Include="EmployeeOnly\SecurityHoldingDetails.aspx.designer.cs">
       <DependentUpon>SecurityHoldingDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Report.aspx.cs">
+    <Compile Include="System_service\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Report.aspx.designer.cs">
+    <Compile Include="System_service\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="System_service\SearchSecurities.aspx.cs">
