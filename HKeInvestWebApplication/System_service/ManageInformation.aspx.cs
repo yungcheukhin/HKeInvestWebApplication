@@ -13,6 +13,7 @@ using Owin;
 using HKeInvestWebApplication.Models;
 
 
+
 namespace HKeInvestWebApplication
 {
 
@@ -23,15 +24,18 @@ namespace HKeInvestWebApplication
         string userName;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Context.User.Identity.IsAuthenticated)
-            {
-                Response.Redirect("~/Default.aspx");
-                return;
-            }
+            //if (!Context.User.Identity.IsAuthenticated)
+            //{
+            //    Response.Redirect("~/Default.aspx");
+            //    return;
+            //}
             userName = Context.User.Identity.GetUserName();
             clientAccount = new AccountInfro(userName);
             if (String.Compare(userName, "employee") != 0)  //Client account
             {
+                enterUserName.Visible = false;
+                manageInfro.Visible = true;
+
                 firstNameBox.Visible = false;
                 firstNameBtn.Visible = false;
                 lastNameBox.Visible = false;
@@ -47,8 +51,8 @@ namespace HKeInvestWebApplication
             }
             else if (String.Compare(userName, "employee") == 0)
             {
-                userNameBox.Visible = true;
-                userNameBtn.Visible = true;
+                enterUserName.Visible = true;
+                manageInfro.Visible = false;
             }
 
             titleBtn.Click += new EventHandler(this.titleBtn_Click);
@@ -57,14 +61,18 @@ namespace HKeInvestWebApplication
 
         protected void userNameBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.userName = userNameLabel.Text;
+            clientAccount.userName = userNameSearchBox.Text;
             if (clientAccount.checkNameExist()) {
                 updatePage();
+                enterUserName.Visible = false;
+                manageInfro.Visible = true;
                 nameIsExist.Visible = false;
             }
             else
             {
-                nameIsExist.Visible = true; 
+                enterUserName.Visible = true;
+                manageInfro.Visible = false;
+                nameIsExist.Visible = true;
             }
 
         }
@@ -90,6 +98,7 @@ namespace HKeInvestWebApplication
             dateOfBirthLabel.Text = clientAccount.dateOfBirth;
             HKIDPassportNumberLabel.Text = clientAccount.HKIDPassportNumber;
             userNameLabel.Text = clientAccount.userName;
+
 
         }
         protected void titleBtn_Click(object sender, EventArgs e)
@@ -172,6 +181,7 @@ namespace HKeInvestWebApplication
                 var result = manager.ResetPassword(user.Id, code, passwordBox.Text);
             }
         }
+
 
     }
 }

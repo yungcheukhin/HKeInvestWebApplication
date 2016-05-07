@@ -31,10 +31,14 @@ namespace HKeInvestWebApplication
                 HKeInvestData myHKeInvestData = new HKeInvestData();
                 DataTable dtClient = myHKeInvestData.getData(sql);
 
-                if (dtClient!=null)
+                foreach (DataRow row in dtClient.Rows)
                 {
-                    args.IsValid = false;
-                    cvAccountNumber.ErrorMessage = "This account number has already been used to create an account.";
+                    if (row != null)
+                    {
+                        args.IsValid = false;
+                        cvAccountNumber.ErrorMessage = "This account number has already been used to create an account.";
+                    }
+                    
                 }
 
                 if (accountnumber.Length == 10)
@@ -81,6 +85,26 @@ namespace HKeInvestWebApplication
 
 
             }
+
+        }
+
+        protected void cvUserName_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string username = UserName.Text.Trim();
+            string sql2 = "SELECT userName FROM Account WHERE userName = '" + username + "'";
+            HKeInvestData myHKeInvestData2 = new HKeInvestData();
+            DataTable dtUser = myHKeInvestData2.getData(sql2);
+
+            foreach(DataRow row in dtUser.Rows)
+            {
+                if(row!=null)
+                {
+                     args.IsValid = false;
+                     cvUserName.ErrorMessage = "The user name has been used.";
+                }
+               
+            }
+
 
         }
 

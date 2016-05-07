@@ -31,13 +31,13 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.DropDownList Stype;
         
         /// <summary>
-        /// cvstocktype control.
+        /// securitytypereq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvstocktype;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator securitytypereq;
         
         /// <summary>
         /// Scode control.

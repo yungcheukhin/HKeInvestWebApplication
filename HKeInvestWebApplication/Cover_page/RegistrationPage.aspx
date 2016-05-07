@@ -56,6 +56,7 @@
                 <asp:RegularExpressionValidator runat="server" ControlToValidate="UserName" CssClass="text-danger" EnableClientScript="False" ErrorMessage="User Name must contain at least 6 characters." ValidationExpression="^.{6,10}$" Display="Dynamic">*</asp:RegularExpressionValidator>
                 <asp:RegularExpressionValidator runat="server" ControlToValidate="UserName" CssClass="text-danger" EnableClientScript="False" ErrorMessage="User Name must contain only letters and digits." ValidationExpression="^[a-zA-Z0-9]+$" Display="Dynamic">*</asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" CssClass="text-danger" EnableClientScript="False" ErrorMessage="User Name is required." Display="Dynamic">*</asp:RequiredFieldValidator>
+                <asp:CustomValidator ID="cvUserName" runat="server" ControlToValidate="UserName" CssClass="text-danger" EnableClientScript="False" ErrorMessage="This user name has been used." OnServerValidate="cvUserName_ServerValidate" ValidateEmptyText="True">*</asp:CustomValidator>
             </div>
         </div>
 

@@ -346,7 +346,7 @@
     <Content Include="ClientOnly\ClientSecurityHoldingDetails.aspx" />
     <Content Include="ClientOnly\ProfitLossTracking.aspx" />
     <Content Include="ClientOnly\setAlert.aspx" />
-    <Content Include="System _service\ConfirmationEmail.aspx" />
+    <Content Include="System_service\ConfirmationEmail.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -380,7 +380,7 @@
     <Content Include="bin\ApplicationInsights.config" />
     <Content Include="bin\HKeInvestWebApplication.dll.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="System _service\ManageInformation.aspx" />
+    <Content Include="System_service\ManageInformation.aspx" />
     <Content Include="Cover_page\RegistrationPage.aspx" />
     <Content Include="Report.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
@@ -418,7 +418,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="EmployeeOnly\SecurityHoldingDetails.aspx" />
-    <Content Include="System _service\SearchSecurities.aspx" />
+    <Content Include="System_service\SearchSecurities.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
@@ -603,11 +603,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="System _service\ConfirmationEmail.aspx.cs">
+    <Compile Include="System_service\ConfirmationEmail.aspx.cs">
       <DependentUpon>ConfirmationEmail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="System _service\ConfirmationEmail.aspx.designer.cs">
+    <Compile Include="System_service\ConfirmationEmail.aspx.designer.cs">
       <DependentUpon>ConfirmationEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
@@ -699,11 +699,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="System _service\ManageInformation.aspx.cs">
+    <Compile Include="System_service\ManageInformation.aspx.cs">
       <DependentUpon>ManageInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="System _service\ManageInformation.aspx.designer.cs">
+    <Compile Include="System_service\ManageInformation.aspx.designer.cs">
       <DependentUpon>ManageInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -732,11 +732,11 @@
     <Compile Include="Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
-    <Compile Include="System _service\SearchSecurities.aspx.cs">
+    <Compile Include="System_service\SearchSecurities.aspx.cs">
       <DependentUpon>SearchSecurities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="System _service\SearchSecurities.aspx.designer.cs">
+    <Compile Include="System_service\SearchSecurities.aspx.designer.cs">
       <DependentUpon>SearchSecurities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">

@@ -13,7 +13,7 @@
                     <asp:ListItem Value="all">All</asp:ListItem>
                     <asp:ListItem Value="bond">Bond</asp:ListItem>
                     <asp:ListItem Value="stock">Stock</asp:ListItem>
-                    <asp:ListItem Value="unitTrust">Unit Trust</asp:ListItem>
+                    <asp:ListItem Value="unit trust">Unit Trust</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div>

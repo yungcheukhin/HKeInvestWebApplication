@@ -5,6 +5,23 @@
 
        <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="text-danger" EnableClientScript="False" />
 
+
+    <asp:Panel ID="enterUserName" runat="server" Visible="False">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <asp:Label ID="userNameSearch" runat="server" Text="Please input a user name to edit" class="control-label col-md-4"></asp:Label>
+                    <asp:TextBox ID="userNameSearchBox" runat="server" ></asp:TextBox>
+
+                </div>
+                <div class="form-group"><asp:Button ID="userNameSearchBtn" runat="server" Text="Search User Name" class="btn-default col-md-4" OnClick="userNameBtn_Click"  />
+                    <asp:RegularExpressionValidator  ID="nameIsExist" runat="server" ControlToValidate="userNameSearchBox" CssClass="text-danger" EnableClientScript="False" ErrorMessage="No account exist with this user name" Display="Dynamic"  Visible="False">*</asp:RegularExpressionValidator>
+                </div>
+        </div>
+
+    </asp:Panel>
+
+    <asp:Panel ID="manageInfro" runat="server" Visible="False">
+
     <div class="form-horizontal">
         <div class="form-group">
             <div class="col-md-6">   
@@ -154,10 +171,7 @@
             <div class="col-md-6">
                 <asp:Label runat="server" Text="User name: " class="control-label col-md-4" ></asp:Label>
                 <asp:Label ID="userNameLabel" runat="server" Text=" " class="control-label col-md-3"></asp:Label>
-                <asp:TextBox ID="userNameBox" runat="server" class="col-md-3" Visible="False"></asp:TextBox>    
-                <asp:Button ID="userNameBtn" runat="server" Text="Search User Name" class="btn-default col-md-2" OnClick="userNameBtn_Click" Visible="False" />            
-                <asp:RegularExpressionValidator  ID="nameIsExist" runat="server" ControlToValidate="nameIsExist" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Account type is required." Display="Dynamic" Visible="False">*</asp:RegularExpressionValidator>       
-            </div>
+ </div>
         </div>
 
         <div class="form-group">
@@ -177,6 +191,7 @@
 
 
         </div>
+    </asp:Panel>
 
 
 
