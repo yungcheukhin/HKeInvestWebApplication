@@ -162,12 +162,20 @@ private string submitOrder(string sql)
 
         }
 
-        //Generate Invoice Msg
-        protected string generateInvoiceMsg(string user, string orderrefnum, string order, string date, string amt, string cost, string price)
+        protected void showsecuritydetails(string type, string code)
         {
-            string body = " ";
-            string head = " ";
-            string message = body + head;
+
+        }
+
+
+        //Generate Invoice Msg
+        protected string generateInvoiceMsg(string user, string actnum, string orderrefnum, string buyorsell, string code, string sname, string stocktype, string date, string amt, string cost, string transnum, string dateExe, string numexe, string price)
+        {
+            string head = "Dear " + user + ",\n";
+            string body1 = "Invoice: \n";
+            string body2 = "Order Details: \nAccount number number:" + actnum + "\n Order reference number: " + orderrefnum + "\nBuy or sell:" + buyorsell + "\nSecurity Code: " + code + "\nSecurity Name:" + sname + "\nStock Type:" + stocktype + "\nDate of Order Submitted: " + date + "\nNumber of Shares Traded: " + amt + "\n\nTotal amount executed (HKD): " + cost + "\nTransaction Number: " + transnum + "\nDate Executed: " + dateExe + "\nNumberof Shares Executed: " + numexe + "\nPrice per Share: " + price + "\n\n";
+            string end = "\nBest Regards, \nHong Kong Electronic Investments LLC";
+            string message = head + body1 + body2 + end;
             return message;
         }
 
@@ -223,10 +231,21 @@ private string submitOrder(string sql)
         //The proceed button
         protected void totalcheck(object sender, EventArgs s){
             if (Page.IsValid) {
+                //GET ACCOUNT NUMBER
+                //GET USERNAME
+                accessDataBase myData = new accessDataBase();
+                //string username = Context.User.Identity.GetUserName();
+                string username = Context.User.Identity.GetUserName();
+                string actnum = myData.getOneData("accountNumber", "Account", username);
+                string email = myData.getOneData("email", "Client", actnum);
+                DateTime thisDay = DateTime.Today;
+                string date = thisDay.ToString("d");
+
+
                 //ExternalFunctions myExternalFunctions = new ExternalFunctions();
                 //HKeInvestData myHKeInvestData = new HKeInvestData();
                 //Buy order
-                if(string.Compare(opdd.SelectedValue, "Buy", true) == 0)
+                if (string.Compare(opdd.SelectedValue, "Buy", true) == 0)
                 {
                     //Buy Stock
                     if(string.Compare(Stype.SelectedValue, "stock", true) == 0)
@@ -249,7 +268,6 @@ private string submitOrder(string sql)
                         string sql2 = "";
                         //INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
                         //VALUES('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
-                        string username = Context.User.Identity.GetUserName();
                         if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'"))){
                             error.Text = "Account balance smaller then total amount to buy. Not enough balance. '"+ username + "'";
                             error.Visible = true;
@@ -268,9 +286,13 @@ private string submitOrder(string sql)
                             myHKeInvestData.setData(sqll, trans);
                             myHKeInvestData.setData(sql2, trans);
                             myHKeInvestData.commitTransaction(trans);
-                            generateInvoiceMsg(username, result, "stock", "5/3/2016", qofshares.Text.Trim(), c, p);
+                            generateInvoiceMsg(username, actnum, result, opdd.SelectedValue, stockcode, "===Stock name===", ordertype, date, numofshares, c,  );
+                            //generateInvoiceMsg(string user, string actnum, string orderrefnum, 
+                            //string buyorsell, string code, string sname, string stocktype, 
+                            //string date, string amt, string cost, string transnum, string dateExe, 
+                            //string numexe, string price)
                         }
-                       
+
                         return;
 
                         /*
@@ -330,7 +352,7 @@ private string submitOrder(string sql)
                         string code = Scode.Text.Trim();
                         decimal curprice = myExternalFunctions.getSecuritiesPrice("unitTrust", code);
                         decimal cost = amt * curprice;
-                        string username = Context.User.Identity.GetUserName();
+                        //string username = Context.User.Identity.GetUserName();
                         decimal bal = myHKeInvestData.getAggregateValue("select [balance] FROM [Account] WHERE [userName] = '" + username + "'");
                         if (amt > (myHKeInvestData.getAggregateValue("select [balance] FROM [Account] WHERE [userName] = '" + username + "'")))
                         {
