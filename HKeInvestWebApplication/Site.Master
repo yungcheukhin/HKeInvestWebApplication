@@ -50,7 +50,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/System _service/SearchSecurities.aspx" name="e">Search Securities</a></li>
+                        <li><a runat="server" href="~/Cover_page/About.aspx" name="e">About</a></li>
+                        <li><a runat="server" href="~/System_service/SearchSecurities.aspx" name="e">Search Securities</a></li>
                         <li><a runat="server" href="~/Default.aspx" id="securityHolding" visible="False">SecurityHolding</a></li>
                         <li><a runat="server" href="~/System_service/ManageInformation.aspx" id="ManageInformation" visible="False">Manage Information</a></li>
 <%--                        <li><a runat="server" href="~/ManageInformation.aspx" id="A1" visible="False">Manage Information</a></li>--%>
