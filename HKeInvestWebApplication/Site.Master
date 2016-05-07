@@ -50,21 +50,22 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a runat="server" href="~/System _service/SearchSecurities.aspx" name="e">Search Securities</a></li>
+                        <li><a runat="server" href="~/Default.aspx" id="securityHolding" visible="False">SecurityHolding</a></li>
+                        <li><a runat="server" href="~/System_service/ManageInformation.aspx" id="ManageInformation" visible="False">Manage Information</a></li>
+<%--                        <li><a runat="server" href="~/ManageInformation.aspx" id="A1" visible="False">Manage Information</a></li>--%>
+
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/AccountApplication">Account Apply</a></li>
                                 <li><a runat="server" href="~/Account/Register">Register</a></li>
                                 <li><a runat="server" href="~/Account/Login">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li><a runat="server" href="~/" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>

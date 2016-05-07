@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using HKeInvestWebApplication.Code_File;
 using HKeInvestWebApplication.ExternalSystems.Code_File;
 using Microsoft.AspNet.Identity;
+using System.Net.Mail;
 
 namespace HKeInvestWebApplication
 {
@@ -161,8 +162,65 @@ private string submitOrder(string sql)
 
         }
 
+        //Generate Invoice Msg
+        protected string generateInvoiceMsg(string user, string orderrefnum, string order, string date, string amt, string cost, string price)
+        {
+            string body = " ";
+            string head = " ";
+            string message = body + head;
+            return message;
+        }
 
 
+        //Send email
+        protected void sendemail(string user, string msg)
+        {
+            accessDataBase myData = new accessDataBase();
+            //string username = Context.User.Identity.GetUserName();
+            string actnum = myData.getOneData("accountNumber", "Account", user);
+            string email = myData.getOneData("email", "Client", actnum);
+            /*
+            DataTable searchemail = myHKeInvestData.getData("SELECT email FROM Client WHERE accountNumber='" + actnum + "'");
+            foreach (DataRow rows in searchemail.Rows)
+            {
+                email = email + rows["email"];
+            }
+            */
+            string name = "";
+            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+            mail.To.Add(email);
+            mail.From = new MailAddress("comp3111_team120@cse.ust.hk", "HKeInvest", System.Text.Encoding.UTF8);
+            mail.Subject = "Invoice";
+            mail.SubjectEncoding = System.Text.Encoding.UTF8;
+            mail.Body = msg;
+            mail.BodyEncoding = System.Text.Encoding.UTF8;
+            mail.IsBodyHtml = true;
+            mail.Priority = MailPriority.High;
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential("comp3111_team120", "team120#");
+            client.Port = 587;
+            client.Host = "smtp.cse.ust.hk";
+            client.EnableSsl = true;
+            try
+            {
+                client.Send(mail);
+                //Page.RegisterStartupScript("UserMsg", "<script>alert('Successfully Send...');if(alert){ window.location='SendMail.aspx';}</script>");
+            }
+            catch (Exception ex)
+            {
+                Exception ex2 = ex;
+                string errorMessage = string.Empty;
+                while (ex2 != null)
+                {
+                    errorMessage += ex2.ToString();
+                    ex2 = ex2.InnerException;
+                }
+                //Page.RegisterStartupScript("UserMsg", "<script>alert('Sending Failed...');if(alert){ window.location='SendMail.aspx';}</script>");
+            }
+        }
+
+
+        //The proceed button
         protected void totalcheck(object sender, EventArgs s){
             if (Page.IsValid) {
                 //ExternalFunctions myExternalFunctions = new ExternalFunctions();
@@ -185,6 +243,8 @@ private string submitOrder(string sql)
                         string ordertype = stockorderdd.SelectedValue;
                         string allornone = allornonecheck.SelectedValue;
                         decimal cost = numshares * curprice;
+                        string c = Convert.ToString(cost);
+                        string p = Convert.ToString(curprice);
                         string sqll="";
                         string sql2 = "";
                         //INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
@@ -208,6 +268,7 @@ private string submitOrder(string sql)
                             myHKeInvestData.setData(sqll, trans);
                             myHKeInvestData.setData(sql2, trans);
                             myHKeInvestData.commitTransaction(trans);
+                            generateInvoiceMsg(username, result, "stock", "5/3/2016", qofshares.Text.Trim(), c, p);
                         }
                        
                         return;
@@ -253,6 +314,8 @@ private string submitOrder(string sql)
                             myHKeInvestData.setData(sqll, trans);
                             myHKeInvestData.setData(updatetranssql, trans);
                             myHKeInvestData.commitTransaction(trans);
+                            //sendemail(user, result, "stock", "5/3/2016", amtofbond.Text.Trim(), c, p);
+
                         }
                         return;
                         //Save in own record
@@ -267,7 +330,7 @@ private string submitOrder(string sql)
                         string code = Scode.Text.Trim();
                         decimal curprice = myExternalFunctions.getSecuritiesPrice("unitTrust", code);
                         decimal cost = amt * curprice;
-                        string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                        string username = Context.User.Identity.GetUserName();
                         decimal bal = myHKeInvestData.getAggregateValue("select [balance] FROM [Account] WHERE [userName] = '" + username + "'");
                         if (amt > (myHKeInvestData.getAggregateValue("select [balance] FROM [Account] WHERE [userName] = '" + username + "'")))
                         {
@@ -282,9 +345,14 @@ private string submitOrder(string sql)
                         }
                         string result = myExternalFunctions.submitUnitTrustBuyOrder(Scode.Text.Trim(), amtofut.Text.Trim());
                         //save record and minus balance
+                        string sqll= "update[Account] set[balance] = [balance] - '" + amt + "' WHERE[userName] = '" + username + "'";
+                        string updatetranssql="";
                         if(result!= null)
                         {
-
+                            SqlTransaction trans = myHKeInvestData.beginTransaction();
+                            myHKeInvestData.setData(sqll, trans);
+                            myHKeInvestData.setData(updatetranssql, trans);
+                            myHKeInvestData.commitTransaction(trans);
                         }
                         return;
                         //
@@ -297,7 +365,7 @@ private string submitOrder(string sql)
                     if(string.Compare(Stype.SelectedValue, "bond", true) == 0)
                     {
                         //bond's code and amount
-                        string result = myExternalFunctions.submitBondSellOrder(Scode.Text.Trim(), numofshares.Text.Trim());
+						string result = myExternalFunctions.submitBondSellOrder(Scode.Text.Trim(), numofshares.Text.Trim());
                         //
                         //
                     }
