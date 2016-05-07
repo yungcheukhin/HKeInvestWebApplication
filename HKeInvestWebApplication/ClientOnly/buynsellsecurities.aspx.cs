@@ -18,6 +18,7 @@ namespace HKeInvestWebApplication
         ExternalFunctions myExternalFunctions = new ExternalFunctions();
         HKeInvestCode myHKeInvestCode = new HKeInvestCode();
         HKeInvestData myHKeInvestData = new HKeInvestData();
+        accessDataBase myData = new accessDataBase();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,19 +33,6 @@ namespace HKeInvestWebApplication
             sellunitTrust.Visible = false;
         }
 
-        protected void cvStocktype_Validate(object sender, EventArgs e)
-        {
-            /*
-            string stocktype = Stype.SelectedValue; 
-            
-            if (string.Compare(stocktype, "Stock", true)==0){
-                stocktypePanel.Visible = true;
-            }
-            else{
-                stocktypePanel.Visible = false;
-            }
-            */
-        }
 
         protected void stockorder(object sender, EventArgs e)
         {
@@ -90,7 +78,6 @@ namespace HKeInvestWebApplication
                     sellunitTrust.Visible = false;
 
                 }
-                //qofsharesPanel.Visible = true;
 
             }
            if (string.Compare(opdd.SelectedValue, "Sell", true)==0){
@@ -164,6 +151,12 @@ private string submitOrder(string sql)
 
         protected void showsecuritydetails(string type, string code)
         {
+            DataTable security;
+            if (String.Compare(type, "unitTrust", true) == 0)
+            {
+                type = "unit trust";
+            }
+            security = myExternalFunctions.getSecuritiesByCode(type, code);
 
         }
 
@@ -183,7 +176,7 @@ private string submitOrder(string sql)
         //Send email
         protected void sendemail(string user, string msg)
         {
-            accessDataBase myData = new accessDataBase();
+            //accessDataBase myData = new accessDataBase();
             //string username = Context.User.Identity.GetUserName();
             string actnum = myData.getOneData("accountNumber", "Account", user);
             string email = myData.getOneData("email", "Client", actnum);
@@ -238,6 +231,7 @@ private string submitOrder(string sql)
                 string username = Context.User.Identity.GetUserName();
                 string actnum = myData.getOneData("accountNumber", "Account", username);
                 string email = myData.getOneData("email", "Client", actnum);
+                string balance = myData.getOneData("balance", "Account", username);
                 DateTime thisDay = DateTime.Today;
                 string date = thisDay.ToString("d");
 
@@ -282,11 +276,13 @@ private string submitOrder(string sql)
                         if(result!= null)
                         {
                             //string sql1 = "update";
+
+                            //BUY STOCK && UPDATE TABLE 
                             SqlTransaction trans = myHKeInvestData.beginTransaction();
                             myHKeInvestData.setData(sqll, trans);
                             myHKeInvestData.setData(sql2, trans);
                             myHKeInvestData.commitTransaction(trans);
-                            generateInvoiceMsg(username, actnum, result, opdd.SelectedValue, stockcode, "===Stock name===", ordertype, date, numofshares, c,  );
+                            //generateInvoiceMsg(username, actnum, result, opdd.SelectedValue, stockcode, "===Stock name===", ordertype, date, numofshares, c,  );
                             //generateInvoiceMsg(string user, string actnum, string orderrefnum, 
                             //string buyorsell, string code, string sname, string stocktype, 
                             //string date, string amt, string cost, string transnum, string dateExe, 
@@ -332,6 +328,7 @@ private string submitOrder(string sql)
                         updatetranssql = "update [TransactionRecord] set ";
                         if(result!= null)
                         {
+                            //KEEP TRANS RECORD IN TABLE 
                             SqlTransaction trans = myHKeInvestData.beginTransaction();
                             myHKeInvestData.setData(sqll, trans);
                             myHKeInvestData.setData(updatetranssql, trans);
@@ -384,10 +381,22 @@ private string submitOrder(string sql)
                 //Sell order
                 if(String.Compare(opdd.SelectedValue, "Sell", true) == 0)
                 {
+
                     if(string.Compare(Stype.SelectedValue, "bond", true) == 0)
                     {
+                        //Check security owns
+                        string securityamount = myData.getOneData("securityamount", "SecurityHolding", username);
+                        decimal secamount = Convert.ToDecimal(securityamount);
+                        decimal sellamount = Convert.ToDecimal(amtofbond.Text.Trim());
                         //bond's code and amount
-						string result = myExternalFunctions.submitBondSellOrder(Scode.Text.Trim(), numofshares.Text.Trim());
+                        if(secamount < sellamount)
+                        {
+                            error.Text = username + securityamount + "Security Holding in account less then total amount to sell. Order will not be proceeded.";
+                            error.Visible = true;
+                            return;
+                        }
+                        
+                        string result = myExternalFunctions.submitBondSellOrder(Scode.Text.Trim(), numofshares.Text.Trim());
                         //
                         //
                     }
