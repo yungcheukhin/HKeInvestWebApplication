@@ -264,7 +264,7 @@ namespace HKeInvestWebApplication
             DataTable dtBond = myHKeInvestCode.unloadGridView(gvBond);
             string sortExpression = e.SortExpression.ToLower();
             ViewState["SortExpression"] = sortExpression;
-            dtBond.DefaultView.Sort = sortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
+            dtBond.DefaultView.Sort = e.SortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
             dtBond.AcceptChanges();
             gvBond.DataSource = dtBond.DefaultView;
             gvBond.DataBind();
@@ -275,7 +275,7 @@ namespace HKeInvestWebApplication
             DataTable dtStock = myHKeInvestCode.unloadGridView(gvStock);
             string sortExpression = e.SortExpression.ToLower();
             ViewState["SortExpression"] = sortExpression;
-            dtStock.DefaultView.Sort = sortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
+            dtStock.DefaultView.Sort = e.SortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
             dtStock.AcceptChanges();
             gvStock.DataSource = dtStock.DefaultView;
             gvStock.DataBind();
@@ -283,7 +283,13 @@ namespace HKeInvestWebApplication
 
         protected void gvUnitTrust_Sorting(object sender, GridViewSortEventArgs e)
         {
-
+            DataTable dtUnitTrust = myHKeInvestCode.unloadGridView(gvUnitTrust);
+            string sortExpression = e.SortExpression.ToLower();
+            ViewState["SortExpression"] = sortExpression;
+            dtUnitTrust.DefaultView.Sort = e.SortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
+            dtUnitTrust.AcceptChanges();
+            gvUnitTrust.DataSource = dtUnitTrust.DefaultView;
+            gvUnitTrust.DataBind();
         }
     }
 }

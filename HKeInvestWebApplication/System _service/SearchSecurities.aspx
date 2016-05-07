@@ -46,7 +46,7 @@
         <hr />
 
         <asp:Panel ID="bondtable" runat="server" Visible="False">
-            <asp:GridView ID="gvBond" runat="server" AutoGenerateColumns="false" OnSorting="gvBond_Sorting">
+            <asp:GridView ID="gvBond" runat="server" AutoGenerateColumns="false" OnSorting="gvBond_Sorting" AllowSorting="true">
                 <Columns>
                     <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="true" SortExpression="code" />
                     <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="true" SortExpression="name" />

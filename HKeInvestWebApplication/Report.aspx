@@ -6,6 +6,13 @@
     <div>
         <asp:Label ID="lblAccountNumber" runat="server" Visible="False"></asp:Label>
         <asp:Label ID="lblClientName" runat="server" Visible="False"></asp:Label>
+        <asp:DropDownList ID="ddlReportType" runat="server" AutoPostBack="True">
+            <asp:ListItem Value="0">Report Type</asp:ListItem>
+            <asp:ListItem Value="summary">Summary</asp:ListItem>
+            <asp:ListItem Value="detail">Detail List</asp:ListItem>
+            <asp:ListItem Value="status">Status List</asp:ListItem>
+            <asp:ListItem Value="history">History List</asp:ListItem>
+        </asp:DropDownList>
     </div>
     <div>
 
