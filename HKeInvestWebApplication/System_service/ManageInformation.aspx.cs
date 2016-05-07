@@ -20,15 +20,16 @@ namespace HKeInvestWebApplication
 
     public partial class ManageInformation : System.Web.UI.Page
     {
-        AccountInfro clientAccount;
+        AccountInfro clientAccount = new AccountInfro();
         string userName;
+        string clientAccountNumber;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!Context.User.Identity.IsAuthenticated)
-            //{
-            //    Response.Redirect("~/Default.aspx");
-            //    return;
-            //}
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Default.aspx");
+                return;
+            }
             userName = Context.User.Identity.GetUserName();
             clientAccount = new AccountInfro(userName);
             if (String.Compare(userName, "employee") != 0)  //Client account
@@ -63,22 +64,24 @@ namespace HKeInvestWebApplication
         {
             clientAccount.userName = userNameSearchBox.Text;
             if (clientAccount.checkNameExist()) {
-                updatePage();
+                nameExist.Visible = false;
                 enterUserName.Visible = false;
                 manageInfro.Visible = true;
-                nameIsExist.Visible = false;
+                updatePage();
+
             }
             else
             {
                 enterUserName.Visible = true;
                 manageInfro.Visible = false;
-                nameIsExist.Visible = true;
+                nameExist.Visible = true;
             }
 
         }
 
         protected void updatePage()
         {
+            clientAccount.updateTable();
             titleLabel.Text = clientAccount.title;
             firstNameLabel.Text = clientAccount.firstName;
             lastNameLabel.Text = clientAccount.lastName;
@@ -94,81 +97,81 @@ namespace HKeInvestWebApplication
             legalResidenceLabel.Text = clientAccount.legalResidence;
             passportCountryOfIssueLabel.Text = clientAccount.passportCountryOfIssue;
             accountTypeLabel.Text = clientAccount.accountType;
+            clientAccountNumber = clientAccount.accountNumber;
             accountNumberLabel.Text = clientAccount.accountNumber;
             dateOfBirthLabel.Text = clientAccount.dateOfBirth;
             HKIDPassportNumberLabel.Text = clientAccount.HKIDPassportNumber;
             userNameLabel.Text = clientAccount.userName;
 
-
         }
         protected void titleBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.title, ddlTitle.SelectedValue);
+            clientAccount.changeData("title", ddlTitle.SelectedValue, accountNumberLabel.Text);
         }
 
         protected void firstNameBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.firstName, firstNameBox.Text);
+            clientAccount.changeData("firstName", firstNameBox.Text, accountNumberLabel.Text);
         }
 
         protected void lastNameBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.lastName, lastNameBox.Text);
+            clientAccount.changeData("lastName", lastNameBox.Text, accountNumberLabel.Text);
         }
 
         protected void emailBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.email, emailBox.Text);
+            clientAccount.changeData("email", emailBox.Text, accountNumberLabel.Text);
         }
 
         protected void buildingBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.building, buildingBox.Text);
+            clientAccount.changeData("building", buildingBox.Text, accountNumberLabel.Text);
         }
 
         protected void streetBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.street, streetBox.Text);
+            clientAccount.changeData("street", streetBox.Text, accountNumberLabel.Text);
         }
 
         protected void districtBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.district, districtBox.Text);
+            clientAccount.changeData("district", districtBox.Text, accountNumberLabel.Text);
         }
 
         protected void homePhoneBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.homePhone, homePhoneBox.Text);
+            clientAccount.changeData("homePhone", homePhoneBox.Text, accountNumberLabel.Text);
         }
 
         protected void homeFaxBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.homeFax, homeFaxBox.Text);
+            clientAccount.changeData("homeFax", homeFaxBox.Text, accountNumberLabel.Text);
         }
 
         protected void businessPhoneBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.businessPhone, businessPhoneBox.Text);
+            clientAccount.changeData("businessPhone", businessPhoneBox.Text, accountNumberLabel.Text);
         }
 
         protected void mobileBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.mobile, mobileBox.Text);
+            clientAccount.changeData("mobile", mobileBox.Text, accountNumberLabel.Text);
         }
 
         protected void citizenshipBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.citizenship, citizenshipBox.Text);
+            clientAccount.changeData("citizenship", citizenshipBox.Text, accountNumberLabel.Text);
         }
 
         protected void legalResidenceBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.legalResidence, legalResidenceBox.Text);
+            clientAccount.changeData("legalResidence", legalResidenceBox.Text, accountNumberLabel.Text);
         }
 
         protected void passportCountryOfIssueBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.changeData(clientAccount.passportCountryOfIssue, passportCountryOfIssueBox.Text);
+            clientAccount.changeData("passportCountryOfIssue", passportCountryOfIssueBox.Text, accountNumberLabel.Text);
         }
 
         protected void confirmBtn_Click(object sender, EventArgs e)
