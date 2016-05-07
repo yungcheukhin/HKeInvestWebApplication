@@ -4,16 +4,16 @@
         
         <div>
             <div>
-                <asp:Label runat="server" AssociatedControlID="txtStockCode" Text="Stock Code:"></asp:Label>
+                <asp:Label runat="server" AssociatedControlID="txtSecurityCode" Text="Stock Code:"></asp:Label>
                 &nbsp;
-                <asp:TextBox ID="txtStockCode" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtSecurityCode" runat="server"></asp:TextBox>
             &nbsp;
                 <asp:DropDownList ID="ddlSecurityType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSecurityType_SelectedIndexChanged">
                     <asp:ListItem Value="0">Security Type</asp:ListItem>
                     <asp:ListItem Value="all">All</asp:ListItem>
                     <asp:ListItem Value="bond">Bond</asp:ListItem>
                     <asp:ListItem Value="stock">Stock</asp:ListItem>
-                    <asp:ListItem Value="unit trust">Unit Trust</asp:ListItem>
+                    <asp:ListItem Value="unitTrust">Unit Trust</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div>
@@ -23,7 +23,7 @@
                 <asp:Label ID="lblResultMessage" runat="server" Visible="False"></asp:Label>
             </div>
             <div>
-                <asp:GridView ID="gvProfitLossTracking" runat="server" Visible="False" AutoGenerateColumns="False" OnSelectedIndexChanged="gvProfitLossTracking_Sorting">
+                <asp:GridView ID="gvProfitLossTracking" runat="server" Visible="False" AutoGenerateColumns="False" >
                     <Columns>
                         <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="True" SortExpression="type" />
                         <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
