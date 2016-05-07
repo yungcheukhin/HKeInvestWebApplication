@@ -84,6 +84,22 @@ namespace HKeInvestWebApplication
 
         }
 
+        protected void cvUserName_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string username = UserName.Text.Trim();
+            string sql2 = "SELECT userName FROM Account WHERE userName = '" + username + "'";
+            HKeInvestData myHKeInvestData2 = new HKeInvestData();
+            DataTable dtUser = myHKeInvestData2.getData(sql2);
+            
+            if(dtUser!=null)
+            {
+                args.IsValid = false;
+                cvUserName.ErrorMessage = "The user name has been used.";
+            }
+
+
+        }
+
         protected void Register_Click(object sender, EventArgs e)
         {
 
