@@ -385,13 +385,20 @@ private string submitOrder(string sql)
                     if(string.Compare(Stype.SelectedValue, "bond", true) == 0)
                     {
                         //Check security owns
-                        string securityamount = myData.getOneData("securityamount", "SecurityHolding", username);
-                        decimal secamount = Convert.ToDecimal(securityamount);
+                        string bondcode = Scode.Text.Trim();
+                        string searchshares = "SELECT [shares] FROM [SecurityHolding] WHERE [accountNumber] = '" + actnum + "' AND [type] = '" + Stype.SelectedValue + "' AND [code] = '" + bondcode + "'";
+                        decimal secamount = myHKeInvestData.getAggregateValue(searchshares);
+                        error.Text = searchshares + "hahahahahaha";
+                        error.Visible = true;
+                        //decimal secamount = Convert.ToDecimal(searchshares);
                         decimal sellamount = Convert.ToDecimal(amtofbond.Text.Trim());
+
+
+                        
                         //bond's code and amount
                         if(secamount < sellamount)
                         {
-                            error.Text = username + securityamount + "Security Holding in account less then total amount to sell. Order will not be proceeded.";
+                        error.Text = username + "Securities in Account less than securities to sell. Order unable to be proceeded.";
                             error.Visible = true;
                             return;
                         }
@@ -410,12 +417,37 @@ private string submitOrder(string sql)
                         string allornone = sellallornonecheck.SelectedValue;
                         string lowprice = lowPrice.Text.Trim();
                         string stopPrice = sellstopPrice.Text.Trim();
+
+                        string searchshares = "SELECT shares FROM SecurityHolding WHERE userName = '" + username + "' AND type = '" + "unit trust" + "' AND code = '" + code + "'";
+                        decimal secamount = Convert.ToDecimal(searchshares);
+                        decimal sellamount = Convert.ToDecimal(sellstockamt.Text.Trim());
+                        if (secamount < sellamount)
+                        {
+                            error.Text = "Securities in Account less than securities to sell. Order unable to be proceeded.";
+                            error.Visible = true;
+                            return;
+                        }
+
+
                         string result = myExternalFunctions.submitStockSellOrder(code, shares, orderType, expday, allornone, lowprice, stopPrice);
                     }
                     if (string.Compare(Stype.SelectedValue, "unitTrust", true) == 0)
                     {
                         //unit trust's code, shares
+                        string utcode = Scode.Text.Trim();
+                        string searchshares = "SELECT shares FROM SecurityHolding WHERE userName = '" + username + "' AND type = '" + "unit trust" + "' AND code = '" + utcode + "'";
+                        decimal secamount = Convert.ToDecimal(searchshares);
+                        decimal sellamount = Convert.ToDecimal(numofutshares.Text.Trim());
+
+                        if(secamount < sellamount)
+                        {
+                            //gfhgfhgfhg
+                            error.Text = "Securities in Account less than securities to sell. Order unable to be proceeded.";
+                            error.Visible = true;
+                            return;
+                        }
                         string result = myExternalFunctions.submitUnitTrustSellOrder(Scode.Text.Trim(), numofutshares.Text.Trim());
+
                     }
 
                 }

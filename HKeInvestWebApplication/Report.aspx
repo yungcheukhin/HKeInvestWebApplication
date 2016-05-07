@@ -22,7 +22,7 @@
                 <asp:BoundField DataField="accountNumber" HeaderText="Account Number" ReadOnly="True" SortExpression="accountNumber" />
                 <asp:BoundField DataField="firstName" HeaderText="First Name" ReadOnly="True" SortExpression="firstName" />
                 <asp:BoundField DataField="lastName" HeaderText="Last Name" ReadOnly="True" SortExpression="lastName" />
-                <asp:BoundField DataField="monetary" DataFormatString="{0:n2} " HeaderText="Total Monetary Value (HKD)" ReadOnly="True" SortExpression="monetary" />
+                <asp:BoundField DataField="monetaryTotal" DataFormatString="{0:n2} " HeaderText="Total Monetary Value (HKD)" ReadOnly="True" SortExpression="monetaryTotal" />
                 <asp:BoundField DataField="balance" DataFormatString="{0:n2} " HeaderText="Free Balance" ReadOnly="True" SortExpression="balance" />
                 <asp:BoundField DataField="monetaryBond" DataFormatString="{0:n2} " HeaderText="Monetary Value (Bond)" ReadOnly="True" SortExpression="monetaryBond" />
                 <asp:BoundField DataField="monetaryTrust" DataFormatString="{0:n2} " HeaderText="Monetary Value (Unit Trust)" ReadOnly="True" SortExpression="monetaryTrust" />

@@ -14,7 +14,7 @@
           <%--try for pdf--%>
 <%--            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="..\..\01Introduction.pdf">PDF</asp:HyperLink>--%>
             <asp:Label runat="server" Text="Security Type: " AssociatedControlID="Stype" CssClass="control-label col-md-3"></asp:Label>
-            <div class="col-md-4"><asp:DropDownList ID="Stype" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="cvStocktype_Validate" OnTextChanged="cvStocktype_Validate">
+            <div class="col-md-4"><asp:DropDownList ID="Stype" runat="server" CssClass="form-control" AutoPostBack="True">
                 <asp:ListItem Value="">Security Type</asp:ListItem>
                 <asp:ListItem Value="bond">Bond</asp:ListItem>
                 <asp:ListItem Value="stock">Stock</asp:ListItem>
@@ -31,6 +31,7 @@
             <div class="col-md-4">
                 <asp:TextBox ID="Scode" runat="server" CssClass="form-control"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Scode" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Security code is required." Display="Dynamic"></asp:RequiredFieldValidator>
+                <asp:CustomValidator ID="securitycodevalidate" runat="server" ErrorMessage="Please enter a valid security code." ControlToValidate="Scode"></asp:CustomValidator>
             </div>
         </div>
 
@@ -152,6 +153,12 @@
                 <asp:Label runat="server" Text="Number of Shares to sell: " AssociatedControlID="numofsellshares" CssClass="control-label col-md-3"></asp:Label>
                 <div class="col-md-4"><asp:TextBox ID="numofsellshares" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
+             </div>
+             <div class="form-group">
+             <asp:Label runat="server" Text="Number of shares to sell:" AssociatedControlID="numofutshares" CssClass="control-label col-md-3"></asp:Label>
+            <div class="col-md-4">
+            <asp:TextBox ID="sellstockamt" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
              </div>
              <div class="form-group">
                   <asp:Label runat="server" Text="Low Price:" AssociatedControlID="lowPrice" CssClass="control-label col-md-3"></asp:Label>
