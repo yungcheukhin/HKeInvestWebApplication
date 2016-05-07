@@ -70,7 +70,7 @@ namespace HKeInvestWebApplication
             {
                 stocktable.Visible = false;
                 unittable.Visible = false;
-                //jhbjhb
+                
                 if (code == "" && name == "")
                 {
                     searchresult = myExternalFunctions.getSecuritiesData(type);
@@ -81,8 +81,6 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
-                        ViewState["SortExpression"] = "name";
-                        ViewState["SortDirection"] = "ASC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
                         bondtable.Visible = true;
@@ -98,8 +96,6 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
-                        ViewState["SortExpression"] = "name";
-                        ViewState["SortDirection"] = "ASC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
                         bondtable.Visible = true;
@@ -115,8 +111,6 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
-                        ViewState["SortExpression"] = "name";
-                        ViewState["SortDirection"] = "ASC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
                         bondtable.Visible = true;
@@ -182,6 +176,8 @@ namespace HKeInvestWebApplication
                     lblerror.Text = "Either one of security code or security name is allowed to input.";
                     lblerror.Visible = true;
                 }
+                //ViewState["SortExpression"] = "name";
+                //ViewState["SortDirection"] = "ASC";
             }
             else if (Stype.SelectedValue == "unit trust")
             {
@@ -238,6 +234,8 @@ namespace HKeInvestWebApplication
                     lblerror.Visible = true;
                 }
             }
+            ViewState["SortExpression"] = "name";
+            ViewState["SortDirection"] = "ASC";
         }
 
         /*protected void gvSecurityHolding_Sorting(object sender, GridViewSortEventArgs e)
@@ -258,18 +256,13 @@ namespace HKeInvestWebApplication
 
         protected void gvBond_Sorting(object sender, GridViewSortEventArgs e)
         {
-            /*DataTable dtBond = myHKeInvestCode.unloadGridView(gvBond);
+            DataTable dtBond = myHKeInvestCode.unloadGridView(gvBond);
             string sortExpression = e.SortExpression.ToLower();
             ViewState["SortExpression"] = sortExpression;
             dtBond.DefaultView.Sort = e.SortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
+            //dtBond.DefaultView.Sort = "name" + " " + "ASC";
             dtBond.AcceptChanges();
             gvBond.DataSource = dtBond.DefaultView;
-            gvBond.DataBind();*/
-            DataBind();
-            DataTable dt = new DataTable();
-            DataView sortedView = new DataView(dt);
-            sortedView.Sort = e.SortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
-            gvBond.DataSource = sortedView;
             gvBond.DataBind();
         }
 
