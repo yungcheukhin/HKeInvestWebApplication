@@ -29,7 +29,10 @@ namespace HKeInvestWebApplication.Code_File
             userName = loginName;
             updateTable();
         }
+        public AccountInfro()
+        {
 
+        }
         public void updateTable() {
 
             Account = myHKeInvestData.getData("SELECT * FROM Account WHERE userName = '" + userName + "'");
@@ -65,18 +68,32 @@ namespace HKeInvestWebApplication.Code_File
             }
         }
 
-        public void changeData(string toChange,string value)
+        public void changeData(string toChange,string value,string AccountNumber)
         {
 
             SqlTransaction trans = myHKeInvestData.beginTransaction();
-            if(toChange == userName) 
+            if(String.Compare(toChange, "balance") == 0) 
             myHKeInvestData.setData("UPDATE Account SET " + toChange + " = '"+ value +
-                "' WHERE accountNumber = '" + accountNumber + "'", trans);
+                "' WHERE accountNumber = '" + AccountNumber + "'", trans);
+            else myHKeInvestData.setData("UPDATE Client SET " + toChange + " = '" + value +
+                "' WHERE accountNumber = '" + AccountNumber + "'", trans);
+            myHKeInvestData.commitTransaction(trans);
+
+            //DataBinder.Eval(toChange, value);
+        }
+
+        public void changeData(string toChange, string value)
+        {
+
+            SqlTransaction trans = myHKeInvestData.beginTransaction();
+            if (String.Compare(toChange, "balance") == 0)
+                myHKeInvestData.setData("UPDATE Account SET " + toChange + " = '" + value +
+                    "' WHERE accountNumber = '" + accountNumber + "'", trans);
             else myHKeInvestData.setData("UPDATE Client SET " + toChange + " = '" + value +
                 "' WHERE accountNumber = '" + accountNumber + "'", trans);
             myHKeInvestData.commitTransaction(trans);
 
-            DataBinder.Eval(toChange, value);
+            //DataBinder.Eval(toChange, value);
         }
 
         public Boolean checkNameExist()

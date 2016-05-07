@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageInformation.aspx.cs" Inherits="HKeInvestWebApplication.ManageInformation" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" CssClass="text-center">
     
        <h2><%: Title %>Manage Account Information</h2>
 
@@ -14,7 +14,8 @@
 
                 </div>
                 <div class="form-group"><asp:Button ID="userNameSearchBtn" runat="server" Text="Search User Name" class="btn-default col-md-4" OnClick="userNameBtn_Click"  />
-                    <asp:RegularExpressionValidator  ID="nameIsExist" runat="server" ControlToValidate="userNameSearchBox" CssClass="text-danger" EnableClientScript="False" ErrorMessage="No account exist with this user name" Display="Dynamic"  Visible="False">*</asp:RegularExpressionValidator>
+<%--                    <asp:RegularExpressionValidator  ID="nameIsEst" runat="server" ControlToValidate="userNameSearchBox" CssClass="text-danger" EnableClientScript="False" ErrorMessage="No account exist with this user name"  Text="No account exist with this user name">*</asp:RegularExpressionValidator>--%>
+                    <asp:Label ID="nameExist" runat="server" CssClass="text-danger" Text="No account exist with this user name" ForeColor="Red" Visible="False"></asp:Label>
                 </div>
         </div>
 
