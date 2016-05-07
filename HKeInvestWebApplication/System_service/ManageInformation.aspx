@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageInformation.aspx.cs" Inherits="HKeInvestWebApplication.ManageInformation" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" CssClass="text-center">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" >
     
        <h2><%: Title %>Manage Account Information</h2>
 
@@ -14,7 +14,6 @@
 
                 </div>
                 <div class="form-group"><asp:Button ID="userNameSearchBtn" runat="server" Text="Search User Name" class="btn-default col-md-4" OnClick="userNameBtn_Click"  />
-<%--                    <asp:RegularExpressionValidator  ID="nameIsEst" runat="server" ControlToValidate="userNameSearchBox" CssClass="text-danger" EnableClientScript="False" ErrorMessage="No account exist with this user name"  Text="No account exist with this user name">*</asp:RegularExpressionValidator>--%>
                     <asp:Label ID="nameExist" runat="server" CssClass="text-danger" Text="No account exist with this user name" ForeColor="Red" Visible="False"></asp:Label>
                 </div>
         </div>
@@ -42,12 +41,13 @@
             <div class="col-md-6">
                 <asp:Label runat="server" Text="Title: "  class="control-label col-md-4"></asp:Label>
                 <asp:Label ID="titleLabel" runat="server" Text=" " class="control-label col-md-3"></asp:Label>
-                <asp:DropDownList ID="ddlTitle" runat="server" class="col-md-3">
+                <div class="col-md-3"><asp:DropDownList ID="ddlTitle" runat="server" CssClass="form-control">
                 <asp:ListItem Value="Mr">Mr.</asp:ListItem>
                 <asp:ListItem Value="Mrs">Mrs.</asp:ListItem>
                 <asp:ListItem Value="Ms">Ms.</asp:ListItem>
                 <asp:ListItem Value="Dr">Dr.</asp:ListItem>
             </asp:DropDownList>
+                    </div>
                 <asp:Button ID="titleBtn" runat="server" Text="Edit" class="btn-default col-md-2" OnClick="titleBtn_Click" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlTitle" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Title is required.">*</asp:RequiredFieldValidator>
             </div>
