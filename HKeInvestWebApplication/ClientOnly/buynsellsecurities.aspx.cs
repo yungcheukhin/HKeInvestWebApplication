@@ -374,7 +374,7 @@ private string submitOrder(string sql)
                             myHKeInvestData.commitTransaction(trans);
                         }
                         return;
-                        //
+                        //ham chut lai
                     }
 
                 }
