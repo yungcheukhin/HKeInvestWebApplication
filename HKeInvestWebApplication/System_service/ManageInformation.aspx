@@ -173,22 +173,27 @@
             <div class="col-md-6">
                 <asp:Label runat="server" Text="User name: " class="control-label col-md-4" ></asp:Label>
                 <asp:Label ID="userNameLabel" runat="server" Text=" " class="control-label col-md-3"></asp:Label>
- </div>
+            </div>
+<%--            <div class="col-md-6">
+            <asp:Button ID="refreshBtn" runat="server" Text="Choose user account again" OnClick="refreshBtn_Click" class="btn-default col-md-6"/>
+            </div>--%>
         </div>
 
-        <div class="form-group">
+<%--        <div class="form-group">
             <div class="col-md-6">
                 <asp:Label runat="server" Text="New Password: " class="control-label col-md-4" ></asp:Label>
                 <asp:Label ID="empty1" runat="server" Text=" " class="control-label col-md-3"></asp:Label>
-                <asp:TextBox ID="passwordBox" runat="server" class="col-md-5"></asp:TextBox>             
+                <asp:TextBox ID="passwordBox" runat="server" class="col-md-5"></asp:TextBox>         
+                
             </div>
             <div class="col-md-6">
                 <asp:Label runat="server" Text="Confirm Password: " class="control-label col-md-4" ></asp:Label>
                 <asp:TextBox ID="confirmBox" runat="server" class="col-md-4"></asp:TextBox>    
-                <asp:Button ID="confirmBtn" runat="server" Text="Confirm Edit Password" class="btn-default col-md-4" OnClick="confirmBtn_Click" />            
+                <asp:Button ID="confirmBtn" runat="server" Text="Confirm Edit Password" class="btn-default col-md-4" OnClick="confirmBtn_Click" />
+
             </div>
 
-        </div>
+        </div>--%>
 
 
 

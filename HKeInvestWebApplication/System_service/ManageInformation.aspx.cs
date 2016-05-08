@@ -23,20 +23,24 @@ namespace HKeInvestWebApplication
         AccountInfro clientAccount = new AccountInfro();
         string userName;
         string clientAccountNumber;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!Context.User.Identity.IsAuthenticated)
             {
                 Response.Redirect("~/Default.aspx");
                 return;
             }
+
+
             userName = Context.User.Identity.GetUserName();
             clientAccount = new AccountInfro(userName);
+
             if (String.Compare(userName, "employee") != 0)  //Client account
             {
                 enterUserName.Visible = false;
                 manageInfro.Visible = true;
-
                 firstNameBox.Visible = false;
                 firstNameBtn.Visible = false;
                 lastNameBox.Visible = false;
@@ -54,9 +58,8 @@ namespace HKeInvestWebApplication
             {
                 enterUserName.Visible = true;
                 manageInfro.Visible = false;
-            }
 
-            titleBtn.Click += new EventHandler(this.titleBtn_Click);
+            }
 
         }
 
@@ -64,6 +67,7 @@ namespace HKeInvestWebApplication
         {
             clientAccount.userName = userNameSearchBox.Text;
             if (clientAccount.checkNameExist()) {
+
                 nameExist.Visible = false;
                 enterUserName.Visible = false;
                 manageInfro.Visible = true;
@@ -107,84 +111,98 @@ namespace HKeInvestWebApplication
         protected void titleBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("title", ddlTitle.SelectedValue, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void firstNameBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("firstName", firstNameBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void lastNameBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("lastName", lastNameBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void emailBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("email", emailBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void buildingBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("building", buildingBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void streetBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("street", streetBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void districtBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("district", districtBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void homePhoneBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("homePhone", homePhoneBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void homeFaxBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("homeFax", homeFaxBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void businessPhoneBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("businessPhone", businessPhoneBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void mobileBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("mobile", mobileBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void citizenshipBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("citizenship", citizenshipBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void legalResidenceBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("legalResidence", legalResidenceBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
         protected void passportCountryOfIssueBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("passportCountryOfIssue", passportCountryOfIssueBox.Text, accountNumberLabel.Text);
+            updatePage();
         }
 
-        protected void confirmBtn_Click(object sender, EventArgs e)
-        {
-            string code = IdentityHelper.GetCodeFromRequest(Request);
-            if (code != null)
-            {
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var user = manager.FindByName(clientAccount.userName);
-                var result = manager.ResetPassword(user.Id, code, passwordBox.Text);
-            }
-        }
-
+        //protected void confirmBtn_Click(object sender, EventArgs e)
+        //{
+        //    string code = IdentityHelper.GetCodeFromRequest(Request);
+        //    if (code != null)
+        //    {
+        //        var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //        var user = manager.FindByName(clientAccount.userName);
+        //        var result = manager.ResetPassword(user.Id, code, passwordBox.Text);
+        //    }
+        //    updatePage();
+        //}
 
     }
 }
