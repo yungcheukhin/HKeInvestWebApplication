@@ -20,25 +20,23 @@ namespace HKeInvestWebApplication
 
     public partial class ManageInformation : System.Web.UI.Page
     {
-        AccountInfro clientAccount = new AccountInfro();
-        string userName;
-        string clientAccountNumber;
+            AccountInfro clientAccount = new AccountInfro();
+            string clientName;
+            string clientAccountNumber;
+            string important1 = GlobalVal.ImportantData;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
             if (!Context.User.Identity.IsAuthenticated)
             {
                 Response.Redirect("~/Default.aspx");
                 return;
             }
-
-
-            userName = Context.User.Identity.GetUserName();
-            clientAccount = new AccountInfro(userName);
-
-            if (String.Compare(userName, "employee") != 0)  //Client account
+            clientName = Context.User.Identity.GetUserName();
+            if (String.Compare(clientName, "employee") != 0)  //Client account
             {
+                clientAccount.userName = clientName;
                 enterUserName.Visible = false;
                 manageInfro.Visible = true;
                 firstNameBox.Visible = false;
@@ -49,18 +47,37 @@ namespace HKeInvestWebApplication
                 citizenshipBtn.Visible = false;
                 legalResidenceBox.Visible = false;
                 legalResidenceBtn.Visible = false;
+                refreshBtn.Visible = false;
                 passportCountryOfIssueBox.Visible = false;
                 passportCountryOfIssueBtn.Visible = false;
                 updatePage();
 
             }
-            else if (String.Compare(userName, "employee") == 0)
+            else if ((String.Compare(clientName, "employee") == 0 && important1 == null) || (userNameSearchBox.Text == null && important1 != null))
             {
+                refreshBtn.Visible = true;
                 enterUserName.Visible = true;
                 manageInfro.Visible = false;
 
             }
+            else if(userNameSearchBox.Text != null)
+            {
+                clientAccount.userName = userNameSearchBox.Text;
+                updatePage();
+            }
+            else
+            {
+                refreshBtn.Visible = true;
+                enterUserName.Visible = true;
+                manageInfro.Visible = false;
+            }
 
+            if (important1 == null)
+            {
+                important1 = DateTime.Now.ToString();
+                GlobalVal.ImportantData = important1;
+            }
+            if (String.Compare(clientName, "employee") != 0) GlobalVal.reset();
         }
 
         protected void userNameBtn_Click(object sender, EventArgs e)
@@ -190,6 +207,12 @@ namespace HKeInvestWebApplication
         {
             clientAccount.changeData("passportCountryOfIssue", passportCountryOfIssueBox.Text, accountNumberLabel.Text);
             updatePage();
+        }
+
+        protected void refreshBtn_Click(object sender, EventArgs e)
+        {
+            GlobalVal.reset();
+            Response.Redirect("~/System_service/ManageInformation.aspx");
         }
 
         //protected void confirmBtn_Click(object sender, EventArgs e)

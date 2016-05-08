@@ -174,9 +174,9 @@
                 <asp:Label runat="server" Text="User name: " class="control-label col-md-4" ></asp:Label>
                 <asp:Label ID="userNameLabel" runat="server" Text=" " class="control-label col-md-3"></asp:Label>
             </div>
-<%--            <div class="col-md-6">
-            <asp:Button ID="refreshBtn" runat="server" Text="Choose user account again" OnClick="refreshBtn_Click" class="btn-default col-md-6"/>
-            </div>--%>
+            <div class="col-md-6">
+            <asp:Button ID="refreshBtn" runat="server" Text="Choose user account again" OnClick="refreshBtn_Click" class="btn-default col-md-6" Visible="False"/>
+            </div>
         </div>
 
 <%--        <div class="form-group">
