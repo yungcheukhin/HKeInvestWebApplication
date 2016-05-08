@@ -499,39 +499,12 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.Label userNameLabel;
         
         /// <summary>
-        /// empty1 control.
+        /// refreshBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label empty1;
-        
-        /// <summary>
-        /// passwordBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordBox;
-        
-        /// <summary>
-        /// confirmBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmBox;
-        
-        /// <summary>
-        /// confirmBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button confirmBtn;
+        protected global::System.Web.UI.WebControls.Button refreshBtn;
     }
 }
