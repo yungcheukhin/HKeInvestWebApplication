@@ -99,13 +99,20 @@ namespace HKeInvestWebApplication
             do
             {
                 //Check order status
-                //foreach record if status
+                //foreach pending/ partial record
+                //
                 //string status = myExternalFunctions.getOrderStatus();
-                //if status = pending|| partial
-                    
+
+
+
 
                 //if order complete, modify account balance database too
-
+                    //DataTable transactions = myExternalFunctions.getOrderTransaction(refnum);
+                    //update transaction record
+                    //calculate transaction fee
+                    //modify account balance 
+                    //generate invoice
+                    //send email
 
 
 
