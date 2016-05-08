@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace HKeInvestWebApplication.Cover_page
+namespace HKeInvestWebApplication.System_service
 {
-    public partial class ClientSupportingTool : System.Web.UI.Page
+    public partial class Graph : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

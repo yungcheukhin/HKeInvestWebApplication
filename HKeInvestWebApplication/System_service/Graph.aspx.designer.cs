@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HKeInvestWebApplication.Cover_page
+namespace HKeInvestWebApplication.System_service
 {
 
 
-    public partial class ClientSupportingTool
+    public partial class Graph
     {
     }
 }
