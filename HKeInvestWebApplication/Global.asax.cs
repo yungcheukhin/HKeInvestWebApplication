@@ -20,15 +20,100 @@ namespace HKeInvestWebApplication
 {
     public class Global : HttpApplication
     {
+        HKeInvestData myHKeInvestData = new HKeInvestData();
+        ExternalFunctions myExternalFunctions = new ExternalFunctions();
+        accessDataBase myData = new accessDataBase();
+
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Thread mythread = new Thread(PeriodicTask);
+            Thread checkbuysell = new Thread(PeriodicBuySell);
             mythread.IsBackground = true;
             mythread.Start();
         }
+
+        //Generate Invoice Msg
+        protected string generateInvoiceMsg(string user, string actnum, string orderrefnum, string buyorsell, string code, string sname, string stocktype, string date, string amt, string cost, string transnum, string dateExe, string numexe, string price)
+        {
+            string head = "Dear " + user + ",\n";
+            string body1 = "Invoice: \n";
+            string body2 = "Order Details: \nAccount number number:" + actnum + "\n Order reference number: " + orderrefnum + "\nBuy or sell:" + buyorsell + "\nSecurity Code: " + code + "\nSecurity Name:" + sname + "\nStock Type:" + stocktype + "\nDate of Order Submitted: " + date + "\nNumber of Shares Traded: " + amt + "\n\nTotal amount executed (HKD): " + cost + "\nTransaction Number: " + transnum + "\nDate Executed: " + dateExe + "\nNumberof Shares Executed: " + numexe + "\nPrice per Share: " + price + "\n\n";
+            string end = "\nBest Regards, \nHong Kong Electronic Investments LLC";
+            string message = head + body1 + body2 + end;
+            return message;
+        }
+
+
+        //Send email
+        protected void sendemail(string user, string msg)
+        {
+            //accessDataBase myData = new accessDataBase();
+            //string username = Context.User.Identity.GetUserName();
+            string actnum = myData.getOneData("accountNumber", "Account", user);
+            string email = myData.getOneData("email", "Client", actnum);
+            /*
+            DataTable searchemail = myHKeInvestData.getData("SELECT email FROM Client WHERE accountNumber='" + actnum + "'");
+            foreach (DataRow rows in searchemail.Rows)
+            {
+                email = email + rows["email"];
+            }
+            */
+            string name = "";
+            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+            mail.To.Add(email);
+            mail.From = new MailAddress("comp3111_team120@cse.ust.hk", "HKeInvest", System.Text.Encoding.UTF8);
+            mail.Subject = "Invoice";
+            mail.SubjectEncoding = System.Text.Encoding.UTF8;
+            mail.Body = msg;
+            mail.BodyEncoding = System.Text.Encoding.UTF8;
+            mail.IsBodyHtml = true;
+            mail.Priority = MailPriority.High;
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential("comp3111_team120", "team120#");
+            client.Port = 587;
+            client.Host = "smtp.cse.ust.hk";
+            client.EnableSsl = true;
+            try
+            {
+                client.Send(mail);
+                //Page.RegisterStartupScript("UserMsg", "<script>alert('Successfully Send...');if(alert){ window.location='SendMail.aspx';}</script>");
+            }
+            catch (Exception ex)
+            {
+                Exception ex2 = ex;
+                string errorMessage = string.Empty;
+                while (ex2 != null)
+                {
+                    errorMessage += ex2.ToString();
+                    ex2 = ex2.InnerException;
+                }
+                //Page.RegisterStartupScript("UserMsg", "<script>alert('Sending Failed...');if(alert){ window.location='SendMail.aspx';}</script>");
+            }
+        }
+
+        private void PeriodicBuySell()
+        {
+            do
+            {
+                //Check order status
+                //string status = myExternalFunctions.getOrderStatus();
+
+
+                //if order complete, modify account balance database too
+
+
+
+
+
+                //Periodically check every 2 hours
+                Thread.Sleep(7200200);
+            } while (true);
+
+        }
+
         private void PeriodicTask()
         {
             do
@@ -38,8 +123,8 @@ namespace HKeInvestWebApplication
                 //add a attribute "lastsent" to indicate if today had sent
                 //alert high, low save in table
                 //foreach compare wilth external
-                HKeInvestData myHKeInvestData = new HKeInvestData();
-                ExternalFunctions myExternalFunctions = new ExternalFunctions();
+                //HKeInvestData myHKeInvestData = new HKeInvestData();
+                //ExternalFunctions myExternalFunctions = new ExternalFunctions();
                 DataTable alerts = myHKeInvestData.getData("SELECT * FROM Alert");
                 foreach (DataRow row in alerts.Rows)
                 {

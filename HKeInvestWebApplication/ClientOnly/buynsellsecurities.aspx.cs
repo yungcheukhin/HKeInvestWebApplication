@@ -33,7 +33,7 @@ namespace HKeInvestWebApplication
             sellunitTrust.Visible = false;
         }
 
-
+        //unuseful function
         protected void stockorder(object sender, EventArgs e)
         {
             string stockorder = stockorderdd.SelectedValue;
@@ -324,6 +324,26 @@ private string submitOrder(string sql)
                             return;
                         }
                         string result = myExternalFunctions.submitBondBuyOrder(Scode.Text.Trim(), amtofbond.Text.Trim());
+
+                        //Check Record
+                        string status = myExternalFunctions.getOrderStatus(result);
+
+                        //Check if order completed
+                        if(String.Compare(status, "completed", true) == 0)
+                        {
+                            //Save record
+
+                            //Generate invoice
+                        }
+
+                        //Update database if needed
+
+
+                        //Save order in record
+                        if (result != null)
+                        {
+                            //Order 
+                        }
                         sqll = "update [Account] set [balance] = [balance] - '" + amt + "' WHERE [userName] = '" + user + "'";
                         updatetranssql = "update [TransactionRecord] set ";
                         if(result!= null)
@@ -338,6 +358,8 @@ private string submitOrder(string sql)
                         }
                         return;
                         //Save in own record
+
+
                         //minus balance
                         //
                     }
