@@ -48,9 +48,12 @@ namespace HKeInvestWebApplication.Code_File
             Client = myHKeInvestData.getData("SELECT * FROM Client WHERE accountNumber = '" + accountNumber + "'");
             foreach (DataRow row in Client.Rows)
             {
+                char[] delimiterChars = { ' ', '\t' };
+                dateOfBirth = row["dateOfBirth"].ToString();
+                string[] date = dateOfBirth.Split(delimiterChars);
+                dateOfBirth = date[0];
                 firstName = row["firstName"].ToString();
                 lastName = row["lastName"].ToString();
-                dateOfBirth = row["dateOfBirth"].ToString();
                 email = row["email"].ToString();
                 HKIDPassportNumber = row["HKIDPassportNumber"].ToString();
                 title = row["title"].ToString();

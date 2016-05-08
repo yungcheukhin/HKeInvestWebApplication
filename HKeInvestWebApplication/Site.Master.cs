@@ -72,18 +72,33 @@ namespace HKeInvestWebApplication
             string userName = Context.User.Identity.GetUserName();
             if (userName != "")
             {
-                ManageInformation.Visible = true;
                 securityHolding.Visible = true;
 
                 if (String.Compare(userName, "employee") == 0)
                 {
+                    ManageInformation.Visible = true;
+                    tradeSecurities.Visible = false;
+                    supportingTool.Visible = false;
+                    clientTool.Visible = true;
                     securityHolding.HRef = "~/EmployeeOnly/SecurityHoldingDetails.aspx";
                 }
                 else
                 {
+                    ManageInformation.Visible = false;
+                    tradeSecurities.Visible = true;
+                    supportingTool.Visible = true;
+                    clientTool.Visible = false;
                     securityHolding.HRef = "~/ClientOnly/ClientSecurityHoldingDetails.aspx";
                 }
 
+            }
+            else
+            {
+                ManageInformation.Visible = false;
+                securityHolding.Visible = false;
+                tradeSecurities.Visible = false;
+                supportingTool.Visible = false;
+                clientTool.Visible = false;
             }
 
         }

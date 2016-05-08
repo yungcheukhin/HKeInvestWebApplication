@@ -7,63 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HKeInvestWebApplication {
+namespace HKeInvestWebApplication.EmployeeOnly {
     
     
-    public partial class SiteMaster {
+    public partial class ClientBaseTool {
         
         /// <summary>
-        /// securityHolding control.
+        /// reportLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor securityHolding;
+        protected global::System.Web.UI.WebControls.Label reportLabel;
         
         /// <summary>
-        /// ManageInformation control.
+        /// reportBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor ManageInformation;
+        protected global::System.Web.UI.WebControls.Button reportBtn;
         
         /// <summary>
-        /// tradeSecurities control.
+        /// additionFeatureLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor tradeSecurities;
+        protected global::System.Web.UI.WebControls.Label additionFeatureLabel;
         
         /// <summary>
-        /// supportingTool control.
+        /// additionFeatureBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor supportingTool;
-        
-        /// <summary>
-        /// clientTool control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor clientTool;
-        
-        /// <summary>
-        /// MainContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Button additionFeatureBtn;
     }
 }
