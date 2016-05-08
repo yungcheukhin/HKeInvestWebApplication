@@ -388,17 +388,22 @@ private string submitOrder(string sql)
                         string bondcode = Scode.Text.Trim();
                         string searchshares = "SELECT [shares] FROM [SecurityHolding] WHERE [accountNumber] = '" + actnum + "' AND [type] = '" + Stype.SelectedValue + "' AND [code] = '" + bondcode + "'";
                         decimal secamount = myHKeInvestData.getAggregateValue(searchshares);
-                        error.Text = searchshares + "hahahahahaha";
-                        error.Visible = true;
+
                         //decimal secamount = Convert.ToDecimal(searchshares);
-                        decimal sellamount = Convert.ToDecimal(amtofbond.Text.Trim());
+                        decimal sellamount = Convert.ToDecimal(numofshares.Text.Trim());
 
-
+                        //CHECK IF HAVE SECURITY && AMOUNT
+                        if (secamount == 0 )
+                        {
+                            error.Text = "Selected security not in account or amount equal to zero. Order will not be proceeded.";
+                            error.Visible = true;
+                            return;
+                        }
                         
-                        //bond's code and amount
+                        //CHECK SECURITY AMONT
                         if(secamount < sellamount)
                         {
-                        error.Text = username + "Securities in Account less than securities to sell. Order unable to be proceeded.";
+                            error.Text = username + "Securities in Account less than securities to sell. Order will not be proceeded.";
                             error.Visible = true;
                             return;
                         }
@@ -418,12 +423,22 @@ private string submitOrder(string sql)
                         string lowprice = lowPrice.Text.Trim();
                         string stopPrice = sellstopPrice.Text.Trim();
 
-                        string searchshares = "SELECT shares FROM SecurityHolding WHERE userName = '" + username + "' AND type = '" + "unit trust" + "' AND code = '" + code + "'";
-                        decimal secamount = Convert.ToDecimal(searchshares);
+                        string searchshares = "SELECT shares FROM SecurityHolding WHERE accountNumber = '" + actnum + "' AND type = '" + "stock" + "' AND code = '" + code + "'";
+                        decimal secamount = myHKeInvestData.getAggregateValue(searchshares);
                         decimal sellamount = Convert.ToDecimal(sellstockamt.Text.Trim());
+
+                        //CHECK IF SECURITY EXIST
+                        if(secamount == 0)
+                        {
+                            error.Text = "Selected security not in account or amount equal to zero. Order will not be proceeded.";
+                            error.Visible = true;
+                            return;
+                        }
+
+                        //CHECK SECURITY AMONT
                         if (secamount < sellamount)
                         {
-                            error.Text = "Securities in Account less than securities to sell. Order unable to be proceeded.";
+                            error.Text = "Securities in Account less than securities to sell. Order will not be proceeded.";
                             error.Visible = true;
                             return;
                         }
@@ -435,14 +450,24 @@ private string submitOrder(string sql)
                     {
                         //unit trust's code, shares
                         string utcode = Scode.Text.Trim();
-                        string searchshares = "SELECT shares FROM SecurityHolding WHERE userName = '" + username + "' AND type = '" + "unit trust" + "' AND code = '" + utcode + "'";
-                        decimal secamount = Convert.ToDecimal(searchshares);
+                        string searchshares = "SELECT shares FROM SecurityHolding WHERE accountNumber = '" + actnum + "' AND type = '" + "unit trust" + "' AND code = '" + utcode + "'";
+
+                        decimal secamount = myHKeInvestData.getAggregateValue(searchshares);
                         decimal sellamount = Convert.ToDecimal(numofutshares.Text.Trim());
 
-                        if(secamount < sellamount)
+                        //CHECK IF SECURITY EXIST
+                        if (secamount == 0)
+                        {
+                            error.Text = "Selected security not in account or amount equal to zero. Order will not be proceeded.";
+                            error.Visible = true;
+                            return;
+                        }
+
+                        //CHECK SECURITY AMONT
+                        if (secamount < sellamount)
                         {
                             //gfhgfhgfhg
-                            error.Text = "Securities in Account less than securities to sell. Order unable to be proceeded.";
+                            error.Text = "Securities in Account less than securities to sell. Order will not be proceeded.";
                             error.Visible = true;
                             return;
                         }
