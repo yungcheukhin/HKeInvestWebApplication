@@ -81,8 +81,13 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        //searchresult.AcceptChanges();
+                        //ViewState["SortExpression"] = "name";
+                        //ViewState["SortDirection"] = "ASC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
+                        //gvActiveBond.Sort("datesubmitted", SortDirection.Descending);
+                        //gvBond.Sort("name", SortDirection.Ascending);
                         bondtable.Visible = true;
                     }
                 }
@@ -234,8 +239,8 @@ namespace HKeInvestWebApplication
                     lblerror.Visible = true;
                 }
             }
-            ViewState["SortExpression"] = "name";
-            ViewState["SortDirection"] = "ASC";
+            //ViewState["SortExpression"] = "name";
+            //ViewState["SortDirection"] = "ASC";
         }
 
         /*protected void gvSecurityHolding_Sorting(object sender, GridViewSortEventArgs e)
