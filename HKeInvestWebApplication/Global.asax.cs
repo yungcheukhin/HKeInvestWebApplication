@@ -30,7 +30,6 @@ namespace HKeInvestWebApplication
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Thread mythread = new Thread(PeriodicTask);
-            Thread checkbuysell = new Thread(PeriodicBuySell);
             mythread.IsBackground = true;
             mythread.Start();
         }
