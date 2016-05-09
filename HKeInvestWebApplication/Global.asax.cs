@@ -120,15 +120,39 @@ namespace HKeInvestWebApplication
                     if (String.Compare(status, "completed", true) == 0)
                     {
                         decimal accountNumber = myHKeInvestData.getAggregateValue("SELECT accountNumber FROM TransactionRecord WHERE referenceNumber = refnum");
+                        string actnum = accountNumber.ToString();
+                        string buyorsell = myData.getOneDatabyNO("buyOrSell", "TransactionRecord", actnum);
                         string date = DateTime.Now.ToString("yyyy-MM-dd");
                         decimal shares = myHKeInvestData.getAggregateValue("SELECT shares FROM TransactionRecord WHERE referenceNumber = refnum");
+                        string strshares = shares.ToString();
+                        string code = myData.getOneDatabyNO("securityCode", "TransactionRecord", actnum);
+                        string username = myData.getOneDatabyNO("userName", "TransactionRecord", actnum);
                         decimal pricepshare = myHKeInvestData.getAggregateValue("SELECT executePrice FROM TransactionRecord WHERE referenceNumber = refnum");
-                        //string type = myData.getOneDatabyNO(type, TransactionRecord, accountNumber);
+                        string type = myData.getOneDatabyNO("securityType", "TransactionRecord", actnum);
+                        string sname = myData.getOneDatabyNO("name", "TransactionRecord", actnum);
+                        string sbase = myData.getOneDatabyNO("base", "TransactionRecord", actnum);
                         cost = shares * pricepshare;
-                        //get order transaction
+                        string strcost = cost.ToString();
+                        //get order transaction                      
                         DataTable ordertrans = myExternalFunctions.getOrderTransaction(refnum);
+                        string exedate = "";
+                        string exeshares = "";
+                        string exeprice = "";
+                        //string executeDate = "";
+                        //string executeShares = "";
+         
+                       // DataTable temp = myHKeInvestData.getData("SELECT executeDate FROM ordertrans WHERE transactionNumber = '" + refnum + "'");
+                        foreach (DataRow row in ordertrans.Rows)
+                        {
+                            exedate = row["executeDate"].ToString();
+                            exeshares = row["executeShares"].ToString();
+                            exeprice = row["executePrice"].ToString();
+                        }
+                       // DataTable temp1= myHKeInvestData.getData("SELECT executeShares FROM ")
+
+
                         //calcaulta transaction fee
-                        fee = 10000;
+                        fee = 0;
                         //modify account balance
                         SqlTransaction trans = myHKeInvestData.beginTransaction();
                         //set acct balance
@@ -143,18 +167,22 @@ namespace HKeInvestWebApplication
                         myHKeInvestData.commitTransaction(trans);
                         //update security holding
                         /*
-
                         SqlTransaction addalertdata = myHKeInvestData.beginTransaction();
                         myHKeInvestData.setData("INSERT INTO Alert (accountNumber, type, code, highValue, lowValue) VALUES ('" + loginuserid + "', '" + choosentype + "', '" + choosencode + "', " + high + ", " + low + ")", addalertdata);
                         myHKeInvestData.commitTransaction(addalertdata);
-
                         */
                         SqlTransaction addsecurity = myHKeInvestData.beginTransaction();
-                        //myHKeInvestData.setData("INSERT INTO SecurityHolding (accountNumber, type, code, name, shares, base) VALUES ('" + accountNumber + "','" + 
-                        //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
+                        myHKeInvestData.setData("INSERT INTO SecurityHolding (accountNumber, type, code, name, shares, base) VALUES ('" + accountNumber + "','" + type + "','" + sname + "','" + strshares + "','" + sbase + "')'", addsecurity);
                         myHKeInvestData.commitTransaction(addsecurity);
+                        //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
+
                         //gen invoice
+                        // protected string generateInvoiceMsg(string user, string actnum, string orderrefnum, string buyorsell, string code, 
+                        //string sname, string stocktype, string date, string amt, string cost, 
+                        //string transnum, string dateExe, string numexe, string price)
+                        string msg = generateInvoiceMsg(username, actnum, refnum, buyorsell, code, sname, type, date, strshares, strcost, refnum, exedate, exeshares, exeprice);
                         //send email
+                        sendemail(username, msg);
                     }
 
                     //check if email sent
