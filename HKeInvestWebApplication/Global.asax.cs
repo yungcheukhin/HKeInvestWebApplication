@@ -119,6 +119,7 @@ namespace HKeInvestWebApplication
                     //if status is completed
                     if (String.Compare(status, "completed", true) == 0)
                     {
+                        
                         string date = DateTime.Now.ToString("yyyy-MM-dd");
                         decimal shares = myHKeInvestData.getAggregateValue("SELECT shares FROM TransactionRecord WHERE referenceNumber = refnum");
                         //get order transaction
