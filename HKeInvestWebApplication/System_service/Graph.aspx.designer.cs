@@ -85,6 +85,15 @@ namespace HKeInvestWebApplication.System_service {
         protected global::System.Web.UI.WebControls.Panel graph30;
         
         /// <summary>
+        /// titleOf30Graph control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label titleOf30Graph;
+        
+        /// <summary>
         /// Chart1 control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,24 @@ namespace HKeInvestWebApplication.System_service {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
+        /// baseXOf30Graph control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label baseXOf30Graph;
+        
+        /// <summary>
+        /// baseYOf30Graph control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label baseYOf30Graph;
+        
+        /// <summary>
         /// graph7 control.
         /// </summary>
         /// <remarks>
@@ -112,13 +139,13 @@ namespace HKeInvestWebApplication.System_service {
         protected global::System.Web.UI.WebControls.Panel graph7;
         
         /// <summary>
-        /// titleOfGraph control.
+        /// titleOf7Graph control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label titleOfGraph;
+        protected global::System.Web.UI.WebControls.Label titleOf7Graph;
         
         /// <summary>
         /// Chart2 control.
@@ -139,21 +166,21 @@ namespace HKeInvestWebApplication.System_service {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
         
         /// <summary>
-        /// baseXOfGraph control.
+        /// baseXOf7Graph control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label baseXOfGraph;
+        protected global::System.Web.UI.WebControls.Label baseXOf7Graph;
         
         /// <summary>
-        /// baseYOfGraph control.
+        /// baseYOf7Graph control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label baseYOfGraph;
+        protected global::System.Web.UI.WebControls.Label baseYOf7Graph;
     }
 }

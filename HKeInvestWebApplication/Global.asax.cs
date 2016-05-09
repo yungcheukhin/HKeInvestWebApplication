@@ -23,6 +23,12 @@ namespace HKeInvestWebApplication
         HKeInvestData myHKeInvestData = new HKeInvestData();
         ExternalFunctions myExternalFunctions = new ExternalFunctions();
         accessDataBase myData = new accessDataBase();
+        string important1 = GlobalVal.ImportantData;
+
+        void updateRecord()
+        {
+
+        }
 
         void Application_Start(object sender, EventArgs e)
         {
@@ -341,7 +347,17 @@ namespace HKeInvestWebApplication
                         }
                     }
                 }
+                if (important1 == null)
+                {
+                    important1 = DateTime.Now.ToString();
+                    GlobalVal.ImportantData = important1;
+                }
+                else
+                {
+
+                }
                 Thread.Sleep(10000);
+
             } while (true);
         }
     }
