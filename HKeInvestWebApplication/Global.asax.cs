@@ -107,6 +107,8 @@ namespace HKeInvestWebApplication
                     refnum = refnum + rows["referenceNumber"];
                     //get status by referenceNumber
                     status = status + rows["status"];
+                    //check if email sent
+
                     //update TransactionRecord table
                     
                 }
