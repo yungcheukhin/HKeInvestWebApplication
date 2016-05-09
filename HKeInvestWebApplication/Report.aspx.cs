@@ -98,6 +98,17 @@ namespace HKeInvestWebApplication
 
                 gvSummary.Visible = true;
             }
-        }
+
+            if (reportType == "history")
+            {
+                string sql3 = "";
+
+                dtReport = myHKeInvestData.getData(sql3);
+
+                gvOrder.DataSource = dtReport;
+                gvOrder.DataBind();
+
+                gvOrder.Visible = true;
+            }
     }
 }
