@@ -61,7 +61,7 @@
         <hr />
 
         <div class="form-group">
-            <asp:Label runat="server" Text="Date Of Birth" AssociatedControlID="DateOfBirth" CssClass="control-label col-md-2"></asp:Label>
+            <asp:Label runat="server" Text="Date Of Birth (mm/dd/yyyy)" AssociatedControlID="DateOfBirth" CssClass="control-label col-md-2"></asp:Label>
             <div class="col-md-4"><asp:TextBox ID="DateOfBirth" runat="server" CssClass="form-control"></asp:TextBox>
                 <asp:RegularExpressionValidator runat="server" ControlToValidate="DateOfBirth" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Date of birth is not valid." ValidationExpression="^([0]?[0-9]|[12][0-9]|[3][01])[./-]([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})$" Display="Dynamic">*</asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="DateOfBirth" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Date of birth is required." Display="Dynamic">*</asp:RequiredFieldValidator>
