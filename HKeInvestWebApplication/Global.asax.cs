@@ -119,8 +119,6 @@ namespace HKeInvestWebApplication
                 }
                 //string status = myExternalFunctions.getOrderStatus();
 
-
-
                 //if order complete, modify account balance database too
                 //DataTable transactions = myExternalFunctions.getOrderTransaction(refnum);
                 //update transaction record
