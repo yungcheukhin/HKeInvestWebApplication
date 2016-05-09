@@ -94,10 +94,16 @@ namespace HKeInvestWebApplication
             }
         }
 
-        private void PeriodicBuySell()
+
+        private void PeriodicTask()
         {
             do
             {
+                /*
+                 FOR BUY &  SELL PERIODIC TASK
+
+                */
+
                 //Check order status
                 string status = "";
                 string refnum = "";
@@ -110,33 +116,30 @@ namespace HKeInvestWebApplication
                     //check if email sent
 
                     //update TransactionRecord table
-                    
+
                 }
                 //string status = myExternalFunctions.getOrderStatus();
 
 
 
                 //if order complete, modify account balance database too
-                    //DataTable transactions = myExternalFunctions.getOrderTransaction(refnum);
-                    //update transaction record
-                    //calculate transaction fee
-                    //modify account balance 
-                    //generate invoice
-                    //send email
+                //DataTable transactions = myExternalFunctions.getOrderTransaction(refnum);
+                //update transaction record
+                //calculate transaction fee
+                //modify account balance 
+                //generate invoice
+                //send email
 
 
 
 
-                //Periodically check every 2 hours
-                Thread.Sleep(7200200);
-            } while (true);
+                /*
+                END OF PERIODIC TASK OF BUY & SELL
+                */
 
-        }
 
-        private void PeriodicTask()
-        {
-            do
-            {
+
+
                 // Place the method call for the periodic task here.
                 //if price in external table reach the value set in alert table, send email
                 //add a attribute "lastsent" to indicate if today had sent
