@@ -81,6 +81,8 @@ namespace HKeInvestWebApplication
                     supportingTool.Visible = false;
                     clientTool.Visible = true;
                     securityHolding.HRef = "~/EmployeeOnly/SecurityHoldingDetails.aspx";
+                    about.Visible = false;
+                    addAccount.Visible = true;
                 }
                 else
                 {
@@ -89,6 +91,8 @@ namespace HKeInvestWebApplication
                     supportingTool.Visible = true;
                     clientTool.Visible = false;
                     securityHolding.HRef = "~/ClientOnly/ClientSecurityHoldingDetails.aspx";
+                    about.Visible = true;
+                    addAccount.Visible = false;
                 }
 
             }
