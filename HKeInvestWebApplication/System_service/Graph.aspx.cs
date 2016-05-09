@@ -16,6 +16,7 @@ namespace HKeInvestWebApplication.System_service
 
         protected void userNameSearchBtn_Click(object sender, EventArgs e)
         {
+
             graph7.Visible = true;
             graph30.Visible = false;
             securitySearchBtn2.Visible = true;
@@ -27,6 +28,10 @@ namespace HKeInvestWebApplication.System_service
             graph30.Visible = true;
         }
 
+        protected void checkHold()
+        {
+
+        }
 
     }
 }

@@ -67,7 +67,7 @@ namespace HKeInvestWebApplication
                         cvAccountNumber.ErrorMessage = "The account number does not match the client's last name.";
                     }
                 }
-                else if (lastname.Length > 1)
+                if (lastname.Length > 1)
                 {
                     if (accountnumber[0] != lastname[0])
                     {

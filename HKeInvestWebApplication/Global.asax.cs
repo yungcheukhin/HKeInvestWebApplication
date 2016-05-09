@@ -141,8 +141,8 @@ namespace HKeInvestWebApplication
                         string transnum = "";
                         //string executeDate = "";
                         //string executeShares = "";
-         
-                       // DataTable temp = myHKeInvestData.getData("SELECT executeDate FROM ordertrans WHERE transactionNumber = '" + refnum + "'");
+
+                        // DataTable temp = myHKeInvestData.getData("SELECT executeDate FROM ordertrans WHERE transactionNumber = '" + refnum + "'");
                         foreach (DataRow row in ordertrans.Rows)
                         {
                             transnum = row["transactionNumber"].ToString();
@@ -174,18 +174,20 @@ namespace HKeInvestWebApplication
                         foreach (DataRow row in check.Rows)
                         {
                             string checktype = row["type"].ToString();
-                            if (String.Compare(checktype,type, true) == 0)
+                            if (String.Compare(checktype, type, true) == 0)
                             {
-                                if(String.Compare(row["code"].ToString(), code, true) == 0)
+                                if (String.Compare(row["code"].ToString(), code, true) == 0)
                                 {
-                                    if (String.Compare(buyorsell, "buy" , true) == 0)
+                                    if (String.Compare(buyorsell, "buy", true) == 0)
                                     {
                                         myHKeInvestData.setData("UPDATE SecurityHolding SET shares = shares + '" + shares + "' WHERE accountNumber = '" + actnum + "' AND type = '" + type + "' AND code = '" + code + "'", addsecurity);
-                                    }else if (String.Compare(buyorsell, "sell", true) == 0)
+                                    }
+                                    else if (String.Compare(buyorsell, "sell", true) == 0)
                                     {
                                         myHKeInvestData.setData("UPDATE SecurityHolding SET shares = shares - '" + shares + "' WHERE accountNumber = '" + actnum + "' AND type = '" + type + "' AND code = '" + code + "'", addsecurity);
                                     }
-                                }else
+                                }
+                                else
                                 {
                                     myHKeInvestData.setData("INSERT INTO SecurityHolding (accountNumber, type, code, name, shares, base) VALUES ('" + accountNumber + "','" + type + "','" + sname + "','" + strshares + "','" + sbase + "')'", addsecurity);
                                 }
