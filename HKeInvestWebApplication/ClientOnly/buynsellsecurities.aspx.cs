@@ -221,6 +221,11 @@ private string submitOrder(string sql)
         }
 
 
+        protected void updatedatabase(decimal refnum)
+        {
+
+        }
+
         //The proceed button
         protected void totalcheck(object sender, EventArgs s){
             if (Page.IsValid) {
@@ -260,8 +265,7 @@ private string submitOrder(string sql)
                         string p = Convert.ToString(curprice);
                         string sqll="";
                         string sql2 = "";
-                        //INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
-                        //VALUES('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+
                         if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'"))){
                             error.Text = "Account balance smaller then total amount to buy. Not enough balance. '"+ username + "'";
                             error.Visible = true;
@@ -275,8 +279,6 @@ private string submitOrder(string sql)
                         //if (string.Compare("pending", myExternalFunctions.getOrderStatus(result), false) == 0)
                         if(result!= null)
                         {
-                            //string sql1 = "update";
-
                             //BUY STOCK && UPDATE TABLE 
                             SqlTransaction trans = myHKeInvestData.beginTransaction();
                             myHKeInvestData.setData(sqll, trans);
@@ -331,8 +333,14 @@ private string submitOrder(string sql)
                         //Check if order completed
                         if(String.Compare(status, "completed", true) == 0)
                         {
-                            //Save record
+                            //Get Order Transactions
+                            DataTable Transactions = myExternalFunctions.getOrderTransaction(result);
 
+
+                            //Save record
+                            SqlTransaction updatedate = myHKeInvestData.beginTransaction();
+                            myHKeInvestData.setData("UPDATE TransactionRecord SET dateSubmitted='" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE accountNumber='" + actnum + "' AND securityCode='" + code + "' AND securityType = '" + "bond" + "' AND buyOrSell = buy AND status = completed AND executeDate ='" + DateTime.Now.ToString("yyyy-MM-dd") + "' AND executeShares = '" + amt + "'AND executePrice ='", updatedate);
+                            myHKeInvestData.commitTransaction(updatedate);
                             //Generate invoice
                         }
 

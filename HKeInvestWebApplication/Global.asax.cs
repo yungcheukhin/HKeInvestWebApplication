@@ -30,7 +30,6 @@ namespace HKeInvestWebApplication
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Thread mythread = new Thread(PeriodicTask);
-            Thread checkbuysell = new Thread(PeriodicBuySell);
             mythread.IsBackground = true;
             mythread.Start();
         }
@@ -94,30 +93,59 @@ namespace HKeInvestWebApplication
             }
         }
 
-        private void PeriodicBuySell()
-        {
-            do
-            {
-                //Check order status
-                //string status = myExternalFunctions.getOrderStatus();
-
-
-                //if order complete, modify account balance database too
-
-
-
-
-
-                //Periodically check every 2 hours
-                Thread.Sleep(7200200);
-            } while (true);
-
-        }
 
         private void PeriodicTask()
         {
             do
             {
+                /*
+                 FOR BUY &  SELL PERIODIC TASK
+
+                */
+
+                string status = "";
+                string refnum = "";
+                decimal fee = 0;
+                decimal cost = fee;
+
+                //get datatable where email has not yet sent out //another approach: condition: where status != completed --> still needa checkout
+                DataTable statustable = myHKeInvestData.getData("SELECT referenceNumber FROM TransactionRecord WHERE emailsent = 0");
+                foreach (DataRow rows in statustable.Rows)
+                {
+                    //get referencenumber
+                    refnum = rows["referenceNumber"].ToString();
+                    //for each emailsent=0;
+                    status = myExternalFunctions.getOrderStatus(refnum);
+                    //if status is completed
+                    if (String.Compare(status, "completed", true) == 0)
+                    {
+                        string date = DateTime.Now.ToString("yyyy-MM-dd");
+                        //get order transaction
+                        DataTable ordertrans = myExternalFunctions.getOrderTransaction(refnum);
+                        //calcaulta transaction fee
+                        fee = 10000;
+                        //modify account balance
+                        SqlTransaction trans = myHKeInvestData.beginTransaction();
+                        //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
+                        myHKeInvestData.commitTransaction(trans);
+                        //gen invoice
+                        //send email
+                    }
+
+                    //check if email sent
+
+                    //update TransactionRecord table
+                        //update emailsent
+
+                }
+
+                /*
+                END OF PERIODIC TASK OF BUY & SELL
+                */
+
+
+
+
                 // Place the method call for the periodic task here.
                 //if price in external table reach the value set in alert table, send email
                 //add a attribute "lastsent" to indicate if today had sent
