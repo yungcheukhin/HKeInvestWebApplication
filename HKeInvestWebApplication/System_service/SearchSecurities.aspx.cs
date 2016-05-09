@@ -21,6 +21,8 @@ namespace HKeInvestWebApplication
             stocktable.Visible = false;
             unittable.Visible = false;
             lblerror.Visible = false;
+            //if (String.IsNullOrEmpty(MyGridView.SortExpression)) MyGridView.Sort("SortExpression", SortDirection.Ascending);
+            if (String.IsNullOrEmpty(gvBond.SortExpression)) gvBond.Sort("name", SortDirection.Ascending);
         }
 
         /*protected void Stype_SelectedIndexChanged(object sender, EventArgs e)
@@ -81,8 +83,13 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        //searchresult.AcceptChanges();
+                        //ViewState["SortExpression"] = "name";
+                        //ViewState["SortDirection"] = "ASC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
+                        //gvActiveBond.Sort("datesubmitted", SortDirection.Descending);
+                        //gvBond.Sort("name", SortDirection.Ascending);
                         bondtable.Visible = true;
                     }
                 }
@@ -234,8 +241,8 @@ namespace HKeInvestWebApplication
                     lblerror.Visible = true;
                 }
             }
-            ViewState["SortExpression"] = "name";
-            ViewState["SortDirection"] = "ASC";
+            //ViewState["SortExpression"] = "name";
+            //ViewState["SortDirection"] = "ASC";
         }
 
         /*protected void gvSecurityHolding_Sorting(object sender, GridViewSortEventArgs e)
@@ -253,17 +260,20 @@ namespace HKeInvestWebApplication
             gvSecurityHolding.DataSource = dtSecurityHolding.DefaultView;
             gvSecurityHolding.DataBind();
         }*/
-
+        
         protected void gvBond_Sorting(object sender, GridViewSortEventArgs e)
         {
+            GridView gv = (GridView)sender;
             DataTable dtBond = myHKeInvestCode.unloadGridView(gvBond);
             string sortExpression = e.SortExpression.ToLower();
             ViewState["SortExpression"] = sortExpression;
             dtBond.DefaultView.Sort = e.SortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
             //dtBond.DefaultView.Sort = "name" + " " + "ASC";
             dtBond.AcceptChanges();
-            gvBond.DataSource = dtBond.DefaultView;
-            gvBond.DataBind();
+            //gvBond.DataSource = dtBond.DefaultView;
+            //gvBond.DataBind();
+            gv.DataSource = dtBond.DefaultView;
+            gv.DataBind();
         }
 
         protected void gvStock_Sorting(object sender, GridViewSortEventArgs e)

@@ -142,17 +142,17 @@
          <p>
              <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="False" Visible="False">
                  <Columns>
-                     <asp:BoundField DataField="reference" HeaderText="Reference Number" ReadOnly="True" SortExpression="reference" />
-                     <asp:BoundField DataField="order" HeaderText="Order" ReadOnly="True" SortExpression="order" />
-                     <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="True" SortExpression="type" />
-                     <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
+                     <asp:BoundField DataField="referenceNumber" HeaderText="Reference Number" ReadOnly="True" SortExpression="referenceNumber" />
+                     <asp:BoundField DataField="buyOrSell" HeaderText="Order" ReadOnly="True" SortExpression="buyOrSell" />
+                     <asp:BoundField DataField="securityType" HeaderText="Type" ReadOnly="True" SortExpression="securityType" />
+                     <asp:BoundField DataField="securityCode" HeaderText="Code" ReadOnly="True" SortExpression="securityCode" />
                      <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
-                     <asp:BoundField DataField="date" HeaderText="Date" ReadOnly="True" SortExpression="date" />
+                     <asp:BoundField DataField="dateSubmitted" HeaderText="Date" ReadOnly="True" SortExpression="dateSubmitted" />
                      <asp:BoundField DataField="status" HeaderText="Status" ReadOnly="True" SortExpression="status" />
                      <asp:BoundField DataField="shares" HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
-                     <asp:BoundField DataField="dollarAmount" DataFormatString="{0:n2}" HeaderText="Dollar Amount" ReadOnly="True" SortExpression="dollarAmount" />
+                     <asp:BoundField DataField="amount" DataFormatString="{0:n2}" HeaderText="Dollar Amount" ReadOnly="True" SortExpression="amount" />
                      <asp:BoundField DataField="fees" DataFormatString="{0:n2}" HeaderText="Fees" ReadOnly="True" SortExpression="fees" />
-                     <asp:BoundField DataField="transaction" DataFormatString="{0:n2}" HeaderText="Transaction Number" ReadOnly="True" SortExpression="transaction" />
+                     <asp:BoundField DataField="transactionNumber" DataFormatString="{0:n2}" HeaderText="Transaction Number" ReadOnly="True" SortExpression="transactionNumber" />
                      <asp:BoundField DataField="shares" HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
 
                      <asp:BoundField DataField="priceShare" DataFormatString="{0:n2}" HeaderText="Price Per Share " ReadOnly="True" SortExpression="priceShare" />
