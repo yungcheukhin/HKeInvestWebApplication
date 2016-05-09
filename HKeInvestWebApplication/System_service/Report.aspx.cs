@@ -37,9 +37,6 @@ namespace HKeInvestWebApplication
         protected void ddlReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
             gvSummary.Visible = false;
-            gvDetailStock.Visible = false;
-            gvDetailBond.Visible = false;
-            gvDetailTrust.Visible = false;
             gvStatus.Visible = false;
             gvOrder.Visible = false;
 
@@ -119,6 +116,18 @@ namespace HKeInvestWebApplication
                 gvStatus.DataBind();
 
                 gvStatus.Visible = true;
+
+            }
+            if (reportType == "detail")
+            {
+                string sql3 = "SELECT securityCode, securityType, name, shares, base, monetary, (amount/shares) AS priceShare FROM TransactionRecord WHERE accountNumber = '" + accountNumber + "'";
+
+                dtReport = myHKeInvestData.getData(sql3);
+
+                gvDetail.DataSource = dtReport;
+                gvDetail.DataBind();
+
+                gvDetail.Visible = true;
 
             }
         }
