@@ -67,6 +67,42 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.Label nameExist;
         
         /// <summary>
+        /// acNumberLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label acNumberLabel;
+        
+        /// <summary>
+        /// acNumberBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox acNumberBox;
+        
+        /// <summary>
+        /// acNumberBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button acNumberBtn;
+        
+        /// <summary>
+        /// acNumberExist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label acNumberExist;
+        
+        /// <summary>
         /// manageInfro control.
         /// </summary>
         /// <remarks>
