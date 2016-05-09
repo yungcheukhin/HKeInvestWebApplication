@@ -30,7 +30,12 @@
         <div class="form-group">
         <asp:Label ID="securityExist" runat="server"  Text="If no graph shows, please check the correctness of the Security Type or Security Code you type in." Font-Bold="True" Font-Size="Large" ></asp:Label>
         </div>
+
+
         <asp:Panel ID="graph30" runat="server" Visible="False">
+        <div class="form-group">
+        <asp:Label ID="titleOf30Graph" runat="server"  Text="Trend of price flow within 30-day" Font-Bold="True"  CssClass="col-md-6"></asp:Label>
+        </div>
             <div class="form-group">
                 <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1" >
                     <Series>
@@ -48,11 +53,17 @@
                     </SelectParameters>
                 </asp:SqlDataSource>
             </div>
+        <div class="form-group">
+        <asp:Label ID="baseXOf30Graph" runat="server"  Text="x-axis : number of days ago" Font-Bold="True"  CssClass="col-md-6"></asp:Label>
+        </div>
+        <div class="form-group">
+        <asp:Label ID="baseYOf30Graph" runat="server"  Text="y-axis : Market Price of the security" Font-Bold="True"  CssClass="col-md-6"></asp:Label>
+        </div>
         </asp:Panel>
 
         <asp:Panel ID="graph7" runat="server" Visible="False">
         <div class="form-group">
-        <asp:Label ID="titleOfGraph" runat="server"  Text="Trend of price flow within 7-day" Font-Bold="True"  CssClass="col-md-6"></asp:Label>
+        <asp:Label ID="titleOf7Graph" runat="server"  Text="Trend of price flow within 7-day" Font-Bold="True"  CssClass="col-md-6"></asp:Label>
         </div>
 
         <div class="form-group">
@@ -74,10 +85,10 @@
         </div>
 
         <div class="form-group">
-        <asp:Label ID="baseXOfGraph" runat="server"  Text="x-axis : number of days ago" Font-Bold="True"  CssClass="col-md-6"></asp:Label>
+        <asp:Label ID="baseXOf7Graph" runat="server"  Text="x-axis : number of days ago" Font-Bold="True"  CssClass="col-md-6"></asp:Label>
         </div>
         <div class="form-group">
-        <asp:Label ID="baseYOfGraph" runat="server"  Text="y-axis : Market Price of the security" Font-Bold="True"  CssClass="col-md-6"></asp:Label>
+        <asp:Label ID="baseYOf7Graph" runat="server"  Text="y-axis : Market Price of the security" Font-Bold="True"  CssClass="col-md-6"></asp:Label>
         </div>
         </asp:Panel>
 
