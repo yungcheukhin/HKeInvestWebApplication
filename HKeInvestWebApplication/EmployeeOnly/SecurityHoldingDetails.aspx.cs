@@ -18,10 +18,19 @@ namespace HKeInvestWebApplication.EmployeeOnly
         protected void Page_Load(object sender, EventArgs e)
         {
             // Get the available currencies to populate the DropDownList.
-            DataTable dtCurrency = myExternalFunctions.getCurrencyData();
+            /*DataTable dtCurrency = myExternalFunctions.getCurrencyData();
             foreach (DataRow row in dtCurrency.Rows)
             {
                 ddlCurrency.Items.Add(row["currency"].ToString().Trim());
+            }*/
+            if (!IsPostBack)
+            {
+                myHKeInvestCode.addSessionVariable(Session);
+                DataTable dtCurrency = (DataTable)Session["CurrencyData"];
+                foreach (DataRow row in dtCurrency.Rows)
+                {
+                    ddlCurrency.Items.Add(row["currency"].ToString().Trim());
+                }
             }
         }
 
@@ -154,7 +163,7 @@ namespace HKeInvestWebApplication.EmployeeOnly
             // Since a GridView cannot be updated directly, it is first loaded into a DataTable using the helper method 'unloadGridView'.
             gvSecurityHolding.Columns[convertedValueIndex].Visible = true;
             DataTable dtSecurityHolding = myHKeInvestCode.unloadGridView(gvSecurityHolding);
-
+            
             // ***********************************************************************************************************
             // TODO: For each row in the DataTable, get the base currency of the security, convert the current value to  *
             //       the selected currency and assign the converted value to the convertedValue column in the DataTable. *
@@ -164,7 +173,8 @@ namespace HKeInvestWebApplication.EmployeeOnly
             {
                 // Add your code here!
                 decimal value = Convert.ToDecimal(row["value"]);
-                decimal currency_rate = myExternalFunctions.getCurrencyRate(toCurrency);
+                //decimal currency_rate = myExternalFunctions.getCurrencyRate(toCurrency);
+                decimal currency_rate = Convert.ToDecimal(Session[toCurrency].ToString().Trim());
                 decimal converted_value = Math.Round(value * (1/currency_rate));
                 dtSecurityHolding.Rows[dtRow]["convertedValue"] = converted_value;
                 dtRow = dtRow + 1;
