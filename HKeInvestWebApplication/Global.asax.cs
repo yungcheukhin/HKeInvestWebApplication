@@ -101,12 +101,12 @@ namespace HKeInvestWebApplication
                 //Check order status
                 string status = "";
                 string refnum = "";
-                DataTable statustable = myHKeInvestData.getData("SELECT status, referenceNumber FROM TransactionRecord");
+                DataTable statustable = myHKeInvestData.getData("SELECT status, referenceNumber FROM TransactionRecord WHERE emailsent = 0");
                 foreach (DataRow rows in statustable.Rows)
                 {
                     refnum = refnum + rows["referenceNumber"];
                     //get status by referenceNumber
-                    status = status + rows["status"];
+                    //status = myData.getOneData(status, TransactionTable, )
                     //check if email sent
 
                     //update TransactionRecord table
