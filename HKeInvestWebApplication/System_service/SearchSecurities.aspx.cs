@@ -65,8 +65,11 @@ namespace HKeInvestWebApplication
                             }
                         }
                         searchresult.AcceptChanges();
+                        ViewState["SortExpression"] = "name";
+                        ViewState["SortDirection"] = "DESC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
+                        gvBond.Sort("name", SortDirection.Descending);
                         bondtable.Visible = true;
                     }
                 }
@@ -91,8 +94,11 @@ namespace HKeInvestWebApplication
                             }
                         }
                         searchresult.AcceptChanges();
+                        ViewState["SortExpression"] = "name";
+                        ViewState["SortDirection"] = "DESC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
+                        gvBond.Sort("name", SortDirection.Descending);
                         bondtable.Visible = true;
                     }
                 }
@@ -117,8 +123,11 @@ namespace HKeInvestWebApplication
                             }
                         }
                         searchresult.AcceptChanges();
+                        ViewState["SortExpression"] = "name";
+                        ViewState["SortDirection"] = "DESC";
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
+                        gvBond.Sort("name", SortDirection.Descending);
                         bondtable.Visible = true;
                     }
                 }
@@ -153,8 +162,11 @@ namespace HKeInvestWebApplication
                             }
                         }
                         searchresult.AcceptChanges();
+                        ViewState["SortExpression"] = "name";
+                        ViewState["SortDirection"] = "DESC";
                         gvStock.DataSource = searchresult;
                         gvStock.DataBind();
+                        gvStock.Sort("name", SortDirection.Descending);
                         stocktable.Visible = true;
                     }
                 }
@@ -179,8 +191,11 @@ namespace HKeInvestWebApplication
                             }
                         }
                         searchresult.AcceptChanges();
+                        ViewState["SortExpression"] = "name";
+                        ViewState["SortDirection"] = "DESC";
                         gvStock.DataSource = searchresult;
                         gvStock.DataBind();
+                        gvStock.Sort("name", SortDirection.Descending);
                         stocktable.Visible = true;
                     }
                 }
@@ -205,8 +220,11 @@ namespace HKeInvestWebApplication
                             }
                         }
                         searchresult.AcceptChanges();
+                        ViewState["SortExpression"] = "name";
+                        ViewState["SortDirection"] = "DESC";
                         gvStock.DataSource = searchresult;
                         gvStock.DataBind();
+                        gvStock.Sort("name", SortDirection.Descending);
                         stocktable.Visible = true;
                     }
                 }
@@ -356,7 +374,7 @@ namespace HKeInvestWebApplication
             string sortExpression = e.SortExpression.ToLower();
             ViewState["SortExpression"] = sortExpression;
             dtUnitTrust.DefaultView.Sort = e.SortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
-            //dtUnitTrust.AcceptChanges();
+            dtUnitTrust.AcceptChanges();
             gvUnitTrust.DataSource = dtUnitTrust.DefaultView;
             gvUnitTrust.DataBind();
         }
