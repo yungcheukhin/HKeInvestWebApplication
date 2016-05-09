@@ -119,16 +119,19 @@ namespace HKeInvestWebApplication
                     //if status is completed
                     if (String.Compare(status, "completed", true) == 0)
                     {
+                        
                         string date = DateTime.Now.ToString("yyyy-MM-dd");
+                        decimal shares = myHKeInvestData.getAggregateValue("SELECT shares FROM TransactionRecord WHERE referenceNumber = refnum");
                         //get order transaction
                         DataTable ordertrans = myExternalFunctions.getOrderTransaction(refnum);
                         //calcaulta transaction fee
                         fee = 10000;
                         //modify account balance
                         SqlTransaction trans = myHKeInvestData.beginTransaction();
-                            //set acct balance
-                            //set email sent =1
-                            //update TransactionRecord to match the order status the rest of records
+                        //set acct balance
+                        //myHKeInvestData.setData("UPDATE Account SET " + toChange + " = '" + value +"' WHERE accountNumber = '" + accountNumber + "'", trans);
+                        //set email sent =1
+                        //update TransactionRecord to match the order status the rest of records
                         //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
                         myHKeInvestData.commitTransaction(trans);
                         //gen invoice
@@ -138,7 +141,6 @@ namespace HKeInvestWebApplication
                     //check if email sent
 
                 }
-
                 /*
 
                 END OF PERIODIC TASK OF BUY & SELL
