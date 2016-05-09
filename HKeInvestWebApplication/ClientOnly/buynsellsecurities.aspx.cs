@@ -139,26 +139,7 @@ private string submitOrder(string sql)
 
             */
 
-        protected void waitexecutebuy(string sql, decimal cost , string result){
 
-            if (string.Compare("pending", myExternalFunctions.getOrderStatus(result), false) == 0)
-            {
-                string sql1 = "update";
-            }
-
-
-        }
-
-        protected void showsecuritydetails(string type, string code)
-        {
-            DataTable security;
-            if (String.Compare(type, "unitTrust", true) == 0)
-            {
-                type = "unit trust";
-            }
-            security = myExternalFunctions.getSecuritiesByCode(type, code);
-
-        }
 
 
         //Generate Invoice Msg
@@ -220,11 +201,6 @@ private string submitOrder(string sql)
             }
         }
 
-
-        protected void updatedatabase(decimal refnum)
-        {
-
-        }
 
         //The proceed button
         protected void totalcheck(object sender, EventArgs s){
@@ -290,23 +266,9 @@ private string submitOrder(string sql)
                             //string date, string amt, string cost, string transnum, string dateExe, 
                             //string numexe, string price)
                         }
-
                         return;
-
-                        /*
-            private string submitOrder(string sql)
-            {
-                SqlTransaction trans = myExternalData.beginTransaction();
-                myExternalData.setData(sql, trans);
-                string referenceNumber = myExternalData.getOrderReferenceNumber("select max([referenceNumber]) from [Order]", trans);
-                myExternalData.commitTransaction(trans);
-                return referenceNumber;
-            }
-
-                        */
-
-
                     }
+
                     //Buy bond
                     if (string.Compare(Stype.SelectedValue, "bond", true) == 0)
                     {
