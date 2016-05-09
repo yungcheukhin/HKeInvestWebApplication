@@ -103,32 +103,41 @@ namespace HKeInvestWebApplication
 
                 */
 
-                //Check order status
                 string status = "";
                 string refnum = "";
-                DataTable statustable = myHKeInvestData.getData("SELECT status, referenceNumber FROM TransactionRecord WHERE emailsent = 0");
+                decimal fee = 0;
+                decimal cost = fee;
+
+                //get datatable where email has not yet sent out //another approach: condition: where status != completed --> still needa checkout
+                DataTable statustable = myHKeInvestData.getData("SELECT referenceNumber FROM TransactionRecord WHERE emailsent = 0");
                 foreach (DataRow rows in statustable.Rows)
                 {
-                    refnum = refnum + rows["referenceNumber"];
-                    //get status by referenceNumber
-                    //status = myData.getOneData(status, TransactionTable, )
+                    //get referencenumber
+                    refnum = rows["referenceNumber"].ToString();
+                    //for each emailsent=0;
+                    status = myExternalFunctions.getOrderStatus(refnum);
+                    //if status is completed
+                    if (String.Compare(status, "completed", true) == 0)
+                    {
+                        string date = DateTime.Now.ToString("yyyy-MM-dd");
+                        //get order transaction
+                        DataTable ordertrans = myExternalFunctions.getOrderTransaction(refnum);
+                        //calcaulta transaction fee
+                        fee = 10000;
+                        //modify account balance
+                        SqlTransaction trans = myHKeInvestData.beginTransaction();
+                        //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
+                        myHKeInvestData.commitTransaction(trans);
+                        //gen invoice
+                        //send email
+                    }
+
                     //check if email sent
 
                     //update TransactionRecord table
+                        //update emailsent
 
                 }
-                //string status = myExternalFunctions.getOrderStatus();
-
-                //if order complete, modify account balance database too
-                //DataTable transactions = myExternalFunctions.getOrderTransaction(refnum);
-                //update transaction record
-                //calculate transaction fee
-                //modify account balance 
-                //generate invoice
-                //send email
-
-
-
 
                 /*
                 END OF PERIODIC TASK OF BUY & SELL
