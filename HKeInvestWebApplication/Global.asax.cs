@@ -99,10 +99,17 @@ namespace HKeInvestWebApplication
             do
             {
                 //Check order status
-                //foreach pending/ partial record
-                //
+                string status = "";
+                string refnum = "";
+                DataTable statustable = myHKeInvestData.getData("SELECT status, referenceNumber FROM TransactionRecord");
+                foreach (DataRow rows in statustable.Rows)
+                {
+                    refnum = refnum + rows["referenceNumber"];
+                    //get status by referenceNumber
+                    status = status + rows["status"];
+                    //update TransactionRecord table
+                }
                 //string status = myExternalFunctions.getOrderStatus();
-
 
 
 
