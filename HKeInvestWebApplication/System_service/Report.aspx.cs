@@ -59,7 +59,7 @@ namespace HKeInvestWebApplication
             string accountNumber = "";
             accountNumber = loggedinuserid; // Set the account number from a web form control!
             string reportType = "";
-            reportType = ddlReportType.SelectedValue; 
+            reportType = ddlReportType.SelectedValue;
 
             // No action when the first item in the DropDownList is selected.
             if (reportType == "0") { return; }
@@ -101,7 +101,7 @@ namespace HKeInvestWebApplication
 
             if (reportType == "history")
             {
-                string sql3 = "";
+                string sql3 = " SELECT A1.referenceNumber, A1.buyOrSell, A1.securityType, A1.securityCode, A1.dateSubmitted, A1.status, A1.shares, A1.amount, A2.name, A2.fees, A1.transactionNumber, A1.shares, (A1.amount/A1.shares) AS priceShare FROM  TransactionRecord A1, Record A2 WHERE A1.accountNumber = '" + accountNumber + "' AND A1.accountNumber = A2.accountNumber";
 
                 dtReport = myHKeInvestData.getData(sql3);
 
@@ -110,5 +110,6 @@ namespace HKeInvestWebApplication
 
                 gvOrder.Visible = true;
             }
+        }
     }
 }
