@@ -10,7 +10,6 @@ using Microsoft.AspNet.Identity;
 using HKeInvestWebApplication.Code_File;
 using HKeInvestWebApplication.ExternalSystems.Code_File;
 
-
 namespace HKeInvestWebApplication.Code_File
 {
     class AccountInfro //for mass access toward table Client and Account
@@ -33,12 +32,52 @@ namespace HKeInvestWebApplication.Code_File
         {
 
         }
+
         public void updateTable() {
 
             Account = myHKeInvestData.getData("SELECT * FROM Account WHERE userName = '" + userName + "'");
             foreach (DataRow row in Account.Rows)
             {
                 accountNumber = row["accountNumber"].ToString();
+                accountType = row["accountType"].ToString();
+                balance = row["balance"].ToString();
+
+
+            }
+
+            Client = myHKeInvestData.getData("SELECT * FROM Client WHERE accountNumber = '" + accountNumber + "'");
+            foreach (DataRow row in Client.Rows)
+            {
+                char[] delimiterChars = { ' ', '\t' };
+                dateOfBirth = row["dateOfBirth"].ToString();
+                string[] date = dateOfBirth.Split(delimiterChars);
+                dateOfBirth = date[0];
+                firstName = row["firstName"].ToString();
+                lastName = row["lastName"].ToString();
+                email = row["email"].ToString();
+                HKIDPassportNumber = row["HKIDPassportNumber"].ToString();
+                title = row["title"].ToString();
+                building = row["building"].ToString();
+                street = row["street"].ToString();
+                district = row["district"].ToString();
+                homePhone = row["homePhone"].ToString();
+                homeFax = row["homePhone"].ToString();
+                businessPhone = row["businessPhone"].ToString();
+                mobile = row["mobile"].ToString();
+                citizenship = row["citizenship"].ToString();
+                legalResidence = row["legalResidence"].ToString();
+                passportCountryOfIssue = row["passportCountryOfIssue"].ToString();
+
+            }
+        }
+
+        public void updateTableWithAccountNumber()
+        {
+
+            Account = myHKeInvestData.getData("SELECT * FROM Account WHERE accountNumber = '" + accountNumber + "'");
+            foreach (DataRow row in Account.Rows)
+            {
+                userName = row["userName"].ToString();
                 accountType = row["accountType"].ToString();
                 balance = row["balance"].ToString();
 
@@ -116,7 +155,26 @@ namespace HKeInvestWebApplication.Code_File
 
             return accountExist;
         }
-}
+
+        public Boolean checkAccountNumberExist()
+        {
+            DataTable temp = myHKeInvestData.getData("SELECT * FROM Account WHERE accountNumber = '" + accountNumber + "'");
+            foreach (DataRow row in temp.Rows)
+            {
+                if (row == null)
+                {
+                    accountExist = false;
+                }
+                else {
+                    accountExist = true;
+                }
+            }
+
+
+            return accountExist;
+        }
+
+    }
 
     class accessDataBase //for single access for all table
     {
