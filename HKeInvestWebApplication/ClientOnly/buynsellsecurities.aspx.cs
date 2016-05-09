@@ -139,26 +139,7 @@ private string submitOrder(string sql)
 
             */
 
-        protected void waitexecutebuy(string sql, decimal cost , string result){
 
-            if (string.Compare("pending", myExternalFunctions.getOrderStatus(result), false) == 0)
-            {
-                string sql1 = "update";
-            }
-
-
-        }
-
-        protected void showsecuritydetails(string type, string code)
-        {
-            DataTable security;
-            if (String.Compare(type, "unitTrust", true) == 0)
-            {
-                type = "unit trust";
-            }
-            security = myExternalFunctions.getSecuritiesByCode(type, code);
-
-        }
 
 
         //Generate Invoice Msg
@@ -220,11 +201,6 @@ private string submitOrder(string sql)
             }
         }
 
-
-        protected void updatedatabase(decimal refnum)
-        {
-
-        }
 
         //The proceed button
         protected void totalcheck(object sender, EventArgs s){
