@@ -59,7 +59,7 @@ namespace HKeInvestWebApplication
             string accountNumber = "";
             accountNumber = loggedinuserid; // Set the account number from a web form control!
             string reportType = "";
-            reportType = ddlReportType.SelectedValue; 
+            reportType = ddlReportType.SelectedValue;
 
             // No action when the first item in the DropDownList is selected.
             if (reportType == "0") { return; }
@@ -110,5 +110,6 @@ namespace HKeInvestWebApplication
 
                 gvOrder.Visible = true;
             }
+        }
     }
 }
