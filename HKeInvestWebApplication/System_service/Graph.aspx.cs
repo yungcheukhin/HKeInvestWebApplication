@@ -13,5 +13,10 @@ namespace HKeInvestWebApplication.System_service
         {
 
         }
+
+        protected void userNameSearchBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

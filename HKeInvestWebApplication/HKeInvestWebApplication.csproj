@@ -446,6 +446,7 @@
     <Compile Include="ClientOnly\supportingToolList.aspx.designer.cs">
       <DependentUpon>supportingToolList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Code_File\Global.cs" />
     <Compile Include="EmployeeOnly\AccountApplication.aspx.cs">
       <DependentUpon>AccountApplication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
