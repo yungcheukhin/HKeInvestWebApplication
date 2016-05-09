@@ -129,8 +129,7 @@ namespace HKeInvestWebApplication
                         //modify account balance
                         SqlTransaction trans = myHKeInvestData.beginTransaction();
                         //set acct balance
-                        myHKeInvestData.setData("UPDATE Account SET " + toChange + " = '" + value +
-                    "' WHERE accountNumber = '" + accountNumber + "'", trans);
+                        //myHKeInvestData.setData("UPDATE Account SET " + toChange + " = '" + value +"' WHERE accountNumber = '" + accountNumber + "'", trans);
                         //set email sent =1
                         //update TransactionRecord to match the order status the rest of records
                         //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
