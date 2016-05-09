@@ -108,6 +108,7 @@ namespace HKeInvestWebApplication
                     //get status by referenceNumber
                     status = status + rows["status"];
                     //update TransactionRecord table
+                    
                 }
                 //string status = myExternalFunctions.getOrderStatus();
 
