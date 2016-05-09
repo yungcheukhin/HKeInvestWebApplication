@@ -138,18 +138,18 @@ namespace HKeInvestWebApplication
                         string exedate = "";
                         string exeshares = "";
                         string exeprice = "";
+                        string transnum = "";
                         //string executeDate = "";
                         //string executeShares = "";
          
                        // DataTable temp = myHKeInvestData.getData("SELECT executeDate FROM ordertrans WHERE transactionNumber = '" + refnum + "'");
                         foreach (DataRow row in ordertrans.Rows)
                         {
+                            transnum = row["transactionNumber"].ToString();
                             exedate = row["executeDate"].ToString();
                             exeshares = row["executeShares"].ToString();
                             exeprice = row["executePrice"].ToString();
                         }
-                       // DataTable temp1= myHKeInvestData.getData("SELECT executeShares FROM ")
-
 
                         //calcaulta transaction fee
                         fee = 0;
@@ -161,9 +161,10 @@ namespace HKeInvestWebApplication
                         myHKeInvestData.setData("UPDATE TransactionRecord SET emailsent = 1  WHERE accountNumber ='" + accountNumber + "'", trans);
                         //update TransactionRecord to match the order status the rest of records
                         myHKeInvestData.setData("UPDATE TransactionRecord SET status = completed", trans);
-                        myHKeInvestData.setData("UPDATE TransactionRecord SET executeDate ='" + date + "' WHERE accountNumber ='" + accountNumber + "'", trans);
-                        myHKeInvestData.setData("UPDATE TransactionRecord SET executePrice ='" + date + "' WHERE accountNumber ='" + accountNumber + "'", trans);
-                        myHKeInvestData.setData("UPDATE TransactionRecord SET executeShares ='" + date + "' WHERE accountNumber ='" + accountNumber + "'", trans);
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET transactionNumber ='" + transnum + "' WHERE accountNumber ='" + accountNumber + "'", trans);
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET executeDate ='" + exedate + "' WHERE accountNumber ='" + accountNumber + "'", trans);
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET executePrice ='" + exeprice + "' WHERE accountNumber ='" + accountNumber + "'", trans);
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET executeShares ='" + exeshares + "' WHERE accountNumber ='" + accountNumber + "'", trans);
                         myHKeInvestData.commitTransaction(trans);
                         //update security holding
                         /*
@@ -183,6 +184,12 @@ namespace HKeInvestWebApplication
                         string msg = generateInvoiceMsg(username, actnum, refnum, buyorsell, code, sname, type, date, strshares, strcost, refnum, exedate, exeshares, exeprice);
                         //send email
                         sendemail(username, msg);
+
+                        //Update email flag
+                        SqlTransaction emailflag = myHKeInvestData.beginTransaction();
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET emailsent = 1 WHERE accountNumber ='" + accountNumber + "'", emailflag);
+                        myHKeInvestData.commitTransaction(emailflag);
+
                     }
 
                     //check if email sent
