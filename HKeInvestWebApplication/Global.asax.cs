@@ -99,10 +99,10 @@ namespace HKeInvestWebApplication
             do
             {
                 /*
+
                  FOR BUY &  SELL PERIODIC TASK
 
                 */
-
                 string status = "";
                 string refnum = "";
                 decimal fee = 0;
@@ -126,6 +126,9 @@ namespace HKeInvestWebApplication
                         fee = 10000;
                         //modify account balance
                         SqlTransaction trans = myHKeInvestData.beginTransaction();
+                            //set acct balance
+                            //set email sent =1
+                            //update TransactionRecord to match the order status the rest of records
                         //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
                         myHKeInvestData.commitTransaction(trans);
                         //gen invoice
@@ -134,16 +137,13 @@ namespace HKeInvestWebApplication
 
                     //check if email sent
 
-                    //update TransactionRecord table
-                        //update emailsent
-
                 }
 
                 /*
+
                 END OF PERIODIC TASK OF BUY & SELL
+
                 */
-
-
 
 
                 // Place the method call for the periodic task here.
