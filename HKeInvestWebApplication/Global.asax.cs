@@ -167,13 +167,35 @@ namespace HKeInvestWebApplication
                         myHKeInvestData.setData("UPDATE TransactionRecord SET executeShares ='" + exeshares + "' WHERE accountNumber ='" + accountNumber + "'", trans);
                         myHKeInvestData.commitTransaction(trans);
                         //update security holding
-                        /*
-                        SqlTransaction addalertdata = myHKeInvestData.beginTransaction();
-                        myHKeInvestData.setData("INSERT INTO Alert (accountNumber, type, code, highValue, lowValue) VALUES ('" + loginuserid + "', '" + choosentype + "', '" + choosencode + "', " + high + ", " + low + ")", addalertdata);
-                        myHKeInvestData.commitTransaction(addalertdata);
-                        */
+
                         SqlTransaction addsecurity = myHKeInvestData.beginTransaction();
-                        myHKeInvestData.setData("INSERT INTO SecurityHolding (accountNumber, type, code, name, shares, base) VALUES ('" + accountNumber + "','" + type + "','" + sname + "','" + strshares + "','" + sbase + "')'", addsecurity);
+                        //check if same bond n code exist
+                        DataTable check = myHKeInvestData.getData("SELECT accountNumber, type, code FROM SecurityHolding WHERE accountNumber = '" + actnum + "'");
+                        foreach (DataRow row in check.Rows)
+                        {
+                            string checktype = row["type"].ToString();
+                            if (String.Compare(checktype,type, true) == 0)
+                            {
+                                if(String.Compare(row["code"].ToString(), code, true) == 0)
+                                {
+                                    if (String.Compare(buyorsell, "buy" , true) == 0)
+                                    {
+                                        myHKeInvestData.setData("UPDATE SecurityHolding SET shares = shares + '" + shares + "' WHERE accountNumber = '" + actnum + "' AND type = '" + type + "' AND code = '" + code + "'", addsecurity);
+                                    }else if (String.Compare(buyorsell, "sell", true) == 0)
+                                    {
+                                        myHKeInvestData.setData("UPDATE SecurityHolding SET shares = shares - '" + shares + "' WHERE accountNumber = '" + actnum + "' AND type = '" + type + "' AND code = '" + code + "'", addsecurity);
+                                    }
+                                }else
+                                {
+                                    myHKeInvestData.setData("INSERT INTO SecurityHolding (accountNumber, type, code, name, shares, base) VALUES ('" + accountNumber + "','" + type + "','" + sname + "','" + strshares + "','" + sbase + "')'", addsecurity);
+                                }
+                            }
+                            else
+                            {
+                                myHKeInvestData.setData("INSERT INTO SecurityHolding (accountNumber, type, code, name, shares, base) VALUES ('" + accountNumber + "','" + type + "','" + sname + "','" + strshares + "','" + sbase + "')'", addsecurity);
+                            }
+                        }
+                        //myHKeInvestData.setData("INSERT INTO SecurityHolding (accountNumber, type, code, name, shares, base) VALUES ('" + accountNumber + "','" + type + "','" + sname + "','" + strshares + "','" + sbase + "')'", addsecurity);
                         myHKeInvestData.commitTransaction(addsecurity);
                         //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
 
