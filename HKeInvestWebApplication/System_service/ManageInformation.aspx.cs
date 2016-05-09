@@ -20,19 +20,20 @@ namespace HKeInvestWebApplication
 
     public partial class ManageInformation : System.Web.UI.Page
     {
-            AccountInfro clientAccount = new AccountInfro();
-            string clientName;
-            string clientAccountNumber;
-            string important1 = GlobalVal.ImportantData;
+        AccountInfro clientAccount = new AccountInfro();
+        string clientName;
+        string clientAccountNumber;
+        string important1 = GlobalVal.ImportantData;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!Context.User.Identity.IsAuthenticated)
             {
                 Response.Redirect("~/Default.aspx");
                 return;
             }
+
             clientName = Context.User.Identity.GetUserName();
             if (String.Compare(clientName, "employee") != 0)  //Client account
             {
@@ -50,22 +51,27 @@ namespace HKeInvestWebApplication
                 refreshBtn.Visible = false;
                 passportCountryOfIssueBox.Visible = false;
                 passportCountryOfIssueBtn.Visible = false;
-                updatePage();
+                updatePage(true);
 
             }
-            else if ((String.Compare(clientName, "employee") == 0 && important1 == null) || (userNameSearchBox.Text == null && important1 != null))
+            else if ((String.Compare(clientName, "employee") == 0 && important1 == null) ||
+                (userNameSearchBox.Text == null && important1 != null && acNumberBox.Text == null)  )
             {
                 refreshBtn.Visible = true;
                 enterUserName.Visible = true;
                 manageInfro.Visible = false;
-
             }
-            else if(userNameSearchBox.Text != null )
+            else if(userNameSearchBox.Text != null)
             {
                 if (userNameSearchBox.Text != "")
                 {
                     clientAccount.userName = userNameSearchBox.Text;
-                    updatePage();
+                    updatePage(true);
+                }
+                else if(acNumberBox.Text != "")
+                {
+                    clientAccount.accountNumber = acNumberBox.Text;
+                    updatePage(false);
                 }
                 else
                 {
@@ -73,7 +79,6 @@ namespace HKeInvestWebApplication
                     enterUserName.Visible = true;
                     manageInfro.Visible = false;
                 }
-
             }
             else
             {
@@ -81,7 +86,6 @@ namespace HKeInvestWebApplication
                 enterUserName.Visible = true;
                 manageInfro.Visible = false;
             }
-
             if (important1 == null)
             {
                 important1 = DateTime.Now.ToString();
@@ -98,7 +102,7 @@ namespace HKeInvestWebApplication
                 nameExist.Visible = false;
                 enterUserName.Visible = false;
                 manageInfro.Visible = true;
-                updatePage();
+                updatePage(true);
 
             }
             else
@@ -110,9 +114,38 @@ namespace HKeInvestWebApplication
 
         }
 
-        protected void updatePage()
+        protected void acNumberBtn_Click(object sender, EventArgs e)
         {
-            clientAccount.updateTable();
+            clientAccount.accountNumber = acNumberBox.Text;
+
+            if (clientAccount.checkAccountNumberExist())
+            {
+                acNumberExist.Visible = false;
+                enterUserName.Visible = false;
+                manageInfro.Visible = true;
+                updatePage(false);
+
+            }
+            else
+            {
+                enterUserName.Visible = true;
+                manageInfro.Visible = false;
+                acNumberExist.Visible = true;
+            }
+        }
+
+
+        protected void updatePage(Boolean isName)
+        {
+            if (isName)
+            {
+                clientAccount.updateTable();
+            }
+            else
+            {
+                clientAccount.updateTableWithAccountNumber();
+            }
+
             titleLabel.Text = clientAccount.title;
             firstNameLabel.Text = clientAccount.firstName;
             lastNameLabel.Text = clientAccount.lastName;
@@ -138,85 +171,85 @@ namespace HKeInvestWebApplication
         protected void titleBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("title", ddlTitle.SelectedValue, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void firstNameBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("firstName", firstNameBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void lastNameBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("lastName", lastNameBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void emailBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("email", emailBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void buildingBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("building", buildingBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void streetBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("street", streetBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void districtBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("district", districtBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void homePhoneBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("homePhone", homePhoneBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void homeFaxBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("homeFax", homeFaxBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void businessPhoneBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("businessPhone", businessPhoneBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void mobileBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("mobile", mobileBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void citizenshipBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("citizenship", citizenshipBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void legalResidenceBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("legalResidence", legalResidenceBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void passportCountryOfIssueBtn_Click(object sender, EventArgs e)
         {
             clientAccount.changeData("passportCountryOfIssue", passportCountryOfIssueBox.Text, accountNumberLabel.Text);
-            updatePage();
+            updatePage(false);
         }
 
         protected void refreshBtn_Click(object sender, EventArgs e)
@@ -224,6 +257,8 @@ namespace HKeInvestWebApplication
             GlobalVal.reset();
             Response.Redirect("~/System_service/ManageInformation.aspx");
         }
+
+
 
         //protected void confirmBtn_Click(object sender, EventArgs e)
         //{

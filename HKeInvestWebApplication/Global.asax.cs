@@ -108,6 +108,8 @@ namespace HKeInvestWebApplication
                 decimal fee = 0;
                 decimal cost = fee;
 
+
+                /*
                 //get datatable where email has not yet sent out //another approach: condition: where status != completed --> still needa checkout
                 DataTable statustable = myHKeInvestData.getData("SELECT referenceNumber FROM TransactionRecord WHERE emailsent = 0");
                 foreach (DataRow rows in statustable.Rows)
@@ -138,6 +140,7 @@ namespace HKeInvestWebApplication
                         //update emailsent
 
                 }
+                */
 
                 /*
                 END OF PERIODIC TASK OF BUY & SELL
