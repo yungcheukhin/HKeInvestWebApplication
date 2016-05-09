@@ -145,6 +145,20 @@ namespace HKeInvestWebApplication.Code_File
             return null;
         }
 
+        public string getOneDatabyNO(string toGetVar, string Table, string accountNumber)
+        {
+
+            DataTable temp = myHKeInvestData.getData("SELECT " + toGetVar + " FROM " + Table +
+                " WHERE accountNumber = '" + accountNumber + "'");
+
+            foreach (DataRow row in temp.Rows)
+            {
+                return row[toGetVar].ToString();
+            }
+
+            return null;
+        }
+
         public void setOneData(string toChangeVar, string Table, string value, string loginName)
         {
             string accountNumber = "";
@@ -156,6 +170,14 @@ namespace HKeInvestWebApplication.Code_File
             }
             SqlTransaction trans = myHKeInvestData.beginTransaction();
             myHKeInvestData.setData("UPDATE "+ Table + " SET " + toChangeVar + " = '" + value +
+                "' WHERE accountNumber = '" + accountNumber + "'", trans);
+            myHKeInvestData.commitTransaction(trans);
+        }
+
+        public void setOneDatabyNO(string toChangeVar, string Table, string value, string accountNumber)
+        {
+            SqlTransaction trans = myHKeInvestData.beginTransaction();
+            myHKeInvestData.setData("UPDATE " + Table + " SET " + toChangeVar + " = '" + value +
                 "' WHERE accountNumber = '" + accountNumber + "'", trans);
             myHKeInvestData.commitTransaction(trans);
         }
