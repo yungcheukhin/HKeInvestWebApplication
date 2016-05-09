@@ -266,23 +266,9 @@ private string submitOrder(string sql)
                             //string date, string amt, string cost, string transnum, string dateExe, 
                             //string numexe, string price)
                         }
-
                         return;
-
-                        /*
-            private string submitOrder(string sql)
-            {
-                SqlTransaction trans = myExternalData.beginTransaction();
-                myExternalData.setData(sql, trans);
-                string referenceNumber = myExternalData.getOrderReferenceNumber("select max([referenceNumber]) from [Order]", trans);
-                myExternalData.commitTransaction(trans);
-                return referenceNumber;
-            }
-
-                        */
-
-
                     }
+
                     //Buy bond
                     if (string.Compare(Stype.SelectedValue, "bond", true) == 0)
                     {
