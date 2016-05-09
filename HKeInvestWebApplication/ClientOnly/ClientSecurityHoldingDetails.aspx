@@ -2,30 +2,38 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Security Holding Details</h2>
 
-    <div>
+    <div class="form-horizontal">
 
-        <div>
-            <asp:Label runat="server" Text="Account number: "></asp:Label>
-            <asp:Label runat="server" ID="lblAccountNumber"></asp:Label>
-            <asp:DropDownList ID="ddlSecurityType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSecurityType_SelectedIndexChanged">
-                <asp:ListItem Value="0">Security Type</asp:ListItem>
-                <asp:ListItem Value="bond">Bond</asp:ListItem>
-                <asp:ListItem Value="stock">Stock</asp:ListItem>
-                <asp:ListItem Value="unit trust">Unit Trust</asp:ListItem>
-            </asp:DropDownList>
-            <asp:DropDownList ID="ddlCurrency" runat="server" AutoPostBack="True" Visible="False" OnSelectedIndexChanged="ddlCurrency_SelectedIndexChanged">
-                <asp:ListItem Value="0">Currency</asp:ListItem>
-            </asp:DropDownList>
+        <div class="form-group">
+            <div class="col-md-6">
+                <asp:Label runat="server" Text="Account number: "></asp:Label>
+                <asp:Label runat="server" ID="lblAccountNumber"></asp:Label>
+                </div>
+            </div>
+
+        <div class="form-group">
+            <div class="col-md-3"><asp:DropDownList ID="ddlSecurityType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSecurityType_SelectedIndexChanged"  CssClass="form-control">
+                    <asp:ListItem Value="0">Security Type</asp:ListItem>
+                    <asp:ListItem Value="bond">Bond</asp:ListItem>
+                    <asp:ListItem Value="stock">Stock</asp:ListItem>
+                    <asp:ListItem Value="unit trust">Unit Trust</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            
+            <div class="col-md-3"><asp:DropDownList ID="ddlCurrency" runat="server" AutoPostBack="True" Visible="False" OnSelectedIndexChanged="ddlCurrency_SelectedIndexChanged" CssClass="form-control">
+                    <asp:ListItem Value="0">Currency</asp:ListItem>
+                </asp:DropDownList>
+            </div>
         </div>
 
         <hr />
 
-        <div>
+        <div class="form-group">
             <asp:Label ID="lblClientName" runat="server"></asp:Label>
             <asp:Label ID="lblResultMessage" runat="server" Visible="False"></asp:Label>
         </div>
 
-        <div>
+        <div class="form-group">
             <asp:GridView ID="gvSecurityHolding" runat="server" Visible="False" AutoGenerateColumns="False" OnSorting="gvSecurityHolding_Sorting">
                 <Columns>
                     <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />

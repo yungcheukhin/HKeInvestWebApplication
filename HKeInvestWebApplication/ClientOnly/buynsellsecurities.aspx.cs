@@ -33,7 +33,7 @@ namespace HKeInvestWebApplication
             sellunitTrust.Visible = false;
         }
 
-
+        //unuseful function
         protected void stockorder(object sender, EventArgs e)
         {
             string stockorder = stockorderdd.SelectedValue;
@@ -221,6 +221,11 @@ private string submitOrder(string sql)
         }
 
 
+        protected void updatedatabase(decimal refnum)
+        {
+
+        }
+
         //The proceed button
         protected void totalcheck(object sender, EventArgs s){
             if (Page.IsValid) {
@@ -260,8 +265,7 @@ private string submitOrder(string sql)
                         string p = Convert.ToString(curprice);
                         string sqll="";
                         string sql2 = "";
-                        //INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
-                        //VALUES('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+
                         if (cost > (myHKeInvestData.getAggregateValue("select balance FROM Account WHERE userName = '" + username + "'"))){
                             error.Text = "Account balance smaller then total amount to buy. Not enough balance. '"+ username + "'";
                             error.Visible = true;
@@ -275,8 +279,6 @@ private string submitOrder(string sql)
                         //if (string.Compare("pending", myExternalFunctions.getOrderStatus(result), false) == 0)
                         if(result!= null)
                         {
-                            //string sql1 = "update";
-
                             //BUY STOCK && UPDATE TABLE 
                             SqlTransaction trans = myHKeInvestData.beginTransaction();
                             myHKeInvestData.setData(sqll, trans);
@@ -324,6 +326,32 @@ private string submitOrder(string sql)
                             return;
                         }
                         string result = myExternalFunctions.submitBondBuyOrder(Scode.Text.Trim(), amtofbond.Text.Trim());
+
+                        //Check Record
+                        string status = myExternalFunctions.getOrderStatus(result);
+
+                        //Check if order completed
+                        if(String.Compare(status, "completed", true) == 0)
+                        {
+                            //Get Order Transactions
+                            DataTable Transactions = myExternalFunctions.getOrderTransaction(result);
+
+
+                            //Save record
+                            SqlTransaction updatedate = myHKeInvestData.beginTransaction();
+                            myHKeInvestData.setData("UPDATE TransactionRecord SET dateSubmitted='" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE accountNumber='" + actnum + "' AND securityCode='" + code + "' AND securityType = '" + "bond" + "' AND buyOrSell = buy AND status = completed AND executeDate ='" + DateTime.Now.ToString("yyyy-MM-dd") + "' AND executeShares = '" + amt + "'AND executePrice ='", updatedate);
+                            myHKeInvestData.commitTransaction(updatedate);
+                            //Generate invoice
+                        }
+
+                        //Update database if needed
+
+
+                        //Save order in record
+                        if (result != null)
+                        {
+                            //Order 
+                        }
                         sqll = "update [Account] set [balance] = [balance] - '" + amt + "' WHERE [userName] = '" + user + "'";
                         updatetranssql = "update [TransactionRecord] set ";
                         if(result!= null)
@@ -338,6 +366,8 @@ private string submitOrder(string sql)
                         }
                         return;
                         //Save in own record
+
+
                         //minus balance
                         //
                     }
@@ -374,7 +404,7 @@ private string submitOrder(string sql)
                             myHKeInvestData.commitTransaction(trans);
                         }
                         return;
-                        //
+                        //ham chut lai
                     }
 
                 }
@@ -388,17 +418,22 @@ private string submitOrder(string sql)
                         string bondcode = Scode.Text.Trim();
                         string searchshares = "SELECT [shares] FROM [SecurityHolding] WHERE [accountNumber] = '" + actnum + "' AND [type] = '" + Stype.SelectedValue + "' AND [code] = '" + bondcode + "'";
                         decimal secamount = myHKeInvestData.getAggregateValue(searchshares);
-                        error.Text = searchshares + "hahahahahaha";
-                        error.Visible = true;
+
                         //decimal secamount = Convert.ToDecimal(searchshares);
-                        decimal sellamount = Convert.ToDecimal(amtofbond.Text.Trim());
+                        decimal sellamount = Convert.ToDecimal(numofshares.Text.Trim());
 
-
+                        //CHECK IF HAVE SECURITY && AMOUNT
+                        if (secamount == 0 )
+                        {
+                            error.Text = "Selected security not in account or amount equal to zero. Order will not be proceeded.";
+                            error.Visible = true;
+                            return;
+                        }
                         
-                        //bond's code and amount
+                        //CHECK SECURITY AMONT
                         if(secamount < sellamount)
                         {
-                        error.Text = username + "Securities in Account less than securities to sell. Order unable to be proceeded.";
+                            error.Text = username + "Securities in Account less than securities to sell. Order will not be proceeded.";
                             error.Visible = true;
                             return;
                         }
@@ -418,12 +453,22 @@ private string submitOrder(string sql)
                         string lowprice = lowPrice.Text.Trim();
                         string stopPrice = sellstopPrice.Text.Trim();
 
-                        string searchshares = "SELECT shares FROM SecurityHolding WHERE userName = '" + username + "' AND type = '" + "unit trust" + "' AND code = '" + code + "'";
-                        decimal secamount = Convert.ToDecimal(searchshares);
+                        string searchshares = "SELECT shares FROM SecurityHolding WHERE accountNumber = '" + actnum + "' AND type = '" + "stock" + "' AND code = '" + code + "'";
+                        decimal secamount = myHKeInvestData.getAggregateValue(searchshares);
                         decimal sellamount = Convert.ToDecimal(sellstockamt.Text.Trim());
+
+                        //CHECK IF SECURITY EXIST
+                        if(secamount == 0)
+                        {
+                            error.Text = "Selected security not in account or amount equal to zero. Order will not be proceeded.";
+                            error.Visible = true;
+                            return;
+                        }
+
+                        //CHECK SECURITY AMONT
                         if (secamount < sellamount)
                         {
-                            error.Text = "Securities in Account less than securities to sell. Order unable to be proceeded.";
+                            error.Text = "Securities in Account less than securities to sell. Order will not be proceeded.";
                             error.Visible = true;
                             return;
                         }
@@ -435,14 +480,24 @@ private string submitOrder(string sql)
                     {
                         //unit trust's code, shares
                         string utcode = Scode.Text.Trim();
-                        string searchshares = "SELECT shares FROM SecurityHolding WHERE userName = '" + username + "' AND type = '" + "unit trust" + "' AND code = '" + utcode + "'";
-                        decimal secamount = Convert.ToDecimal(searchshares);
+                        string searchshares = "SELECT shares FROM SecurityHolding WHERE accountNumber = '" + actnum + "' AND type = '" + "unit trust" + "' AND code = '" + utcode + "'";
+
+                        decimal secamount = myHKeInvestData.getAggregateValue(searchshares);
                         decimal sellamount = Convert.ToDecimal(numofutshares.Text.Trim());
 
-                        if(secamount < sellamount)
+                        //CHECK IF SECURITY EXIST
+                        if (secamount == 0)
+                        {
+                            error.Text = "Selected security not in account or amount equal to zero. Order will not be proceeded.";
+                            error.Visible = true;
+                            return;
+                        }
+
+                        //CHECK SECURITY AMONT
+                        if (secamount < sellamount)
                         {
                             //gfhgfhgfhg
-                            error.Text = "Securities in Account less than securities to sell. Order unable to be proceeded.";
+                            error.Text = "Securities in Account less than securities to sell. Order will not be proceeded.";
                             error.Visible = true;
                             return;
                         }

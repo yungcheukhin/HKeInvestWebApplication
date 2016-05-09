@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageInformation.aspx.cs" Inherits="HKeInvestWebApplication.ManageInformation" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" >
     
        <h2><%: Title %>Manage Account Information</h2>
 
@@ -13,8 +13,9 @@
                     <asp:TextBox ID="userNameSearchBox" runat="server" ></asp:TextBox>
 
                 </div>
-                <div class="form-group"><asp:Button ID="userNameSearchBtn" runat="server" Text="Search User Name" class="btn-default col-md-4" OnClick="userNameBtn_Click"  />
-                    <asp:RegularExpressionValidator  ID="nameIsExist" runat="server" ControlToValidate="userNameSearchBox" CssClass="text-danger" EnableClientScript="False" ErrorMessage="No account exist with this user name" Display="Dynamic"  Visible="False">*</asp:RegularExpressionValidator>
+                <div class="col-md-offset-2 col-md-6">
+                    <asp:Button ID="userNameSearchBtn" runat="server" Text="Search User Name" class="btn-default col-md-6" OnClick="userNameBtn_Click"  />
+                    <asp:Label ID="nameExist" runat="server" CssClass="text-danger" Text="No account exist with this user name" ForeColor="Red" Visible="False"></asp:Label>
                 </div>
         </div>
 
@@ -41,12 +42,13 @@
             <div class="col-md-6">
                 <asp:Label runat="server" Text="Title: "  class="control-label col-md-4"></asp:Label>
                 <asp:Label ID="titleLabel" runat="server" Text=" " class="control-label col-md-3"></asp:Label>
-                <asp:DropDownList ID="ddlTitle" runat="server" class="col-md-3">
+                <div class="col-md-3"><asp:DropDownList ID="ddlTitle" runat="server" CssClass="form-control">
                 <asp:ListItem Value="Mr">Mr.</asp:ListItem>
                 <asp:ListItem Value="Mrs">Mrs.</asp:ListItem>
                 <asp:ListItem Value="Ms">Ms.</asp:ListItem>
                 <asp:ListItem Value="Dr">Dr.</asp:ListItem>
             </asp:DropDownList>
+                    </div>
                 <asp:Button ID="titleBtn" runat="server" Text="Edit" class="btn-default col-md-2" OnClick="titleBtn_Click" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlTitle" CssClass="text-danger" EnableClientScript="False" ErrorMessage="Title is required.">*</asp:RequiredFieldValidator>
             </div>
@@ -171,22 +173,27 @@
             <div class="col-md-6">
                 <asp:Label runat="server" Text="User name: " class="control-label col-md-4" ></asp:Label>
                 <asp:Label ID="userNameLabel" runat="server" Text=" " class="control-label col-md-3"></asp:Label>
- </div>
+            </div>
+            <div class="col-md-6">
+            <asp:Button ID="refreshBtn" runat="server" Text="Choose user account again" OnClick="refreshBtn_Click" class="btn-default col-md-6" Visible="False"/>
+            </div>
         </div>
 
-        <div class="form-group">
+<%--        <div class="form-group">
             <div class="col-md-6">
                 <asp:Label runat="server" Text="New Password: " class="control-label col-md-4" ></asp:Label>
                 <asp:Label ID="empty1" runat="server" Text=" " class="control-label col-md-3"></asp:Label>
-                <asp:TextBox ID="passwordBox" runat="server" class="col-md-5"></asp:TextBox>             
+                <asp:TextBox ID="passwordBox" runat="server" class="col-md-5"></asp:TextBox>         
+                
             </div>
             <div class="col-md-6">
                 <asp:Label runat="server" Text="Confirm Password: " class="control-label col-md-4" ></asp:Label>
                 <asp:TextBox ID="confirmBox" runat="server" class="col-md-4"></asp:TextBox>    
-                <asp:Button ID="confirmBtn" runat="server" Text="Confirm Edit Password" class="btn-default col-md-4" OnClick="confirmBtn_Click" />            
+                <asp:Button ID="confirmBtn" runat="server" Text="Confirm Edit Password" class="btn-default col-md-4" OnClick="confirmBtn_Click" />
+
             </div>
 
-        </div>
+        </div>--%>
 
 
 
