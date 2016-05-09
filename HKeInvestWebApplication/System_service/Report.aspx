@@ -37,15 +37,16 @@
     <div>
 
         <br />
-        <h4>Details of Stocks </h4>
-        <asp:GridView ID="gvDetailStock" runat="server" AutoGenerateColumns="False" Visible="False">
+        <h4>Details of Security Holdings</h4>
+        <asp:GridView ID="gvDetail" runat="server" AutoGenerateColumns="False" Visible="False">
             <Columns>
-                <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
+                <asp:BoundField DataField="securityCode" HeaderText="Code" ReadOnly="True" SortExpression="securityCode" />
+                <asp:BoundField DataField="securityType" HeaderText="Type" ReadOnly="True" SortExpression="securityType" />
                 <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
                 <asp:BoundField DataField="shares" DataFormatString="{0:n2}" HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
                 <asp:BoundField DataField="base" HeaderText="Base" ReadOnly="True" SortExpression="base" />
-                <asp:BoundField DataField="price" DataFormatString="{0:n2} " HeaderText="Price" ReadOnly="True" SortExpression="price" />
-                <asp:BoundField DataField="monetary" DataFormatString="{0:n2}" HeaderText="Total Monetary Value" ReadOnly="True" SortExpression="monetary" />
+                <asp:BoundField DataField="priceShare" DataFormatString="{0:n2} " HeaderText="Price" ReadOnly="True" SortExpression="priceShare" />
+                <asp:BoundField DataField="monetary" DataFormatString="{0:n2}" HeaderText="Monetary Value" ReadOnly="True" SortExpression="monetary" />
                 <asp:BoundField />
             </Columns>
         </asp:GridView>
@@ -55,43 +56,13 @@
     <div>
 
         <br />
-        <h4>Details of Bonds </h4>
-        <asp:GridView ID="gvDetailBond" runat="server" AutoGenerateColumns="False" Visible="False">
-            <Columns>
-                <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
-                <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
-                <asp:BoundField DataField="shares" DataFormatString="{0:n2}" HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
-                <asp:BoundField DataField="base" HeaderText="Base" ReadOnly="True" SortExpression="base" />
-                <asp:BoundField DataField="price" DataFormatString="{0:n2} " HeaderText="Price" ReadOnly="True" SortExpression="price" />
-                <asp:BoundField DataField="monetary" DataFormatString="{0:n2}" HeaderText="Total Monetary Value" ReadOnly="True" SortExpression="monetary" />
-                <asp:BoundField />
-            </Columns>
-        </asp:GridView>
 
     </div>
 
     <div>
 
         <br />
-        <h4>Details of Unit Trust </h4>
-        <asp:GridView ID="gvDetailTrust" runat="server" AutoGenerateColumns="False" Visible="False">
-            <Columns>
-                <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
-                <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
-                <asp:BoundField DataField="shares" DataFormatString="{0:n2}" HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
-                <asp:BoundField DataField="base" HeaderText="Base" ReadOnly="True" SortExpression="base" />
-                <asp:BoundField DataField="price" DataFormatString="{0:n2} " HeaderText="Price" ReadOnly="True" SortExpression="price" />
-                <asp:BoundField DataField="monetary" DataFormatString="{0:n2}" HeaderText="Total Monetary Value" ReadOnly="True" SortExpression="monetary" />
-                <asp:BoundField />
-            </Columns>
-        </asp:GridView>
-
-    </div>
-
-    <div>
-
-        <br />
-        <h4>Status of Active Order(s)</h4>
+        <h4>Status of Active Order(s)s</h4>
         <p>
             <asp:GridView ID="gvStatus" runat="server" AutoGenerateColumns="False" Visible="False">
                 <Columns>

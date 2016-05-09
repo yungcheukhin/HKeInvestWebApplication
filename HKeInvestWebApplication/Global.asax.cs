@@ -119,9 +119,12 @@ namespace HKeInvestWebApplication
                     //if status is completed
                     if (String.Compare(status, "completed", true) == 0)
                     {
-                        
+                        decimal accountNumber = myHKeInvestData.getAggregateValue("SELECT accountNumber FROM TransactionRecord WHERE referenceNumber = refnum");
                         string date = DateTime.Now.ToString("yyyy-MM-dd");
                         decimal shares = myHKeInvestData.getAggregateValue("SELECT shares FROM TransactionRecord WHERE referenceNumber = refnum");
+                        decimal pricepshare = myHKeInvestData.getAggregateValue("SELECT executePrice FROM TransactionRecord WHERE referenceNumber = refnum");
+                        //string type = myData.getOneDatabyNO(type, TransactionRecord, accountNumber);
+                        cost = shares * pricepshare;
                         //get order transaction
                         DataTable ordertrans = myExternalFunctions.getOrderTransaction(refnum);
                         //calcaulta transaction fee
@@ -129,11 +132,27 @@ namespace HKeInvestWebApplication
                         //modify account balance
                         SqlTransaction trans = myHKeInvestData.beginTransaction();
                         //set acct balance
-                        //myHKeInvestData.setData("UPDATE Account SET " + toChange + " = '" + value +"' WHERE accountNumber = '" + accountNumber + "'", trans);
+                        myHKeInvestData.setData("UPDATE Account SET balance = (balance - '" + cost + "'-'" + fee + "' WHERE accountNumber = '" + accountNumber + "'", trans);
                         //set email sent =1
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET emailsent = 1  WHERE accountNumber ='" + accountNumber + "'", trans);
                         //update TransactionRecord to match the order status the rest of records
-                        //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET status = completed", trans);
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET executeDate ='" + date + "' WHERE accountNumber ='" + accountNumber + "'", trans);
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET executePrice ='" + date + "' WHERE accountNumber ='" + accountNumber + "'", trans);
+                        myHKeInvestData.setData("UPDATE TransactionRecord SET executeShares ='" + date + "' WHERE accountNumber ='" + accountNumber + "'", trans);
                         myHKeInvestData.commitTransaction(trans);
+                        //update security holding
+                        /*
+
+                        SqlTransaction addalertdata = myHKeInvestData.beginTransaction();
+                        myHKeInvestData.setData("INSERT INTO Alert (accountNumber, type, code, highValue, lowValue) VALUES ('" + loginuserid + "', '" + choosentype + "', '" + choosencode + "', " + high + ", " + low + ")", addalertdata);
+                        myHKeInvestData.commitTransaction(addalertdata);
+
+                        */
+                        SqlTransaction addsecurity = myHKeInvestData.beginTransaction();
+                        //myHKeInvestData.setData("INSERT INTO SecurityHolding (accountNumber, type, code, name, shares, base) VALUES ('" + accountNumber + "','" + 
+                        //myHKeInvestData.setData("UPDATE Account SET balance = (balance - cost) + value +"' WHERE accountNumber = '" + AccountNumber + "'", trans);
+                        myHKeInvestData.commitTransaction(addsecurity);
                         //gen invoice
                         //send email
                     }

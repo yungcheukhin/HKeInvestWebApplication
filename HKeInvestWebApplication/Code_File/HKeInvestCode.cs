@@ -41,10 +41,11 @@ namespace HKeInvestWebApplication.Code_File
             // Returns the data type of value. Tests for more types can be added if needed.
             if (value != null)
             {
-                int n; decimal d; DateTime dt;
-                if (int.TryParse(value, out n)) { return "System.Int32"; }
+                Int64 n; decimal d; DateTime dt;
+                //if (int.TryParse(value, out n)) { return "System.Int32"; }
+                if (Int64.TryParse(value, out n)) { return "System.Int64";  }
                 else if (decimal.TryParse(value, out d)) { return "System.Decimal"; }
-                else if (DateTime.TryParse(value, out dt)) { return "System.DataTime"; }
+                else if (DateTime.TryParse(value, out dt)) { return "System.DateTime"; }
             }
             return "System.String";
         }
@@ -81,7 +82,8 @@ namespace HKeInvestWebApplication.Code_File
             gv.SelectedIndex = 0;
             for (int i = 0; i < gv.Columns.Count; i++)
             {
-                dt.Columns[i].DataType = Type.GetType(getDataType(gv.SelectedRow.Cells[i].Text));
+                string temp = getDataType(gv.SelectedRow.Cells[i].Text);
+                dt.Columns[i].DataType = Type.GetType(temp);
             }
 
             // Load the GridView data into the DataTable.

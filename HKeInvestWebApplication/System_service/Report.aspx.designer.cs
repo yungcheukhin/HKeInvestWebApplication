@@ -49,31 +49,13 @@ namespace HKeInvestWebApplication {
         protected global::System.Web.UI.WebControls.GridView gvSummary;
         
         /// <summary>
-        /// gvDetailStock 控制項。
+        /// gvDetail 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDetailStock;
-        
-        /// <summary>
-        /// gvDetailBond 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDetailBond;
-        
-        /// <summary>
-        /// gvDetailTrust 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDetailTrust;
+        protected global::System.Web.UI.WebControls.GridView gvDetail;
         
         /// <summary>
         /// gvStatus 控制項。
