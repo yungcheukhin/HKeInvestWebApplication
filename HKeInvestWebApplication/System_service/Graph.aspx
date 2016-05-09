@@ -6,15 +6,16 @@
     <div class="form-horizontal">
 
         <div class="form-group">
-            <asp:Label ID="userNameSearch" runat="server" Text="Type security code (which you hold) to view " class="col-md-8"></asp:Label>
+            <asp:Label ID="securitySearch" runat="server" Text="Type security code (which you hold) to view " class="col-md-8"></asp:Label>
         </div>
 
         <div class="form-group">
-            <asp:TextBox ID="userNameSearchBox" runat="server" class="col-md-4"></asp:TextBox>
+            <asp:TextBox ID="securitySearchBox" runat="server" class="col-md-4"></asp:TextBox>
         </div>
 
         <div class="form-group">
-            <asp:Button ID="userNameSearchBtn" runat="server" Text="Generate Graph" class="btn-default col-md-3" OnClick="userNameSearchBtn_Click"/>
+            <asp:Button ID="securitySearchBtn" runat="server" Text="Generate Graph" class="btn-default col-md-3" OnClick="userNameSearchBtn_Click"/>
+            <asp:Label ID="securityExist" runat="server" CssClass="text-danger" Text="No such security or you do not hold such security. Please try again." ForeColor="Red" Visible="False"></asp:Label>
         </div>
 
         <div class="form-group">

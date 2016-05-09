@@ -37,11 +37,7 @@ namespace HKeInvestWebApplication
         protected void ddlReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
             gvSummary.Visible = false;
-            gvDetailStock.Visible = false;
-            gvDetailBond.Visible = false;
-            gvDetailTrust.Visible = false;
-            gvStatusBond.Visible = false;
-            gvStatusStock.Visible = false;
+            gvStatus.Visible = false;
             gvOrder.Visible = false;
 
             //find logged in user id
@@ -101,7 +97,7 @@ namespace HKeInvestWebApplication
 
             if (reportType == "history")
             {
-                string sql3 = " SELECT A1.referenceNumber, A1.buyOrSell, A1.securityType, A1.securityCode, A1.dateSubmitted, A1.status, A1.shares, A1.amount, A2.name, A2.fees, A1.transactionNumber, A1.shares, (A1.amount/A1.shares) AS priceShare FROM  TransactionRecord A1, Record A2 WHERE A1.accountNumber = '" + accountNumber + "' AND A1.accountNumber = A2.accountNumber";
+                string sql3 = " SELECT A1.referenceNumber, A1.buyOrSell, A1.securityType, A1.securityCode, A1.dateSubmitted, A1.status, A1.shares, A1.amount, A1.name, A2.fees, A1.transactionNumber, A1.shares, (A1.amount/A1.shares) AS priceShare FROM  TransactionRecord A1, Record A2 WHERE A1.accountNumber = '" + accountNumber + "' AND A1.accountNumber = A2.accountNumber";
 
                 dtReport = myHKeInvestData.getData(sql3);
 
@@ -109,6 +105,30 @@ namespace HKeInvestWebApplication
                 gvOrder.DataBind();
 
                 gvOrder.Visible = true;
+            }
+            if(reportType == "status")
+            {
+                string sql3 = "SELECT A1.referenceNumber, A1.buyOrSell, A1.securityType, A1.securityCode, A1.name, A1.dateSubmitted, A1.status, A1.amount, A1.shares, A1.limitPrice, A1.stopPrice, A1.expiryDay FROM TransactionRecord A1 WHERE A1.accountNumber = '" + accountNumber + "'";
+
+                dtReport = myHKeInvestData.getData(sql3);
+
+                gvStatus.DataSource = dtReport;
+                gvStatus.DataBind();
+
+                gvStatus.Visible = true;
+
+            }
+            if (reportType == "detail")
+            {
+                string sql3 = "SELECT securityCode, securityType, name, shares, base, monetary, (amount/shares) AS priceShare FROM TransactionRecord WHERE accountNumber = '" + accountNumber + "'";
+
+                dtReport = myHKeInvestData.getData(sql3);
+
+                gvDetail.DataSource = dtReport;
+                gvDetail.DataBind();
+
+                gvDetail.Visible = true;
+
             }
         }
     }

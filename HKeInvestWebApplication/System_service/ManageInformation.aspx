@@ -13,9 +13,23 @@
                     <asp:TextBox ID="userNameSearchBox" runat="server" ></asp:TextBox>
 
                 </div>
-                <div class="col-md-offset-2 col-md-6">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-6">
                     <asp:Button ID="userNameSearchBtn" runat="server" Text="Search User Name" class="btn-default col-md-6" OnClick="userNameBtn_Click"  />
                     <asp:Label ID="nameExist" runat="server" CssClass="text-danger" Text="No account exist with this user name" ForeColor="Red" Visible="False"></asp:Label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="acNumberLabel" runat="server" Text="Or input an account number to edit" class="control-label col-md-4"></asp:Label>
+                    <asp:TextBox ID="acNumberBox" runat="server" ></asp:TextBox>
+
+                </div>
+                <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
+                    <asp:Button ID="acNumberBtn" runat="server" Text="Search Account Number" class="btn-default col-md-6" OnClick="acNumberBtn_Click"   />
+                    <asp:Label ID="acNumberExist" runat="server" CssClass="text-danger" Text="No account exist with this account number" ForeColor="Red" Visible="False"></asp:Label>
+                </div>
                 </div>
         </div>
 

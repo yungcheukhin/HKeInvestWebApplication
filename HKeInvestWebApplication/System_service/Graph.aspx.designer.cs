@@ -13,31 +13,40 @@ namespace HKeInvestWebApplication.System_service {
     public partial class Graph {
         
         /// <summary>
-        /// userNameSearch control.
+        /// securitySearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label userNameSearch;
+        protected global::System.Web.UI.WebControls.Label securitySearch;
         
         /// <summary>
-        /// userNameSearchBox control.
+        /// securitySearchBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox userNameSearchBox;
+        protected global::System.Web.UI.WebControls.TextBox securitySearchBox;
         
         /// <summary>
-        /// userNameSearchBtn control.
+        /// securitySearchBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button userNameSearchBtn;
+        protected global::System.Web.UI.WebControls.Button securitySearchBtn;
+        
+        /// <summary>
+        /// securityExist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label securityExist;
         
         /// <summary>
         /// graphTable control.

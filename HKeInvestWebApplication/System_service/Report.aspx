@@ -37,15 +37,16 @@
     <div>
 
         <br />
-        <h4>Details of Stocks </h4>
-        <asp:GridView ID="gvDetailStock" runat="server" AutoGenerateColumns="False" Visible="False">
+        <h4>Details of Security Holdings</h4>
+        <asp:GridView ID="gvDetail" runat="server" AutoGenerateColumns="False" Visible="False">
             <Columns>
-                <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
+                <asp:BoundField DataField="securityCode" HeaderText="Code" ReadOnly="True" SortExpression="securityCode" />
+                <asp:BoundField DataField="securityType" HeaderText="Type" ReadOnly="True" SortExpression="securityType" />
                 <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
                 <asp:BoundField DataField="shares" DataFormatString="{0:n2}" HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
                 <asp:BoundField DataField="base" HeaderText="Base" ReadOnly="True" SortExpression="base" />
-                <asp:BoundField DataField="price" DataFormatString="{0:n2} " HeaderText="Price" ReadOnly="True" SortExpression="price" />
-                <asp:BoundField DataField="monetary" DataFormatString="{0:n2}" HeaderText="Total Monetary Value" ReadOnly="True" SortExpression="monetary" />
+                <asp:BoundField DataField="priceShare" DataFormatString="{0:n2} " HeaderText="Price" ReadOnly="True" SortExpression="priceShare" />
+                <asp:BoundField DataField="monetary" DataFormatString="{0:n2}" HeaderText="Monetary Value" ReadOnly="True" SortExpression="monetary" />
                 <asp:BoundField />
             </Columns>
         </asp:GridView>
@@ -55,80 +56,29 @@
     <div>
 
         <br />
-        <h4>Details of Bonds </h4>
-        <asp:GridView ID="gvDetailBond" runat="server" AutoGenerateColumns="False" Visible="False">
-            <Columns>
-                <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
-                <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
-                <asp:BoundField DataField="shares" DataFormatString="{0:n2}" HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
-                <asp:BoundField DataField="base" HeaderText="Base" ReadOnly="True" SortExpression="base" />
-                <asp:BoundField DataField="price" DataFormatString="{0:n2} " HeaderText="Price" ReadOnly="True" SortExpression="price" />
-                <asp:BoundField DataField="monetary" DataFormatString="{0:n2}" HeaderText="Total Monetary Value" ReadOnly="True" SortExpression="monetary" />
-                <asp:BoundField />
-            </Columns>
-        </asp:GridView>
 
     </div>
 
     <div>
 
         <br />
-        <h4>Details of Unit Trust </h4>
-        <asp:GridView ID="gvDetailTrust" runat="server" AutoGenerateColumns="False" Visible="False">
-            <Columns>
-                <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
-                <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
-                <asp:BoundField DataField="shares" DataFormatString="{0:n2}" HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
-                <asp:BoundField DataField="base" HeaderText="Base" ReadOnly="True" SortExpression="base" />
-                <asp:BoundField DataField="price" DataFormatString="{0:n2} " HeaderText="Price" ReadOnly="True" SortExpression="price" />
-                <asp:BoundField DataField="monetary" DataFormatString="{0:n2}" HeaderText="Total Monetary Value" ReadOnly="True" SortExpression="monetary" />
-                <asp:BoundField />
-            </Columns>
-        </asp:GridView>
-
-    </div>
-
-    <div>
-
-        <br />
-        <h4>Status of Active Order(s) (Bond/Unit Trust)</h4>
+        <h4>Status of Active Order(s)s</h4>
         <p>
-            <asp:GridView ID="gvStatusBond" runat="server" AutoGenerateColumns="False" Visible="False">
+            <asp:GridView ID="gvStatus" runat="server" AutoGenerateColumns="False" Visible="False">
                 <Columns>
-                    <asp:BoundField DataField="reference" HeaderText="Reference Number" ReadOnly="True" SortExpression="reference" />
-                    <asp:BoundField DataField="order" HeaderText="Order" ReadOnly="True" SortExpression="order" />
-                    <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="True" SortExpression="type" />
-                    <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
+                    <asp:BoundField DataField="referenceNumber" HeaderText="Reference Number" ReadOnly="True" SortExpression="referenceNumber" />
+                    <asp:BoundField DataField="buyOrSell" HeaderText="Order" ReadOnly="True" SortExpression="buyOrSell" />
+                    <asp:BoundField DataField="securityType" HeaderText="Type" ReadOnly="True" SortExpression="securityType" />
+                    <asp:BoundField DataField="securityCode" HeaderText="Code" ReadOnly="True" SortExpression="code" />
                     <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
-                    <asp:BoundField DataField="date" HeaderText="Date" ReadOnly="True" SortExpression="date" />
+                    <asp:BoundField DataField="dateSubmitted" HeaderText="Date" ReadOnly="True" SortExpression="dateSubmitted" />
                     <asp:BoundField DataField="status" HeaderText="Status" ReadOnly="True" SortExpression="status" />
-                    <asp:BoundField DataField="dollarAmount" DataFormatString="{0:n2} " HeaderText="Dollar Amount (Buy)" ReadOnly="True" SortExpression="dollarAmount" />
+                    <asp:BoundField DataField="amount" DataFormatString="{0:n2} " HeaderText="Dollar Amount (Buy)" ReadOnly="True" SortExpression="amount" />
                     <asp:BoundField DataField="shares" HeaderText="Shares (Sell)" ReadOnly="True" SortExpression="shares" />
-                </Columns>
-            </asp:GridView>
-        </p>
-
-    </div>
-
-    <div>
-
-        <br />
-        <h4>Status of Active Order(s) (Stocks)</h4>
-        <p>
-            <asp:GridView ID="gvStatusStock" runat="server" AutoGenerateColumns="False" Visible="False">
-                <Columns>
-                    <asp:BoundField DataField="reference" HeaderText="Reference Number" ReadOnly="True" SortExpression="reference" />
-                    <asp:BoundField DataField="order" HeaderText="Order" ReadOnly="True" SortExpression="order" />
-                    <asp:BoundField DataField="type" HeaderText="Type" ReadOnly="True" SortExpression="type" />
-                    <asp:BoundField DataField="code" HeaderText="Code" ReadOnly="True" SortExpression="code" />
-                    <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
-                    <asp:BoundField DataField="date" HeaderText="Date" ReadOnly="True" SortExpression="date" />
-                    <asp:BoundField DataField="status" HeaderText="Status" ReadOnly="True" SortExpression="status" />
-                    <asp:BoundField DataField="shares" HeaderText="Shares" ReadOnly="True" SortExpression="shares" />
-                    <asp:BoundField DataField="price" DataFormatString="{0:n2}" HeaderText="Highest Buying Price/Lowest Selling Price (Limit Order)" ReadOnly="True" SortExpression="price" />
+                    <asp:BoundField DataField="limitPrice" DataFormatString="{0:n2}" HeaderText="Highest Buying Price/Lowest Selling Price (Limit Order)" ReadOnly="True" SortExpression="limitPrice" />
                     <asp:BoundField />
                     <asp:BoundField DataField="stopPrice" DataFormatString="{0:n2}" HeaderText="Stop Price (Stop Order)" ReadOnly="True" SortExpression="stopPrice" />
-                    <asp:BoundField DataField="expiryDate" HeaderText="Expiry Date" ReadOnly="True" SortExpression="expiryDate" />
+                    <asp:BoundField DataField="expiryDay" HeaderText="Expiry Day" ReadOnly="True" SortExpression="expiryDay" />
                 </Columns>
             </asp:GridView>
         </p>
