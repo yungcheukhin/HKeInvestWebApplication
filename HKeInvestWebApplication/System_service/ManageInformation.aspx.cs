@@ -60,10 +60,20 @@ namespace HKeInvestWebApplication
                 manageInfro.Visible = false;
 
             }
-            else if(userNameSearchBox.Text != null)
+            else if(userNameSearchBox.Text != null )
             {
-                clientAccount.userName = userNameSearchBox.Text;
-                updatePage();
+                if (userNameSearchBox.Text != "")
+                {
+                    clientAccount.userName = userNameSearchBox.Text;
+                    updatePage();
+                }
+                else
+                {
+                    refreshBtn.Visible = true;
+                    enterUserName.Visible = true;
+                    manageInfro.Visible = false;
+                }
+
             }
             else
             {
