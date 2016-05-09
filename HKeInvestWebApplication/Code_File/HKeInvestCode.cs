@@ -41,11 +41,12 @@ namespace HKeInvestWebApplication.Code_File
             // Returns the data type of value. Tests for more types can be added if needed.
             if (value != null)
             {
-                Int64 n; decimal d; DateTime dt;
+                /*int n; */decimal d; DateTime dt; Int64 b;/* DateTime month;*/
                 //if (int.TryParse(value, out n)) { return "System.Int32"; }
-                if (Int64.TryParse(value, out n)) { return "System.Int64";  }
+                if (Int64.TryParse(value, out b)) { return "System.Int64";  }
                 else if (decimal.TryParse(value, out d)) { return "System.Decimal"; }
                 else if (DateTime.TryParse(value, out dt)) { return "System.DateTime"; }
+                //else if (DateTime.TryParseExact(value, "MMM-yy", out month)) { return "System.DateTime"; }
             }
             return "System.String";
         }
@@ -90,7 +91,7 @@ namespace HKeInvestWebApplication.Code_File
             foreach (GridViewRow row in gv.Rows)
             {
                 DataRow dr = dt.NewRow();
-                for (int j = 0; j < gv.Columns.Count; j++)
+                for (int j = 0; j < gv.Columns.Count;   j++)
                 {
                     dr[((BoundField)gv.Columns[j]).DataField.ToString().Trim()] = row.Cells[j].Text;
                 }

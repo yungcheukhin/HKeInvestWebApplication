@@ -24,42 +24,6 @@ namespace HKeInvestWebApplication
             lblerror.Visible = false;
         }
 
-        /*protected void Stype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string type = Stype.SelectedValue;
-            string code = Scode.Text.Trim();
-            string name = Sname.Text.Trim();
-            DataTable searchresult;
-            ExternalFunctions myExternalFunctions = new ExternalFunctions();
-            if (Stype.SelectedValue == "bond")
-            {
-                if (code != null && name != null)
-                {
-                }
-                else if (code != null && name == null)
-                {
-                    //getSecuritiesByCode(type, code)
-                    searchresult = myExternalFunctions.getSecuritiesByCode(type, code);
-                }
-                else if (code == null && name != null)
-                {
-                    searchresult = myExternalFunctions.getSecuritiesByName(type, name);
-                }
-                else
-                {
-                }
-                bondtable.Visible = true;
-            }
-            else if (Stype.SelectedValue == "stock")
-            {
-                stocktable.Visible = true;
-            }
-            else if (Stype.SelectedValue == "unitTrust")
-            {
-                unittable.Visible = true;
-            }
-        }*/
-
         protected void doSearch(object sender, EventArgs e)
         {
             string type = Stype.SelectedValue;
@@ -116,6 +80,17 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        foreach (DataRow row in searchresult.Rows)
+                        {
+                            foreach (DataColumn col in searchresult.Columns)
+                            {
+                                if (row[col] == DBNull.Value)
+                                {
+                                    row[col] = Convert.ToDecimal("0.00");
+                                }
+                            }
+                        }
+                        searchresult.AcceptChanges();
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
                         bondtable.Visible = true;
@@ -131,6 +106,17 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        foreach (DataRow row in searchresult.Rows)
+                        {
+                            foreach (DataColumn col in searchresult.Columns)
+                            {
+                                if (row[col] == DBNull.Value)
+                                {
+                                    row[col] = Convert.ToDecimal("0.00");
+                                }
+                            }
+                        }
+                        searchresult.AcceptChanges();
                         gvBond.DataSource = searchresult;
                         gvBond.DataBind();
                         bondtable.Visible = true;
@@ -156,6 +142,17 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        foreach (DataRow row in searchresult.Rows)
+                        {
+                            foreach (DataColumn col in searchresult.Columns)
+                            {
+                                if (row[col] == DBNull.Value)
+                                {
+                                    row[col] = Convert.ToDecimal("0.00");
+                                }
+                            }
+                        }
+                        searchresult.AcceptChanges();
                         gvStock.DataSource = searchresult;
                         gvStock.DataBind();
                         stocktable.Visible = true;
@@ -171,6 +168,17 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        foreach (DataRow row in searchresult.Rows)
+                        {
+                            foreach (DataColumn col in searchresult.Columns)
+                            {
+                                if (row[col] == DBNull.Value)
+                                {
+                                    row[col] = Convert.ToDecimal("0.00");
+                                }
+                            }
+                        }
+                        searchresult.AcceptChanges();
                         gvStock.DataSource = searchresult;
                         gvStock.DataBind();
                         stocktable.Visible = true;
@@ -186,6 +194,17 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        foreach (DataRow row in searchresult.Rows)
+                        {
+                            foreach (DataColumn col in searchresult.Columns)
+                            {
+                                if (row[col] == DBNull.Value)
+                                {
+                                    row[col] = Convert.ToDecimal("0.00");
+                                }
+                            }
+                        }
+                        searchresult.AcceptChanges();
                         gvStock.DataSource = searchresult;
                         gvStock.DataBind();
                         stocktable.Visible = true;
@@ -213,6 +232,17 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        foreach (DataRow row in searchresult.Rows)
+                        {
+                            foreach (DataColumn col in searchresult.Columns)
+                            {
+                                if (row[col] == DBNull.Value)
+                                {
+                                    row[col] = Convert.ToDecimal("0.00");
+                                }
+                            }
+                        }
+                        searchresult.AcceptChanges();
                         gvUnitTrust.DataSource = searchresult;
                         gvUnitTrust.DataBind();
                         unittable.Visible = true;
@@ -228,6 +258,17 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        foreach (DataRow row in searchresult.Rows)
+                        {
+                            foreach (DataColumn col in searchresult.Columns)
+                            {
+                                if (row[col] == DBNull.Value)
+                                {
+                                    row[col] = Convert.ToDecimal("0.00");
+                                }
+                            }
+                        }
+                        searchresult.AcceptChanges();
                         gvUnitTrust.DataSource = searchresult;
                         gvUnitTrust.DataBind();
                         unittable.Visible = true;
@@ -243,6 +284,17 @@ namespace HKeInvestWebApplication
                     }
                     else
                     {
+                        foreach (DataRow row in searchresult.Rows)
+                        {
+                            foreach (DataColumn col in searchresult.Columns)
+                            {
+                                if (row[col] == DBNull.Value)
+                                {
+                                    row[col] = Convert.ToDecimal("0.00");
+                                }
+                            }
+                        }
+                        searchresult.AcceptChanges();
                         gvUnitTrust.DataSource = searchresult;
                         gvUnitTrust.DataBind();
                         unittable.Visible = true;
@@ -292,10 +344,10 @@ namespace HKeInvestWebApplication
             string sortExpression = e.SortExpression.ToLower();
             ViewState["SortExpression"] = sortExpression;
             dtStock.DefaultView.Sort = e.SortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
-            dtStock.AcceptChanges();
+            //dtStock.AcceptChanges();
             gvStock.DataSource = dtStock.DefaultView;
             gvStock.DataBind();
-            bondtable.Visible = true;
+            //bondtable.Visible = true;
         }
 
         protected void gvUnitTrust_Sorting(object sender, GridViewSortEventArgs e)
@@ -304,7 +356,7 @@ namespace HKeInvestWebApplication
             string sortExpression = e.SortExpression.ToLower();
             ViewState["SortExpression"] = sortExpression;
             dtUnitTrust.DefaultView.Sort = e.SortExpression + " " + myHKeInvestCode.getSortDirection(ViewState, e.SortExpression);
-            dtUnitTrust.AcceptChanges();
+            //dtUnitTrust.AcceptChanges();
             gvUnitTrust.DataSource = dtUnitTrust.DefaultView;
             gvUnitTrust.DataBind();
         }
